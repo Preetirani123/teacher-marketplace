@@ -10,22 +10,21 @@ DROP TABLE IF EXISTS category CASCADE;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
 create TABLE orders (
   id SERIAL PRIMARY KEY,
   cust_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   amount INTEGER,
-  payment_type VARCHAR(255),
-  purchased DATE
+  purchased TIMESTAMP
 )
 
 create TABLE order_details (
   id SERIAL PRIMARY KEY,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
   prod_id INTEGER REFERENCES product(id) ON DELETE CASCADE,
-  price INTEGER,
   quantity INTEGER
 )
 
