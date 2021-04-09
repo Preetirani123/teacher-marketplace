@@ -8,8 +8,8 @@ export default function Footer() {
     <>
       <footer className={classes.footer}>
       <CssBaseline />
-        <Typography variant= "h6" align= "center" gutterBottom>
-            Footer
+        <Typography  align= "center" gutterBottom style={{fontFamily: 'Rajdhani'}}>
+        Copyright © LOGO. Website Design For Final Project
         </Typography>
       </footer>
     </>

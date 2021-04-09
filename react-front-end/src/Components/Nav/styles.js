@@ -68,7 +68,13 @@ footer: {
   padding: '20px 0',
   width: '100%',
   position: 'relative',
-  bottom: '0px'
+  bottom: '0px',
+  fontSize: '0.8rem',
+  
+},
+navLogotext: {
+  fontFamily: '"Dancing Script", cursive' ,
+  fontSize: '2rem'
 },
 }));
 

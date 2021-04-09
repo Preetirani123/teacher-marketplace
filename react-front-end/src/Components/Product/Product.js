@@ -13,7 +13,7 @@ export default function Product({product}) {
         <CardMedia className={classes.CardMedia} component="img" image={product.image}  title={product.name} />
          <CardContent>
            <div>
-             <Typography variant="h5" gutterBottom align="center">
+             <Typography variant="h5" gutterBottom align="center" style={{fontFamily: 'Rajdhani'}}>
                {product.name}
              </Typography>
            </div>
@@ -29,7 +29,7 @@ export default function Product({product}) {
            </div>
 
            <Typography variant="h5" gutterBottom align="center" className={classes.owner} >
-               {product.owner_id}
+               Material posted By {product.owner_id}
              </Typography>
 
          </CardContent>
