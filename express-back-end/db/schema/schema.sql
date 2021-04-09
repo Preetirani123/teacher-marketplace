@@ -38,6 +38,7 @@ CREATE TABLE subject (
 CREATE TABLE product (
   id SERIAL PRIMARY KEY,
   cat_id INTEGER REFERENCES category(id) ON DELETE CASCADE,
+  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   description TEXT,
   price NUMERIC NOT NULL,
   thumbnail_url VARCHAR(255),
@@ -51,3 +52,13 @@ create TABLE order_details (
   prod_id INTEGER REFERENCES product(id) ON DELETE CASCADE,
   quantity INTEGER
 );
+
+-- ALTER TABLE users OWNER TO dev;
+-- ALTER TABLE orders OWNER TO dev;
+-- ALTER TABLE category OWNER TO dev;
+-- ALTER TABLE level OWNER TO dev;
+-- ALTER TABLE province OWNER TO dev;
+-- ALTER TABLE subject OWNER TO dev;
+-- ALTER TABLE product OWNER TO dev;
+-- ALTER TABLE order_details OWNER TO dev;
+
