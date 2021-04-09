@@ -11,7 +11,6 @@ INSERT INTO orders(cust_id, amount, purchased) VALUES
   (2, 200, current_timestamp),
   (3, 500, current_timestamp);
 
-
 INSERT INTO category (name) VALUES 
 ('Worksheet'),
 ('Test'),
