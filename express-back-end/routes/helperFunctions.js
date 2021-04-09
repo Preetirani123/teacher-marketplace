@@ -26,7 +26,6 @@ const login = function(email, password, db) {
     .catch((err, res) => res.send(err));
 };
 
-
 module.exports = {
   addUser,
   login
