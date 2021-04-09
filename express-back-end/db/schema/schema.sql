@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS order_details CASCADE;
 DROP TABLE IF EXISTS product CASCADE;
 DROP TABLE IF EXISTS province CASCADE;
 DROP TABLE IF EXISTS subject CASCADE;
-DROP TABLE IF EXISTS level CASCADE
+DROP TABLE IF EXISTS level CASCADE;
 DROP TABLE IF EXISTS category CASCADE;
 
 CREATE TABLE users (
@@ -19,24 +19,6 @@ create TABLE orders (
   cust_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   amount INTEGER,
   purchased TIMESTAMP
-)
-
-create TABLE order_details (
-  id SERIAL PRIMARY KEY,
-  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
-  prod_id INTEGER REFERENCES product(id) ON DELETE CASCADE,
-  quantity INTEGER
-)
-
-CREATE TABLE product (
-  id SERIAL PRIMARY KEY,
-  cat_id INTEGER REFERENCES category(id) ON DELETE CASCADE,
-  description TEXT,
-  price NUMERIC NOT NULL,
-  thumbnail_url VARCHAR(255),
-  subject_id INTEGER REFERENCES subject(id) ON DELETE CASCADE,
-  level_id INTEGER REFERENCES level(id) ON DELETE CASCADE,
-  province_id INTEGER REFERENCES province(id) ON DELETE CASCADE
 );
 
 CREATE TABLE category (
@@ -56,5 +38,25 @@ CREATE TABLE subject (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR NOT NULL
 );
+
+CREATE TABLE product (
+  id SERIAL PRIMARY KEY,
+  cat_id INTEGER REFERENCES category(id) ON DELETE CASCADE,
+  description TEXT,
+  price NUMERIC NOT NULL,
+  thumbnail_url VARCHAR(255),
+  subject_id INTEGER REFERENCES subject(id) ON DELETE CASCADE,
+  level_id INTEGER REFERENCES level(id) ON DELETE CASCADE,
+  province_id INTEGER REFERENCES province(id) ON DELETE CASCADE
+);
+
+create TABLE order_details (
+  id SERIAL PRIMARY KEY,
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+  prod_id INTEGER REFERENCES product(id) ON DELETE CASCADE,
+  quantity INTEGER
+);
+
+
 
 
