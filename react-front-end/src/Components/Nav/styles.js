@@ -15,6 +15,28 @@ const useStyles = makeStyles((theme) => ({
       width: 'auto',
     },
   },
+
+  navLogo: {
+    width: '30%'
+  },
+
+  navSearch: {
+    width: '30%'
+  },
+  navRight: {
+    width: '40%',
+    display: 'flex',
+    justifyContent: 'flex-end'
+  },
+  navRight_1:{
+    width: '20%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  navLink: {
+    marginRight: '10px'
+  },
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: '100%',
@@ -40,6 +62,14 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+footer: {
+  color: '#ffffff',
+  backgroundColor: '#3f51b5',
+  padding: '20px 0',
+  width: '100%',
+  position: 'fixed',
+  bottom: '0px'
+},
 }));
 
 export default useStyles;
