@@ -67,7 +67,7 @@ footer: {
   backgroundColor: '#3f51b5',
   padding: '20px 0',
   width: '100%',
-  position: 'fixed',
+  position: 'relative',
   bottom: '0px'
 },
 }));
