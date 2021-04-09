@@ -3,6 +3,7 @@ import { CssBaseline, AppBar, Toolbar, Typography, InputBase, Link, IconButton, 
 import   SearchIcon  from '@material-ui/icons/Search';
 import useStyles from './styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 
 export default function Nav() {
   const classes = useStyles();
@@ -13,8 +14,8 @@ export default function Nav() {
     <AppBar position= "relative">
       <Toolbar>
         <div className={classes.navLogo}>
-        <Typography variant= "h6">
-            Logo   
+        <Typography variant= "h6" className={classes.navLogotext}>
+           <LocalLibraryIcon color="yellow"/> Smarter Teacher  
         </Typography>
         </div>
         <div className={classes.navSearch}> 

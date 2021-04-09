@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
   },
   owner: {
     borderTop: '1px solid #e2e0e0',
-    paddingTop: '10px'
+    paddingTop: '10px',
+    fontFamily: '"Dancing Script", cursive' ,
   }
   
 }));
