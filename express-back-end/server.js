@@ -6,6 +6,7 @@ const BodyParser = require("body-parser");
 const PORT = 8080;
 const ENV = process.env.ENV || "development";
 const cookieSession = require("cookie-session");
+const methodOverride = require("method-override");
 
 // Express Configuration
 App.use(BodyParser.urlencoded({ extended: false }));
@@ -19,6 +20,8 @@ App.use(
     maxAge: 24 * 60 * 60 * 1000,
   })
 );
+
+App.use(methodOverride('_method'));
 
 // Definitions for PG
 const { Pool } = require("pg");

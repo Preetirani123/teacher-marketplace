@@ -26,7 +26,32 @@ const login = function(email, password, db) {
     .catch((err, res) => res.send(err));
 };
 
+//Gets all the products in the DB
+const getProducts = function(db) {
+  const query = `SELECT * FROM product`
+  return db.query(query)
+    .then(res => res.rows)// returns an array of objects of objs (JSON FORMAT)
+    .catch((err, res) => res.send(err));
+}
+
+
+const insertProduct = function(userID, categoryID, description, price, thumbnail_url, subject_id, grade, province, db) {
+  const query = `
+		INSERT INTO product (cat_ID, owner_id, description, price, thumbnail_url, subject_id, level_id, province_id)
+  	VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+  	RETURNING *;`;
+  const values = [categoryID, userID, description, price, thumbnail_url, subject_id, grade, province];
+  return db.query(query, values)
+    .then(res => res.rows[0])
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+};
+
+
 module.exports = {
   addUser,
-  login
+  login,
+  getProducts,
+  insertProduct
 };
