@@ -57,18 +57,18 @@ INSERT INTO province (name) VALUES
 ('Newfoundland and Labrador'),
 ('Prince Edward Island');  
 
-INSERT INTO product (cat_id, description, price, thumbnail_url, subject_id, level_id, province_id) VALUES 
-  (1, 'A worksheet for your student in Math class in Grade 3', 49.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 1,3,1),
-  (2, 'A Test for your student in Social Studies class', 19.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 8,8,1),
-  (3, 'A Lesson Plan for your student in Physics class', 99.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 2,12,2),
-  (1, 'A worksheet for your kindergarten class', 9.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 6,1,6),
-  (2, 'A Unit test for your students in Biology', 14.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 2,10,1),
-  (3, 'A Lesson Plan for grade 5 English', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 3, 5, 10),
-  (3, 'A Lesson Plan for grade 11 English', 59.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 3, 11, 8),
-  (3, 'A Lesson Plan for grade 12 Chemistry', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 3, 12, 5),
-  (3, 'A Lesson Plan for grade 12 Mathematics', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 3, 12, 5),
-  (3, 'A Lesson Plan for grade 5 French ', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 5, 7, 7),
-  (3, 'A Lesson Plan for grade 6 Science', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 7, 6, 3);
+INSERT INTO product (cat_id, name, description, price, thumbnail_url, subject_id, level_id, province_id) VALUES 
+  (1, 'test name', 'A worksheet for your student in Math class in Grade 3', 49.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 1,3,1),
+  (2, 'test name', 'A Test for your student in Social Studies class', 19.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 8,8,1),
+  (3, 'test name', 'A Lesson Plan for your student in Physics class', 99.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 2,12,2),
+  (1, 'test name', 'A worksheet for your kindergarten class', 9.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 6,1,6),
+  (2, 'test name', 'A Unit test for your students in Biology', 14.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 2,10,1),
+  (3, 'test name', 'A Lesson Plan for grade 5 English', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 3, 5, 10),
+  (3, 'test name', 'A Lesson Plan for grade 11 English', 59.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 3, 11, 8),
+  (3, 'test name', 'A Lesson Plan for grade 12 Chemistry', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 3, 12, 5),
+  (3, 'test name', 'A Lesson Plan for grade 12 Mathematics', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 3, 12, 5),
+  (3, 'test name', 'A Lesson Plan for grade 5 French ', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 5, 7, 7),
+  (3, 'test name', 'A Lesson Plan for grade 6 Science', 39.99, 'https://cdn.education.com/files/1119001_1120000/1119502/file_1119502.gif?width=184', 7, 6, 3);
 
 
 INSERT INTO order_details(order_id, prod_id, quantity) 
