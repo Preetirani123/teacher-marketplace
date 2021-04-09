@@ -56,7 +56,7 @@ module.exports = (db) => {
     const grade = req.body.grade; // may need to perform calculations to see what category its in
     const province = req.body.province; // may need to perform calculations to see what category its in
     updateProduct(
-          userID,
+          productID,
           categoryID,
           description,
           price,
