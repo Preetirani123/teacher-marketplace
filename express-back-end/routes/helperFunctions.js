@@ -48,10 +48,27 @@ const insertProduct = function(userID, categoryID, description, price, thumbnail
     });
 };
 
+const updateProduct = function(userID, categoryID, description, price, thumbnail_url, subject_id, grade, province, db) {
+
+};
+
+const deleteProduct = function(productID, db) {
+  let query = `DELETE FROM product WHERE id = $1`;
+  const values = [productID];
+  return db.query(query,values)
+    .then(res => res.rows[0])
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+};
+
+
 
 module.exports = {
   addUser,
   login,
   getProducts,
-  insertProduct
+  insertProduct,
+  updateProduct,
+  deleteProduct
 };
