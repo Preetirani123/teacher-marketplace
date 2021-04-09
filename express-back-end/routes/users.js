@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const { addUser } = require('./helperFunctions');
+
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -21,7 +23,7 @@ module.exports = (db) => {
   // Registration route (by clicking register button in header when not logged in)
   router.post("/", (req, res) => {
     const user = req.body;
-    user.password = user.password; // can add bcrypt here
+    // user.password = user.password; // can add bcrypt here
     addUser(user, db)
       .then((user) => {
         req.session.user_id = user.id;
