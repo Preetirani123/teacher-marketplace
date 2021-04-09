@@ -37,7 +37,7 @@ const getProducts = function(db) {
 
 const insertProduct = function(userID, categoryID, description, price, thumbnail_url, subject_id, grade, province, db) {
   const query = `
-		INSERT INTO product (cat_ID, owner_id, description, price, thumbnail_url, subject_id, level_id, province_id)
+		INSERT INTO product (cat_id, owner_id, description, price, thumbnail_url, subject_id, level_id, province_id)
   	VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
   	RETURNING *;`;
   const values = [categoryID, userID, description, price, thumbnail_url, subject_id, grade, province];

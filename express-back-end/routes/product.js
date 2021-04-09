@@ -16,7 +16,9 @@ module.exports = (db) => {
 
   //creates a new product
   router.post("/", (req,res) => {
-    const userID = req.session.user_id;
+    // const userID = req.session.user_id;
+    const userID = req.body.user_id
+
     const description = req.body.text_description;
     const categoryID = req.body.categoryID // may need to perform calculations to see what category its in
     const price = req.body.price;
@@ -24,6 +26,11 @@ module.exports = (db) => {
     const subject_id = req.body.subject_id;// may need to perform calculations to see what category its in
     const grade = req.body.grade; // may need to perform calculations to see what category its in
     const province = req.body.province; // may need to perform calculations to see what category its in
+
+    console.log();
+    console.log('req.body, ', req.body)
+    console.log();
+
     insertProduct(
           userID,
           categoryID,
@@ -35,8 +42,8 @@ module.exports = (db) => {
           province,
           db
         )
-      .then((task) => {
-        res.send(task);
+      .then((product) => {
+        res.send(product);
       })
       .catch((e) => {
         console.error(e);
