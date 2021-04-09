@@ -37,6 +37,7 @@ CREATE TABLE subject (
 );
 CREATE TABLE product (
   id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
   cat_id INTEGER REFERENCES category(id) ON DELETE CASCADE,
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   description TEXT,
