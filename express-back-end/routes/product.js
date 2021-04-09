@@ -17,7 +17,8 @@ module.exports = (db) => {
   //creates a new product
   router.post("/", (req,res) => {
     // const userID = req.session.user_id; /// < ------ Uncomment this and delete next line when code is running.
-    const userID = req.body.user_id
+    const userID = req.body.user_id;
+    const name = req.body.name;
     const description = req.body.text_description;
     const categoryID = req.body.categoryID // may need to perform calculations to see what category its in
     const price = req.body.price;
@@ -27,6 +28,7 @@ module.exports = (db) => {
     const province = req.body.province; // may need to perform calculations to see what category its in
     insertProduct(
           userID,
+          name,
           categoryID,
           description,
           price,
@@ -45,9 +47,11 @@ module.exports = (db) => {
       });
   });
 
+  // Update the product
   router.put("/:productID", (req,res) => {
     // const userID = req.session.user_id; /// < ------ Uncomment this and delete next line when code is running.
     const productID = req.params.productID
+    const name = req.body.name;
     const description = req.body.text_description;
     const categoryID = req.body.categoryID // need to perform calculations to see what category its in
     const price = req.body.price;
@@ -57,6 +61,7 @@ module.exports = (db) => {
     const province = req.body.province; // need to perform calculations to see what category its in
     updateProduct(
           productID,
+          name,
           categoryID,
           description,
           price,
