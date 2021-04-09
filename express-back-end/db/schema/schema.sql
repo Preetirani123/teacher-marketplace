@@ -13,19 +13,16 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
 );
-
 create TABLE orders (
   id SERIAL PRIMARY KEY,
   cust_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   amount INTEGER,
   purchased TIMESTAMP
 );
-
 CREATE TABLE category (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR NOT NULL
 );
-
 CREATE TABLE level (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR NOT NULL
@@ -38,7 +35,6 @@ CREATE TABLE subject (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR NOT NULL
 );
-
 CREATE TABLE product (
   id SERIAL PRIMARY KEY,
   product_name VARCHAR(255) NOT NULL,
@@ -51,7 +47,6 @@ CREATE TABLE product (
   level_id INTEGER REFERENCES level(id) ON DELETE CASCADE,
   province_id INTEGER REFERENCES province(id) ON DELETE CASCADE
 );
-
 create TABLE order_details (
   id SERIAL PRIMARY KEY,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
@@ -67,5 +62,4 @@ create TABLE order_details (
 -- ALTER TABLE subject OWNER TO dev;
 -- ALTER TABLE product OWNER TO dev;
 -- ALTER TABLE order_details OWNER TO dev;
-
 
