@@ -1,9 +1,10 @@
 import React from 'react'
-import { CssBaseline, AppBar, Toolbar, Typography, InputBase, Link, IconButton, Badge} from '@material-ui/core';
+import { CssBaseline, AppBar, Toolbar, Typography, InputBase, IconButton, Badge} from '@material-ui/core';
 import   SearchIcon  from '@material-ui/icons/Search';
 import useStyles from './styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+import {Link} from 'react-router-dom'
 
 export default function Nav() {
   const classes = useStyles();
@@ -36,8 +37,8 @@ export default function Nav() {
          <div className={classes.navRight}>
          <div className={classes.navRight_1}>
         <Typography variant= "h6">
-        <Link href="#" color="inherit" className={classes.navLink}>Login</Link>
-        <Link href="#" color="inherit">SignUp</Link>
+          <Link to = "/login" className={classes.navLink}>Login</Link>
+          <Link to = "/register" className={classes.navLink}>SignUp</Link>
         </Typography>
         </div>
         <div className={classes.grow} />

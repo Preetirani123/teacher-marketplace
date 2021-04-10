@@ -10,7 +10,7 @@ export default function Product({product}) {
   return (
     <div>
       <Card className={classes.root}>
-        <CardMedia className={classes.CardMedia} component="img" image={product.image}  title={product.name} />
+        <CardMedia className={classes.CardMedia} component="img" image={product.thumbnail_url}  title={product.name} />
          <CardContent>
            <div>
              <Typography variant="h5" gutterBottom align="center" style={{fontFamily: 'Rajdhani'}}>
