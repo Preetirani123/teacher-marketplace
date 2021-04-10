@@ -4,6 +4,7 @@ import   SearchIcon  from '@material-ui/icons/Search';
 import useStyles from './styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
+import {BrowserRouter as Router} from 'react-router-dom'
 
 export default function Nav() {
   const classes = useStyles();
