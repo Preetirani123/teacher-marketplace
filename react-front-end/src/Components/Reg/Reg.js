@@ -14,7 +14,6 @@ export default function Reg() {
             <TextField required id="standard-required" label="Email" className={classes.spread} />
           </div>
           <div>
-            
             <TextField id="standard-required" label="Name" className={classes.spread} />
           </div>
           <div>
