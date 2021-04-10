@@ -37,8 +37,8 @@ export default function Nav() {
          <div className={classes.navRight}>
          <div className={classes.navRight_1}>
         <Typography variant= "h6">
-          <Link to = "/Login" className={classes.navLink}>Login</Link>
-          <Link to = "/Reg" className={classes.navLink}>SignUp</Link>
+          <Link to = "/login" className={classes.navLink}>Login</Link>
+          <Link to = "/register" className={classes.navLink}>SignUp</Link>
         </Typography>
         </div>
         <div className={classes.grow} />
