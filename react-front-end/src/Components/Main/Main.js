@@ -22,6 +22,7 @@ export default function Main() {
 
             <Route path = "/login" component = {Login} />
             <Route path = "/register" component = {Reg} />
+            <Route path = "/" component = {ProductContainer} />
             
 
         </Switch>
