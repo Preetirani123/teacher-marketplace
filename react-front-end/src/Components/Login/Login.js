@@ -1,22 +1,28 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import {TextField, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
 export default function Login() {
   const classes = useStyles();
 
   return (
     <div>
-        
         <form className={classes.root} noValidate autoComplete="off">
+         <Typography variant = "h4" className={classes.spread}>
+           Login
+         </Typography>
           <div>
-            <TextField required id="standard-required" label="Email"  />
+            <TextField required id="standard-required" label="Email" className={classes.spread} />
           </div>
           <div>
-            <TextField id="standard-password-input" label="Password" type="password" autoComplete="current-password" />
+            <TextField required id="standard-password-input" label="Password" className={classes.spread} 
+            type="password" autoComplete="current-password" />
           </div>
-          
-        </form>
-       
+          <div>
+            <Button variant="contained" color="primary" className = {classes.spread}>
+              Submit
+            </Button>
+          </div>
+        </form> 
     </div>
   )
 }  
