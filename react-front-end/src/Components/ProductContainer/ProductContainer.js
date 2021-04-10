@@ -1,11 +1,11 @@
 
 import { Grid } from '@material-ui/core';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import Product from '../Product/Product'
 import Aside from '../Aside/Aside'
 import useStyles from './styles';
 import axios from "axios";
-import { SettingsInputAntennaTwoTone } from '@material-ui/icons';
+import { SettingsInputAntennaTwoTone } from '@material-ui/icons'
 
 // const products = [
 //   {id: 1, name: 'english lesson', price: 200, owner_id: '2', image: 'https://cdn.elearningindustry.com/wp-content/uploads/2016/05/top-10-books-every-college-student-read-1024x640.jpeg'},

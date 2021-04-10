@@ -16,7 +16,7 @@ export default function Nav() {
       <Toolbar>
         <div className={classes.navLogo}>
         <Typography variant= "h6" className={classes.navLogotext}>
-           <LocalLibraryIcon color="yellow"/> Smarter Teacher  
+           <LocalLibraryIcon /> Smarter Teacher  
         </Typography>
         </div>
         <div className={classes.navSearch}> 
