@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   navLink: {
-    marginRight: '10px'
+    marginRight: '10px',
+    color: '#ffffff'
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
