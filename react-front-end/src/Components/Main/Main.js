@@ -62,8 +62,7 @@ export default function Main(props) {
       <Router>
 
         <main >
-           <Nav u_email = {state.email} setEm = {setEm} countCartItems={cartItems.length} />
-          
+          <Nav u_email = {state.email} setEm = {setEm} countCartItems={cartItems.length} />
           <Switch>
             <Route path="/cart" >
               <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
