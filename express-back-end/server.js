@@ -21,8 +21,6 @@ app.use(
   })
 );
 
-
-
 // Definitions for PG
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js"); // check this..
