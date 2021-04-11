@@ -51,10 +51,18 @@ export default function Main(props) {
 
 
   const classes = useStyles();
+  const [state, setState] = useState({
+    email : ''
+  })
+  const setEm = email => setState({ ...state, email });
+  // const [name, setName] = useState('');
+  // const [password, setPassword] = useState('');
   return (
     <div>
       <Router>
+
         <main >
+           <Nav u_email = {state.email} setEm = {setEm} />
           <Nav countCartItems={cartItems.length} />
           <Switch>
             <Route path="/cart" >
@@ -62,7 +70,9 @@ export default function Main(props) {
             </Route>
 
             <Route path="/login" component={Login} />
-            <Route path="/register" component={Reg} />
+            <Route path = "/register" >
+              <Reg setEm = {setEm} />
+            </Route>
             <Route path="/" >
               <ProductContainer onAdd={onAdd} />
             </Route>
