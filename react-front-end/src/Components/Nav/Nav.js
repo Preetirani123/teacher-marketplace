@@ -58,26 +58,23 @@ const {cartItems} = props;
             <Link to = "/login" className={classes.navLink}>Login</Link>
             <Link to = "/register" className={classes.navLink}>SignUp</Link>
             <Link to = "/cart" className={classes.navLink}>
-          Cart{' '}
-          {props.countCartItems ? (
-            <button >{props.countCartItems}</button>
-          ) : (
-            ''
-          )}
+            Cart{' '}
+            {props.countCartItems ? (
+              <button >{props.countCartItems}</button>
+            ) : (
+              ''
+            )}
 
-          </Link>
+            </Link>
           </div>  
            : 
-           <div>
-              
-              <form className={classes.root} noValidate autoComplete="off" onSubmit={logout}>
-                  <Link to = "/login" className={classes.navLink}>{props.u_email}</Link>
+           <div>         
+              <form className={classes.logOut1} noValidate autoComplete="off" onSubmit={logout}>
+                  <Link to = "/login" className={classes.logOut2}>{props.u_email}</Link>
                   <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
                     Logout
                   </Button>
               </form> 
-
-
 
           </div>}
 

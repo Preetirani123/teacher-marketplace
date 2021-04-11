@@ -1,4 +1,5 @@
 import { fade, makeStyles } from '@material-ui/core/styles';
+import { FullscreenExitTwoTone } from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
 
   search: {
@@ -18,7 +19,16 @@ const useStyles = makeStyles((theme) => ({
   spread: {
     margin: 10
   },
-
+  logOut1: {
+    color: 'red',
+    display: 'flex'
+  },
+  logOut2: {
+    marginRight: '10px',
+    color: '#ffffff',
+    display: 'flex',
+    alignItems: 'center'
+  },
   navLogo: {
     width: '30%'
   },
@@ -39,8 +49,11 @@ const useStyles = makeStyles((theme) => ({
   },
   navLink: {
     marginRight: '10px',
-    color: '#ffffff'
+    color: '#ffffff',
+    
+    
   },
+  
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: '100%',
