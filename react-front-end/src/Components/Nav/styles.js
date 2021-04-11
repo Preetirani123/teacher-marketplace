@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
       width: 'auto',
     },
   },
+  spread: {
+    margin: 10
+  },
 
   navLogo: {
     width: '30%'
