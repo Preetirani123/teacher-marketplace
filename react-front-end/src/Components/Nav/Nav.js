@@ -49,39 +49,39 @@ const {cartItems} = props;
           </div>
          </div>
          <div className={classes.navRight}>
-         <div className={classes.navRight_1}>
-        <Typography variant= "h6">
+            <div className={classes.navRight_1}>
+            <Typography variant= "h6">
 
-         
-          {props.u_email === "" ? 
-          <div>
-            <Link to = "/login" className={classes.navLink}>Login</Link>
-            <Link to = "/register" className={classes.navLink}>SignUp</Link>
-            <Link to = "/cart" className={classes.navLink}>
-            Cart{' '}
-            {props.countCartItems ? (
-              <button >{props.countCartItems}</button>
-            ) : (
-              ''
-            )}
+            
+              {props.u_email === "" ? 
+              <div>
+                <Link to = "/login" className={classes.navLink}>Login</Link>
+                <Link to = "/register" className={classes.navLink}>SignUp</Link>
+                <Link to = "/cart" className={classes.navLink}>
+                Cart{' '}
+                {props.countCartItems ? (
+                  <button >{props.countCartItems}</button>
+                ) : (
+                  ''
+                )}
 
-            </Link>
-          </div>  
-           : 
-           <div>         
-              <form className={classes.logOut1} noValidate autoComplete="off" onSubmit={logout}>
-                  <Link to = "/login" className={classes.logOut2}>{props.u_email}</Link>
-                  <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
-                    Logout
-                  </Button>
-              </form> 
+                </Link>
+              </div>  
+              : 
+              <div>         
+                  <form className={classes.logOut1} noValidate autoComplete="off" onSubmit={logout}>
+                      <Link to = "/login" className={classes.logOut2}>{props.u_email}</Link>
+                      <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
+                        Logout
+                      </Button>
+                  </form> 
 
-          </div>}
+              </div>}
 
-        </Typography>
-        </div>
-        <div className={classes.grow} />
-          <div className={classes.button}>
+            </Typography>
+            </div>
+            <div className={classes.grow} />
+            <div className={classes.button}>
             <IconButton aria-label="show cart item" color="inherit">
               <Badge badgeContent={"5"} color="secondary">
                 <ShoppingCartIcon />
