@@ -49,7 +49,6 @@ export default function Main(props) {
     }
   };
 
-
   const classes = useStyles();
   const [state, setState] = useState({
     email : ''

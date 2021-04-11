@@ -2,16 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  // Redirect to login page
-  router.get("/", (req, res) => {
-    res.redirect("/");
-  });
-
-  // Login as specified user (by given id) and redirect to main page
-  router.get("/:id", (req, res) => {
-    req.session.user_id = req.params.id;
-    res.redirect("/");
-  });
+  
+  // To be replaced by a POST, and to be accessed via axios requests whenever needed, thereby preventing cookie management issues
+  // // Login as specified user (by given id) and redirect to main page
+  // router.get("/:id", (req, res) => {
+  //   req.session.user_id = req.params.id;
+  //   res.redirect("/");
+  // });
 
   // Login user using information provided in form
   router.post('/', (req, res) => {
@@ -27,6 +24,6 @@ module.exports = (db) => {
       })
       .catch(e => res.send(e));
   });
-
+  
   return router;
 };
