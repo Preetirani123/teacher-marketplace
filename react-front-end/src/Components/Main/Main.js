@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ProductContainer from '../ProductContainer/ProductContainer'
 import TopContent from '../TopContent/TopContent'
 import Aside from '../Aside/Aside'
@@ -12,16 +12,25 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 export default function Main() {
   const classes = useStyles();
+  const [state, setState] = useState({
+    email : ''
+  })
+  const setEm = email => setState({ ...state, email });
+  // const [name, setName] = useState('');
+  // const [password, setPassword] = useState('');
   return (
     <div>
       <Router>
       <main >
-        <Nav />
+        <Nav u_email = {state.email} setEm = {setEm} />
+
 
         <Switch>
-
+            
             <Route path = "/login" component = {Login} />
-            <Route path = "/register" component = {Reg} />
+            <Route path = "/register" >
+              <Reg setEm = {setEm} />
+            </Route>
             <Route path = "/" component = {ProductContainer} />
             
         </Switch>
