@@ -6,7 +6,10 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import {Link} from 'react-router-dom'
 
-export default function Nav() {
+export default function Nav(props) {
+
+  const {cartItems} = props;
+
   const classes = useStyles();
   return (
     <>
@@ -39,20 +42,25 @@ export default function Nav() {
         <Typography variant= "h6">
           <Link to = "/login" className={classes.navLink}>Login</Link>
           <Link to = "/register" className={classes.navLink}>SignUp</Link>
+          <Link to = "/cart" className={classes.navLink}>
+          Cart{' '}
+          {props.countCartItems ? (
+            <button >{props.countCartItems}</button>
+          ) : (
+            ''
+          )}
+
+          </Link>
         </Typography>
         </div>
         <div className={classes.grow} />
           <div className={classes.buttion}>
             <IconButton aria-label="show cart item" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={""} color="secondary">
                 <ShoppingCartIcon />
               </Badge> 
-
             </IconButton>
-
           </div>
-
-        
         </div>
       </Toolbar>
     </AppBar>  
