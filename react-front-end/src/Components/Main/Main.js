@@ -67,7 +67,9 @@ export default function Main(props) {
               <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
             </Route>
 
-            <Route path="/login" component={Login} />
+            <Route path="/login" >
+              <Login setEm = {setEm} />  
+            </Route>
             <Route path = "/register" >
               <Reg setEm = {setEm} />
             </Route>
