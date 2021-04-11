@@ -1,10 +1,11 @@
 
 import { Grid } from '@material-ui/core';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import Product from '../Product/Product'
 import Aside from '../Aside/Aside'
 import useStyles from './styles';
 import axios from "axios";
+
 
 
 export default function ProductContainer() {
