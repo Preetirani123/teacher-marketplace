@@ -81,9 +81,9 @@ const {cartItems} = props;
         </Typography>
         </div>
         <div className={classes.grow} />
-          <div className={classes.buttion}>
+          <div className={classes.button}>
             <IconButton aria-label="show cart item" color="inherit">
-              <Badge badgeContent={""} color="secondary">
+              <Badge badgeContent={"5"} color="secondary">
                 <ShoppingCartIcon />
               </Badge> 
             </IconButton>

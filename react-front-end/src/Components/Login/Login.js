@@ -2,15 +2,35 @@ import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 import {TextField, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
-export default function Login() {
+import axios from 'axios'
+export default function Login(props) {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useHistory();
 
+  function login(e) {
+    e.preventDefault();
+    console.log("papap")
+    return axios.post('/login',
+    {
+      email: email,
+      password: password
+    }).then((res)=> {
+      console.log(res)
+      const email = res.data.email
+      props.setEm(email)
+      history.push("/")
+    })
+    .catch(() => {
+      //Failed registration or username already taken.
+    })
+    ;
+  }
+
   return (
     <div>
-        <form className={classes.root} noValidate autoComplete="off">
+        <form className={classes.root} noValidate autoComplete="off" onSubmit = {login}>
          <Typography variant = "h4" className={classes.spread}>
            Login
          </Typography>
@@ -30,7 +50,7 @@ export default function Login() {
             }} />
           </div>
           <div>
-            <Button variant="contained" color="primary" className = {classes.spread}>
+            <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
               Submit
             </Button>
           </div>
