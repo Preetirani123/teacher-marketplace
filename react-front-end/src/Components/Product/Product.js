@@ -1,35 +1,36 @@
-import { CardActions, CardContent, CardMedia, Typography, Card, IconButton } from '@material-ui/core'
-import React from 'react'
+import { CardActions, CardContent, CardMedia, Typography, Card, IconButton } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
 import useStyles from './styles';
 import {AddShoppingCart} from '@material-ui/icons'
 
+export default function Product(props) {
 
+  const { onAdd } = props
 
-export default function Product({product}) {
   const classes = useStyles();
   return (
     <div>
       <Card className={classes.root}>
-        <CardMedia className={classes.CardMedia} component="img" image={product.thumbnail_url}  title={product.name} />
+        <CardMedia className={classes.CardMedia} component="img" image={props.product.thumbnail_url}  title={props.product.name} />
          <CardContent>
            <div>
              <Typography variant="h5" gutterBottom align="center" style={{fontFamily: 'Rajdhani'}}>
-               {product.name}
+               {props.product.name}
              </Typography>
            </div>
            <div className={classes.cart}>
            <Typography variant="h6" gutterBottom align="center">
-             Price: {product.price}
+             Price: {props.product.price}
              </Typography>
-           <CardActions disableSpacing className={classes.CardActions}>
-             <IconButton aria-label='Add to Cart'>
-               <AddShoppingCart />
+           <CardActions  className={classes.CardActions}>
+             <IconButton aria-label='Add to Cart' >
+               <AddShoppingCart onClick={() => onAdd(props.product)} />
              </IconButton>
            </CardActions>
            </div>
 
            <Typography variant="h5" gutterBottom align="center" className={classes.owner} >
-               Material posted By {product.owner_id}
+               Material posted By {props.product.owner_id}
              </Typography>
 
          </CardContent>

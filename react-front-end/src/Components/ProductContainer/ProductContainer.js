@@ -8,10 +8,12 @@ import axios from "axios";
 
 
 
-export default function ProductContainer() {
+export default function ProductContainer(props) {
+  const { onAdd } = props;
   const [state, setState] = useState({
     prod:[]
   })
+
   useEffect(() => {
     Promise.all([
       axios.get('/product'),
@@ -27,6 +29,7 @@ export default function ProductContainer() {
   }, []);
 
   const classes = useStyles();
+  
   return (
     <div>
      <Aside />
@@ -34,7 +37,7 @@ export default function ProductContainer() {
        
        {state.prod.map((product) => (
         <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-         <Product product = {product}/>
+         <Product product = {product} onAdd={onAdd}/>
        </Grid>
        ))}
        

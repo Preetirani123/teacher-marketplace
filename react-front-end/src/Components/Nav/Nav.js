@@ -9,7 +9,7 @@ import axios from 'axios'
 
 export default function Nav(props) {
 
-
+const {cartItems} = props;
   function logout(e) {
     e.preventDefault();
     props.setEm("");
@@ -20,6 +20,7 @@ export default function Nav(props) {
     })
     
   }
+
   const classes = useStyles();
   return (
     <>
@@ -50,10 +51,21 @@ export default function Nav(props) {
          <div className={classes.navRight}>
          <div className={classes.navRight_1}>
         <Typography variant= "h6">
+
+         
           {props.u_email === "" ? 
           <div>
             <Link to = "/login" className={classes.navLink}>Login</Link>
             <Link to = "/register" className={classes.navLink}>SignUp</Link>
+            <Link to = "/cart" className={classes.navLink}>
+          Cart{' '}
+          {props.countCartItems ? (
+            <button >{props.countCartItems}</button>
+          ) : (
+            ''
+          )}
+
+          </Link>
           </div>  
            : 
            <div>
@@ -68,20 +80,17 @@ export default function Nav(props) {
 
 
           </div>}
+
         </Typography>
         </div>
         <div className={classes.grow} />
           <div className={classes.buttion}>
             <IconButton aria-label="show cart item" color="inherit">
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={""} color="secondary">
                 <ShoppingCartIcon />
               </Badge> 
-
             </IconButton>
-
           </div>
-
-        
         </div>
       </Toolbar>
     </AppBar>  
