@@ -16,26 +16,28 @@ export default function Main(props) {
   const [cartItems, setCartItems] = useState([]);
 
   const onAdd = (product) => {
-    console.log(product);
+    // console.log('product', product);
 
     const exist = cartItems.find((x) => x.product === product.id);
     const index = cartItems.map((x) => x.product).indexOf(product.id)
-    console.log(exist)
-    console.log(cartItems)
+    console.log('exist', exist)
+    // console.log('cartItems', cartItems)
 
     if (exist) {
       let copyCart = [...cartItems];
       let item = { ...exist };
+      console.log('item', item);
       item.qty += 1;
       copyCart[index] = { name: product.name, product: exist.product, qty: item.qty, price: product.price };
       setCartItems(copyCart);
     } else {
       setCartItems((prev) => {
-        return [...prev, { name: product.name, product: product, qty: 1, price: product.price }];
+        return [...prev, { name: product.name, product: product.id, qty: 1, price: product.price }];
       });
 
     }
   };
+
   const onRemove = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist.qty === 1) {
