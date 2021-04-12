@@ -11,7 +11,7 @@ export default function Login(props) {
 
   function login(e) {
     e.preventDefault();
-    console.log("papap")
+    
     return axios.post('/login',
     {
       email: email,
@@ -20,7 +20,10 @@ export default function Login(props) {
       console.log(res)
       const email = res.data.email
       props.setEm(email)
-      history.push("/")
+      console.log(props.msg)
+      console.log("########")
+      props.msg === undefined ? history.push('/') : history.push("/checkout")
+      
     })
     .catch(() => {
       //Failed registration or username already taken.
@@ -28,13 +31,8 @@ export default function Login(props) {
     ;
   }
   function loginRoutes () {
-    if (props.msg !== "") {
-      console.log(props.msg)
-      history.push('/cart')
-      
-    } else {
-      history.push('/')
-    }
+    props.msg === undefined ? history.push('/') : history.push("/cart")
+  
   }
 
   return (
