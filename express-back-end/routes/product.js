@@ -15,15 +15,15 @@ module.exports = (db) => {
       });
   });
 
-    //Get a specific product
-    router.get("/:productID", (req, res) => {
+  //Get a specific product
+  router.get("/:productID", (req, res) => {
       const productID = req.params.productID;
       getProduct(productID, db)
         .then(products => res.send(products))
         .catch(e => {
           res.send(e);
         });
-    });
+  });
 
   //creates a new product
   router.post("/", (req,res) => {
