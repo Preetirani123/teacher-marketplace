@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     width: '80%',
     margin: 'auto'
   }
-
 }));
 
 export default useStyles;
