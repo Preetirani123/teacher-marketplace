@@ -44,10 +44,11 @@ export default function Main(props) {
       let pos = state.cart.indexOf(found)
       let items = [...state.cart]
       let item  = {...items[pos]}
+      let each_item_price = Number(item.price) / item.qty
+      let total = Number(item.price)
       item.qty += 1;
-      let p = Number(item.price)
-      p *= item.qty
-      item.price = p
+      total += each_item_price
+      item.price = Math.round((total + Number.EPSILON) * 100) / 100
       items[pos] = item
       setState((prev) =>
       { 
@@ -71,6 +72,8 @@ export default function Main(props) {
   const changeQty = (v, id) => {
     console.log(v, id)
     let item = state.cart.find(e => e.id === id)
+    let each_item_price = Number(item.price) / item.qty
+    let total = Number(item.price)
     let pos = state.cart.indexOf(item)
     let items = [...state.cart]
     if (v === '-') {
@@ -80,6 +83,8 @@ export default function Main(props) {
         items.splice(pos, 1)
       } else {
         item.qty -= 1
+        total -= each_item_price
+        item.price = Math.round((total + Number.EPSILON) * 100) / 100
         items[pos] = item
       }
 
@@ -96,6 +101,8 @@ export default function Main(props) {
       let cnt = state.countItems
       cnt += 1;
       item.qty += 1
+      total += each_item_price
+      item.price = Math.round((total + Number.EPSILON) * 100) / 100
       items[pos] = item
       setState((prev) =>
       { 
