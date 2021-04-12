@@ -17,7 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
   price: {
     fontFamily: 'Rajdhani',
-  }
+  },
+  CardMedia:{
+    height: '250px'
+  },
   
 }));
 

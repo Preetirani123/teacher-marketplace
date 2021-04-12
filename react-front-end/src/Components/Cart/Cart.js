@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { CardMedia, Icon, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 import useStyles from './styles';
 import { useHistory, Link } from "react-router-dom";
 import Login from '../Login/Login';
-import { shadows } from '@material-ui/system';
 
 
 
