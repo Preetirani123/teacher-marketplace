@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { CardMedia, Icon, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 import useStyles from './styles';
 import { useHistory, Link } from "react-router-dom";
@@ -19,7 +18,7 @@ export default function Cart(props) {
   
   
   return (
-    <div>
+    <div className={classes.cartwidth}>
       <div className = {classes.butts}>
           <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
               Back
@@ -35,16 +34,15 @@ export default function Cart(props) {
               <Link to = "/checkout" className={classes.colorLink}>Checkout</Link>
 
               } 
-          </Button>
-
-          
-          
-      </div>    
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell>Image</TableCell>
+          </Button>  
+      </div>   
+      
+      <TableContainer component={Paper} className={classes.cartContainer} style={{boxshadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'}} >
+      
+        <Table className={classes.table} aria-label="simple table" >
+          <TableHead color="primary">
+            <TableRow className={classes.tableHead} >
+              <TableCell color="primary">Image</TableCell>
               <TableCell align="right">Name</TableCell>
               <TableCell align="right">Quantity</TableCell>
               <TableCell align="right">Price</TableCell>
@@ -67,8 +65,9 @@ export default function Cart(props) {
             ))}
           </TableBody>
         </Table>
+       
       </TableContainer>
-
+              
     </div>
   )
 }

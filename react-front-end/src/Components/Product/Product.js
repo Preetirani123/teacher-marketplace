@@ -1,5 +1,5 @@
 import { CardActions, CardContent, CardMedia, Typography, Card, IconButton } from '@material-ui/core';
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useStyles from './styles';
 import {AddShoppingCart} from '@material-ui/icons'
 
@@ -24,8 +24,8 @@ export default function Product(props) {
              </Typography>
            </div>
            <div className={classes.cart}>
-           <Typography variant="h6" gutterBottom align="center">
-             Price: {props.product.price}
+           <Typography variant="h6" gutterBottom align="center" className={classes.price}>
+             Price  ${props.product.price}
              </Typography>
            <CardActions  className={classes.CardActions}>
              <IconButton aria-label='Add to Cart' onClick={add}>

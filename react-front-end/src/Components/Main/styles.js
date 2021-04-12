@@ -17,7 +17,13 @@ const useStyles = makeStyles((theme) => ({
   product: {
     width: '72%',
     padding: '10px'
+  },
+  Route:{
+    margin: '75px 0',
+    width: '100%',
+    display: 'flex'
   }
+  
 }));
 
 export default useStyles;

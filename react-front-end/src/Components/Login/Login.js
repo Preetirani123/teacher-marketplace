@@ -36,7 +36,7 @@ export default function Login(props) {
   }
 
   return (
-    <div>
+    <div >
         <Button onClick = {loginRoutes} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>
@@ -46,7 +46,7 @@ export default function Login(props) {
            Login
          </Typography>
           <div>
-            <TextField required id="standard-required" label="Email" className={classes.spread} 
+            <TextField required id="standard-required"  label="Email" className={classes.spread} 
             value={email}
             onChange={(event) => {
               setEmail(event.target.value);

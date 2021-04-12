@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ProductContainer from '../ProductContainer/ProductContainer'
-import TopContent from '../TopContent/TopContent'
-import Aside from '../Aside/Aside'
 import Nav from '../Nav/Nav';
 import Login from '../Login/Login';
 import Reg from '../Reg/Reg';
@@ -122,7 +120,8 @@ export default function Main(props) {
 
         <main >
           <Nav u_email = {state.email} setEm = {setEm} count = {state.countItems} />
-          <Switch>
+          <div className={classes.Route}>
+          <Switch >
             <Route path = "/checkout" >
               <Checkout items = {state.cart} />
             </Route>
@@ -143,6 +142,7 @@ export default function Main(props) {
               <ProductContainer setCart = {setCart} />
             </Route>
           </Switch>
+          </div>
 
 
           <Footer />

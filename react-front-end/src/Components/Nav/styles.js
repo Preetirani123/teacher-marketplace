@@ -19,18 +19,32 @@ const useStyles = makeStyles((theme) => ({
   spread: {
     margin: 10
   },
+  logo: {
+    color: '#ffffff',
+    textDecoration: 'none',
+  },
   logOut1: {
     color: 'red',
-    display: 'flex'
+    display: 'flex',
+    fontfamily: '"Roboto Slab", serif',
+    textDecoration: 'none',
   },
   logOut2: {
     marginRight: '10px',
     color: '#ffffff',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontFamily: '"Roboto Slab", serif',
+    textDecoration: 'none',
+    '&:hover': {
+      boxshadow: '0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%)',
+      backgroundcolor: '#e0e0e0',
+      color: 'red',
+    }
   },
   navLogo: {
-    width: '30%'
+    width: '30%',
+    
   },
 
   navSearch: {
@@ -50,10 +64,15 @@ const useStyles = makeStyles((theme) => ({
   navLink: {
     marginRight: '10px',
     color: '#ffffff',
-    
-    
+     
   },
-  
+  header:{
+    position: 'fixed',
+    top: '0px',
+    width: '100%',
+    zIndex: '1',
+    display: 'flex'
+  },
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: '100%',
@@ -84,9 +103,11 @@ footer: {
   backgroundColor: '#3f51b5',
   padding: '20px 0',
   width: '100%',
-  position: 'relative',
+  position: 'fixed',
   bottom: '0px',
   fontSize: '0.8rem',
+  display: 'flex',
+  justifyContent: 'center'
   
 },
 navLogotext: {
