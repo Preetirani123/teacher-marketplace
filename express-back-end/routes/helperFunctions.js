@@ -34,6 +34,16 @@ const getProducts = function(db) {
     .catch((err, res) => res.send(err));
 }
 
+//Gets a product in the DB
+const getProduct = function(productID, db) {
+  console.log('product id', productID)
+  const query = `SELECT * FROM product WHERE id = $1`
+  const value = [productID];
+  return db.query(query, value)
+    .then(res => res.rows)// returns an array of objects of objs (JSON FORMAT)
+    .catch((err, res) => res.send(err));
+}
+
 
 const insertProduct = function(userID, name, categoryID, description, price, thumbnail_url, subject_id, grade, province, db) {
   const query = `
@@ -112,6 +122,7 @@ module.exports = {
   addUser,
   login,
   getProducts,
+  getProduct,
   insertProduct,
   updateProduct,
   deleteProduct

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getProducts, insertProduct, updateProduct, deleteProduct } = require('./helperFunctions');
+const { getProducts, insertProduct, updateProduct, deleteProduct, getProduct } = require('./helperFunctions');
 
 
 module.exports = (db) => {
@@ -14,6 +14,16 @@ module.exports = (db) => {
         res.send(e);
       });
   });
+
+    //Get a specific product
+    router.get("/:productID", (req, res) => {
+      const productID = req.params.productID;
+      getProduct(productID, db)
+        .then(products => res.send(products))
+        .catch(e => {
+          res.send(e);
+        });
+    });
 
   //creates a new product
   router.post("/", (req,res) => {
