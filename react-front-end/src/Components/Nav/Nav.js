@@ -9,7 +9,7 @@ import axios from 'axios'
 
 export default function Nav(props) {
 
-const {cartItems} = props;
+
   function logout(e) {
     e.preventDefault();
     props.setEm("");
@@ -54,17 +54,19 @@ const {cartItems} = props;
 
             
               {props.u_email === "" ? 
-              <div>
-                <Link to = "/login" className={classes.navLink}>Login</Link>
-                <Link to = "/register" className={classes.navLink}>SignUp</Link>
+              <div className = {classes.logOut1}>
+                <Link to = "/login" className={classes.logOut2}>Login</Link>
+                <Link to = "/register" className={classes.logOut2}>SignUp</Link>
                 <Link to = "/cart" className={classes.navLink}>
-                Cart{' '}
-                {props.countCartItems ? (
-                  <button >{props.countCartItems}</button>
-                ) : (
-                  ''
-                )}
-
+                    <div className={classes.grow} />  
+                    
+                      <IconButton aria-label="show cart item" color="inherit">
+                        <Badge badgeContent={props.count} color="secondary">
+                          <ShoppingCartIcon />
+                        </Badge> 
+                      </IconButton>
+                    
+  
                 </Link>
               </div>  
               : 
@@ -74,20 +76,25 @@ const {cartItems} = props;
                       <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
                         Logout
                       </Button>
+                      <Link to = "/cart" className={classes.navLink}>
+                          <div className={classes.grow} />
+                          <div className={classes.button}>
+                            <IconButton aria-label="show cart item" color="inherit">
+                              <Badge badgeContent={props.count} color="secondary">
+                                <ShoppingCartIcon />
+                              </Badge> 
+                            </IconButton>
+                          </div>
+  
+                      </Link>
                   </form> 
 
               </div>}
 
             </Typography>
             </div>
-            <div className={classes.grow} />
-            <div className={classes.button}>
-            <IconButton aria-label="show cart item" color="inherit">
-              <Badge badgeContent={"5"} color="secondary">
-                <ShoppingCartIcon />
-              </Badge> 
-            </IconButton>
-          </div>
+            
+            
         </div>
       </Toolbar>
     </AppBar>  

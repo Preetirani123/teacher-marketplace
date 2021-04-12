@@ -9,7 +9,7 @@ import axios from "axios";
 
 
 export default function ProductContainer(props) {
-  const { onAdd } = props;
+ 
   const [state, setState] = useState({
     prod:[]
   })
@@ -18,7 +18,9 @@ export default function ProductContainer(props) {
     Promise.all([
       axios.get('/product'),
     ]).then((all) => {
-      console.log(all[0]);
+      console.log(all[0].data);
+      console.log("xpxpxpxpxpxpxpx")
+
       setState(prev => (
         {
           ...prev,
@@ -37,7 +39,7 @@ export default function ProductContainer(props) {
        
        {state.prod.map((product) => (
         <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-         <Product product = {product} onAdd={onAdd}/>
+         <Product product = {product} setCart = {props.setCart} />
        </Grid>
        ))}
        
