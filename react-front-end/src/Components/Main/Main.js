@@ -122,7 +122,8 @@ export default function Main(props) {
 
         <main >
           <Nav u_email = {state.email} setEm = {setEm} count = {state.countItems} />
-          <Switch>
+          <div className={classes.Route}>
+          <Switch >
             <Route path = "/checkout" >
               <Checkout items = {state.cart} />
             </Route>
@@ -143,6 +144,7 @@ export default function Main(props) {
               <ProductContainer setCart = {setCart} />
             </Route>
           </Switch>
+          </div>
 
 
           <Footer />

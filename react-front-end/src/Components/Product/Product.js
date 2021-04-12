@@ -24,8 +24,8 @@ export default function Product(props) {
              </Typography>
            </div>
            <div className={classes.cart}>
-           <Typography variant="h6" gutterBottom align="center">
-             Price: {props.product.price}
+           <Typography variant="h6" gutterBottom align="center" className={classes.price}>
+             Price  ${props.product.price}
              </Typography>
            <CardActions  className={classes.CardActions}>
              <IconButton aria-label='Add to Cart' onClick={add}>

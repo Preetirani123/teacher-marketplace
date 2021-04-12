@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     borderTop: '1px solid #e2e0e0',
     paddingTop: '10px',
     fontFamily: '"Dancing Script", cursive' ,
+  },
+  price: {
+    fontFamily: 'Rajdhani',
   }
   
 }));

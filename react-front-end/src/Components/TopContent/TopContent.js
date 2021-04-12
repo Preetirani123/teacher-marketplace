@@ -3,8 +3,8 @@ import React from 'react'
 
 export default function TopContent() {
   return (
-    <div>
-      <Container maxWidth="md" style={{marginTop: '40px'}}>
+    <>
+      <Container maxWidth="md" style={{marginTop: '40px', marginBottom: '40px'}}>
       <Typography variant="h4" align="center" color="textPrimary"  gutterBottom>
         Teacher Pay Teachers
       </Typography>
@@ -15,6 +15,6 @@ export default function TopContent() {
 
       </Container>
       
-    </div>
+    </>
   )
 }
