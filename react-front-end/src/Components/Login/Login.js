@@ -30,6 +30,9 @@ export default function Login(props) {
 
   return (
     <div>
+        <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
+          Back
+        </Button>
         <form className={classes.root} noValidate autoComplete="off" onSubmit = {login}>
          <Typography variant = "h4" className={classes.spread}>
            Login

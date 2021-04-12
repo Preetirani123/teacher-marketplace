@@ -32,13 +32,14 @@ export default function Reg(props) {
     })
     .catch(() => {
       //Failed registration or username already taken.
-    })
-    ;
-    
+    });
  };
 
   return (
     <div>
+        <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
+          Back
+        </Button>
         <form className={classes.root} noValidate autoComplete="off" onSubmit={register}>
          <Typography variant = "h4" className={classes.spread}>
            Registration
