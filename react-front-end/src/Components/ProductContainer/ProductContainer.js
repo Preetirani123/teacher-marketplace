@@ -5,19 +5,19 @@ import Product from '../Product/Product'
 import Aside from '../Aside/Aside'
 import useStyles from './styles';
 import axios from "axios";
-import Pagination from 'react-bootstrap/Pagination'
+import ReactPaginate from 'react-paginate';
+import './paginateStyle.scss';
+
 
 export default function ProductContainer(props) {
   const [state, setState] = useState({
     prod: [],
-    page: 1,
-    prodsPerPage: 30,
+    offset: 0
   });
 
   useEffect(() => {
     Promise.all([axios.get("/product")]).then((all) => {
-      console.log(all[0].data);
-
+      // console.log(all[0].data);
       setState((prev) => ({
         ...prev,
         prod: all[0].data,
@@ -25,12 +25,24 @@ export default function ProductContainer(props) {
     });
   }, []);
 
-  const { prod, page, prodsPerPage } = state;
+  const classes = useStyles();
 
-  // Logic for displaying prod
-  const indexOfLastProd = page * prodsPerPage;
-  const indexOfFirstProd = indexOfLastProd - prodsPerPage;
-  const currentProds = prod.slice(indexOfFirstProd, indexOfLastProd);
+  const productsPerPage = 30;
+  const { prod, offset } = state;
+
+  const totalPages = Math.ceil( prod.length / productsPerPage);
+
+  const handleClick = (data) => {
+    let selected = data.selected;
+    let newOffset = Math.ceil(selected * productsPerPage);
+    console.log(selected);
+    setState((prevState) => ({
+      ...prevState,
+      offset: newOffset
+    }));
+  };
+
+  const currentProds = prod.slice(offset, offset+productsPerPage);
 
   const renderProds = currentProds.map((prod, index) => {
     return (
@@ -40,49 +52,26 @@ export default function ProductContainer(props) {
     );
   });
 
-  // Logic for displaying page numbers
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(prod.length / prodsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  const renderPageNumbers = pageNumbers.map((number) => {
-
-    
-    return (
-      <Pagination.Item key={number} id={number} active={number === page} onClick={(event => handleClick(event.target.id))}>
-        {number}
-      </Pagination.Item>
-    );
-  });
-
-  const handleClick = (pageNum) => {
-    if (pageNum > pageNumbers.length || pageNum < 1){
-      return;
-    }
-    setState((prevState) => ({
-      ...prevState,
-      page: Number(pageNum),
-    }));
-  };
-
-  const classes = useStyles();
-
   return (
     <div>
       <Aside />
       <Grid container justify="center" spacing={4} className={classes.spread}>
         {renderProds}
       </Grid>
-      <Pagination>
-        <Pagination.Prev 
-          onClick={(event => handleClick(page - 1))}
-          />
-        {renderPageNumbers}
-        <Pagination.Next 
-          onClick={(event => handleClick(page + 1))}
+      <div class="paginate">
+        <ReactPaginate
+          previousLabel={"<"}
+          nextLabel={">"}
+          breakLabel={"..."}
+          breakClassName={"break-me"}
+          pageCount={totalPages}
+          marginPagesDisplayed={5}
+          pageRangeDisplayed={30}
+          onPageChange={handleClick}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
         />
-      </Pagination>
+      </div>
     </div>
   );
 }
