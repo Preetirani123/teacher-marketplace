@@ -5,7 +5,6 @@ const useStyles = makeStyles((theme) => ({
   spread: {
     margin: 0
   }
-
 }));
 
 export default useStyles;
