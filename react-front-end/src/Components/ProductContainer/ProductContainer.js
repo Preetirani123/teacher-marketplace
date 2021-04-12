@@ -1,10 +1,11 @@
 
 import { Grid } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
-import Product from '../Product/Product'
-import Aside from '../Aside/Aside'
+import Product from '../Product/Product';
+import Aside from '../Aside/Aside';
 import useStyles from './styles';
 import axios from "axios";
+import TopContent from '../TopContent/TopContent'
 
 
 
@@ -33,8 +34,8 @@ export default function ProductContainer(props) {
   const classes = useStyles();
   
   return (
-    <div>
-     <Aside />
+    <div className={classes.containWidth}>
+     <TopContent />
      <Grid container justify="center" spacing={4} className = {classes.spread}>
        
        {state.prod.map((product) => (

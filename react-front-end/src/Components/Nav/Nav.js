@@ -26,14 +26,16 @@ export default function Nav(props) {
   const classes = useStyles();
   return (
     <>
-    <header>
+    <header className={classes.header}>
     <CssBaseline />
     <AppBar position= "relative">
       <Toolbar>
         <div className={classes.navLogo}>
+        <Link to = "/" className={classes.logo}>
         <Typography variant= "h6" className={classes.navLogotext}>
-           <LocalLibraryIcon /> Smarter Teacher  
+         <LocalLibraryIcon /> Smarter Teacher  
         </Typography>
+        </Link>
         </div>
         <div className={classes.navSearch}> 
         <div className={classes.search}>
