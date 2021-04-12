@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ProductContainer from '../ProductContainer/ProductContainer'
-import TopContent from '../TopContent/TopContent'
-import Aside from '../Aside/Aside'
 import Nav from '../Nav/Nav';
 import Login from '../Login/Login';
 import Reg from '../Reg/Reg';
