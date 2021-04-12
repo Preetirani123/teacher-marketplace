@@ -4,17 +4,19 @@ import   SearchIcon  from '@material-ui/icons/Search';
 import useStyles from './styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios'
 
 export default function Nav(props) {
-
+  const history = useHistory();
 
   function logout(e) {
     e.preventDefault();
     props.setEm("");
     return axios.post('/logout').then((res) => {
       console.log(res)
+      history.push('/')
+
     }).catch((e) => {
       console.log(e)
     })
@@ -74,6 +76,7 @@ export default function Nav(props) {
                   <form className={classes.logOut1} noValidate autoComplete="off" onSubmit={logout}>
                       <Link to = "/login" className={classes.logOut2}>{props.u_email}</Link>
                       <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
+
                         Logout
                       </Button>
                       <Link to = "/cart" className={classes.navLink}>
