@@ -27,12 +27,22 @@ export default function Login(props) {
     })
     ;
   }
+  function loginRoutes () {
+    if (props.msg !== "") {
+      console.log(props.msg)
+      history.push('/cart')
+      
+    } else {
+      history.push('/')
+    }
+  }
 
   return (
     <div>
-        <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
+        <Button onClick = {loginRoutes} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>
+        <p>{props.msg}</p>
         <form className={classes.root} noValidate autoComplete="off" onSubmit = {login}>
          <Typography variant = "h4" className={classes.spread}>
            Login

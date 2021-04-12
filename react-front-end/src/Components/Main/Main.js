@@ -127,7 +127,10 @@ export default function Main(props) {
               <Checkout items = {state.cart} />
             </Route>
             <Route path="/cart" >
-              <Cart items = {state.cart} changeQty = {changeQty} />
+              <Cart items = {state.cart} changeQty = {changeQty} u_email = {state.email} />
+            </Route>
+            <Route path="/login_err" >
+              <Login setEm = {setEm} msg = {'You need to sign in first before proceeding to payment'} />  
             </Route>
             <Route path="/login" >
               <Login setEm = {setEm} />  

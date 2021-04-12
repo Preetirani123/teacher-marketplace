@@ -14,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
   spread: {
     margin: 10
   },
+  colorLink: {
+    color: 'white'
+  },
+  
   butts: {
     display: 'flex',
     justifyContent: 'space-between'

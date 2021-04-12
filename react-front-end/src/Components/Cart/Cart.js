@@ -3,6 +3,7 @@ import axios from "axios";
 import { CardMedia, Icon, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 import useStyles from './styles';
 import { useHistory, Link } from "react-router-dom";
+import Login from '../Login/Login';
 
 
 
@@ -16,6 +17,7 @@ export default function Cart(props) {
      props.changeQty(sign, id)
   }
   
+  
   return (
     <div>
       <div className = {classes.butts}>
@@ -23,13 +25,19 @@ export default function Cart(props) {
               Back
           </Button>
           
-          <Link to = "/checkout">
+          <Button variant="contained" color="primary" className = {classes.spread}>
+              {props.u_email === "" ? 
 
-              <Button variant="contained" color="primary" className = {classes.spread}>
+              <Link to = "/login_err" className={classes.colorLink}>
                 Checkout
-              </Button>
+              </Link>
+              :
+              <Link to = "/checkout" className={classes.colorLink}>Checkout</Link>
 
-          </Link>
+              } 
+          </Button>
+
+          
           
       </div>    
       <TableContainer component={Paper}>

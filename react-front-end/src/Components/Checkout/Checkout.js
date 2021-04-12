@@ -11,6 +11,8 @@ import { useHistory, Link } from "react-router-dom";
 export default function Checkout(props) {
   const history = useHistory();
   const classes = useStyles();
+  console.log(history)
+  console.log("%%%%%%%%%%%%%%%%%%%%")
   
   
   return (
