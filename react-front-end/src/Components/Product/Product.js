@@ -4,8 +4,13 @@ import useStyles from './styles';
 import {AddShoppingCart} from '@material-ui/icons'
 
 export default function Product(props) {
-
-  const { onAdd } = props
+  
+  function add () {
+    console.log("ssssssssssssssss"); 
+    console.log(props.product);
+    props.setCart(props.product);
+  }
+ 
 
   const classes = useStyles();
   return (
@@ -23,8 +28,8 @@ export default function Product(props) {
              Price: {props.product.price}
              </Typography>
            <CardActions  className={classes.CardActions}>
-             <IconButton aria-label='Add to Cart' >
-               <AddShoppingCart onClick={() => onAdd(props.product)} />
+             <IconButton aria-label='Add to Cart' onClick={add}>
+               <AddShoppingCart  />
              </IconButton>
            </CardActions>
            </div>

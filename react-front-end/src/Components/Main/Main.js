@@ -12,61 +12,112 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 export default function Main(props) {
-
-  const [cartItems, setCartItems] = useState([]);
-
-  const onAdd = (product) => {
-    console.log(product);
-
-    const exist = cartItems.find((x) => x.product === product.id);
-    const index = cartItems.map((x) => x.product).indexOf(product.id)
-    console.log(exist)
-    console.log(cartItems)
-
-    if (exist) {
-      let copyCart = [...cartItems];
-      let item = { ...exist };
-      item.qty += 1;
-      copyCart[index] = { name: product.name, product: exist.product, qty: item.qty, price: product.price };
-      setCartItems(copyCart);
-    } else {
-      setCartItems((prev) => {
-        return [...prev, { name: product.name, product: product, qty: 1, price: product.price }];
-      });
-
-    }
-  };
-  const onRemove = (product) => {
-    const exist = cartItems.find((x) => x.id === product.id);
-    if (exist.qty === 1) {
-      setCartItems(cartItems.filter((x) => x.id !== product.id));
-    } else {
-      setCartItems(
-        cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty - 1 } : x
-        )
-      );
-    }
-  };
-
   const classes = useStyles();
   const [state, setState] = useState({
-    email : ''
+    email : '',
+    cart : [],
+    countItems : 0
   })
-  const setEm = email => setState({ ...state, email });
-  // const [name, setName] = useState('');
-  // const [password, setPassword] = useState('');
+
+  const setEm = (email) => {
+    setState((prev) =>
+    { 
+      return {
+        ...prev,
+        email: email
+      }
+    });
+  };
+  const setCart = (newer) => {
+    let cnt = state.countItems
+    cnt += 1;
+    setState((prev) =>
+      { 
+        return {
+          ...prev,
+          countItems: cnt
+        }
+    });
+    newer.qty = 1
+    const found = state.cart.find(e => e.id === newer.id);
+    if (found !== undefined) {
+      let pos = state.cart.indexOf(found)
+      let items = [...state.cart]
+      let item  = {...items[pos]}
+      item.qty += 1;
+      let p = Number(item.price)
+      p *= item.qty
+      item.price = p
+      items[pos] = item
+      setState((prev) =>
+      { 
+        return {
+          ...prev,
+          cart: items
+        }
+      });
+
+    } else {
+        setState((prev) =>
+        { 
+          return {
+            ...prev,
+            cart: [...prev.cart, newer]
+          }
+        });
+    }      
+  }
+
+  const changeQty = (v, id) => {
+    console.log(v, id)
+    let item = state.cart.find(e => e.id === id)
+    let pos = state.cart.indexOf(item)
+    let items = [...state.cart]
+    if (v === '-') {
+      let cnt = state.countItems
+      cnt -= 1;
+      if (item.qty === 1) {
+        items.splice(pos, 1)
+      } else {
+        item.qty -= 1
+        items[pos] = item
+      }
+
+      setState((prev) =>
+      { 
+        return {
+          ...prev,
+          cart: items,
+          countItems: cnt
+        }
+      });
+    }
+    if (v === '+') {
+      let cnt = state.countItems
+      cnt += 1;
+      item.qty += 1
+      items[pos] = item
+      setState((prev) =>
+      { 
+        return {
+          ...prev,
+          cart: items,
+          countItems: cnt
+        }
+      });
+    }  
+  }
+  
   return (
     <div>
       <Router>
 
         <main >
-          <Nav u_email = {state.email} setEm = {setEm} countCartItems={cartItems.length} />
+          <Nav u_email = {state.email} setEm = {setEm} count = {state.countItems} />
           <Switch>
             <Route path="/cart" >
-              <Cart cartItems={cartItems} onAdd={onAdd} onRemove={onRemove} />
+              <Cart items = {state.cart} changeQty = {changeQty} />
             </Route>
-
             <Route path="/login" >
               <Login setEm = {setEm} />  
             </Route>
@@ -74,10 +125,8 @@ export default function Main(props) {
               <Reg setEm = {setEm} />
             </Route>
             <Route path="/" >
-              <ProductContainer onAdd={onAdd} />
+              <ProductContainer setCart = {setCart} />
             </Route>
-
-
           </Switch>
 
 
