@@ -8,6 +8,7 @@ import Reg from '../Reg/Reg';
 import useStyles from './styles';
 import Footer from '../Footer/Footer';
 import Cart from '../Cart/Cart';
+import Checkout from '../Checkout/Checkout';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
@@ -122,6 +123,9 @@ export default function Main(props) {
         <main >
           <Nav u_email = {state.email} setEm = {setEm} count = {state.countItems} />
           <Switch>
+            <Route path = "/checkout" >
+              <Checkout items = {state.cart} />
+            </Route>
             <Route path="/cart" >
               <Cart items = {state.cart} changeQty = {changeQty} />
             </Route>
@@ -131,6 +135,7 @@ export default function Main(props) {
             <Route path = "/register" >
               <Reg setEm = {setEm} />
             </Route>
+            
             <Route path="/" >
               <ProductContainer setCart = {setCart} />
             </Route>

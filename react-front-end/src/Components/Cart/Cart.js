@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { CardMedia, Icon, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@material-ui/core';
 import useStyles from './styles';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 
 
@@ -18,9 +18,20 @@ export default function Cart(props) {
   
   return (
     <div>
-      <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
-          Back
-      </Button>
+      <div className = {classes.butts}>
+          <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
+              Back
+          </Button>
+          
+          <Link to = "/checkout">
+
+              <Button variant="contained" color="primary" className = {classes.spread}>
+                Checkout
+              </Button>
+
+          </Link>
+          
+      </div>    
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
