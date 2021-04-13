@@ -6,6 +6,7 @@ import Reg from '../Reg/Reg';
 import useStyles from './styles';
 import Footer from '../Footer/Footer';
 import Cart from '../Cart/Cart';
+import Chat from '../Chat/Chat';
 import Checkout from '../Checkout/Checkout';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -136,6 +137,9 @@ export default function Main(props) {
             </Route>
             <Route path = "/register" >
               <Reg setEm = {setEm} />
+            </Route>
+            <Route path = "/Chat" >
+              <Chat />
             </Route>
             
             <Route path="/" >

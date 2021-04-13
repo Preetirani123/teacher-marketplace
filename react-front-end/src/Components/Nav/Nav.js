@@ -59,6 +59,8 @@ export default function Nav(props) {
             
               {props.u_email === "" ? 
               <div className = {classes.logOut1}>
+                <Link to = "/Chat" className={classes.logOut2}>Chat</Link>
+
                 <Link to = "/login" className={classes.logOut2}>Login</Link>
                 <Link to = "/register" className={classes.logOut2}>SignUp</Link>
                 <Link to = "/cart" className={classes.navLink}>
