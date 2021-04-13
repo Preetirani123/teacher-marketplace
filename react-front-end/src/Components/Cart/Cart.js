@@ -29,15 +29,11 @@ export default function Cart(props) {
                   </Button>
                   
                   <Button variant="contained" color="primary" className = {classes.spread}>
-                      {2 === 2 ? 
 
-                      <Link to = "/login_err" className={classes.colorLink}>
+                      <Link to = "/checkout" className={classes.colorLink}>
                         Checkout
                       </Link>
-                      :
-                      <Link to = "/checkout" className={classes.colorLink}>Checkout</Link>
-
-                      } 
+                      
                   </Button>  
               </div>   
               

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CssBaseline, AppBar, Toolbar, Typography, InputBase, Button, IconButton, Badge} from '@material-ui/core';
 import   SearchIcon  from '@material-ui/icons/Search';
 import useStyles from './styles';
@@ -10,19 +10,21 @@ import axios from 'axios'
 export default function Nav(props) {
   const history = useHistory();
   const [em, setEma] = useState('');
-  axios.get('/login')
-  .then((resp) => {
+  useEffect(() => {
+
+
+    axios.get('/login')
+    .then((resp) => {
     console.log(resp.data)
     setEma(resp.data.email)
     props.setEm(resp.data.email)
     
-  })
-  .catch((e) => {
+    })
+    .catch((e) => {
 
   });
+  }, [])
   
-  
-
   function logout(e) {
     e.preventDefault();
     
@@ -35,6 +37,7 @@ export default function Nav(props) {
     }).catch((e) => {
       console.log(e)
     })
+    
     
   }
 

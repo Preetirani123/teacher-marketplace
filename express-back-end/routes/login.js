@@ -10,6 +10,7 @@ module.exports = (db) => {
 
     if (req.session && req.session.user_id) {
       res.send({email: req.session.email, id: req.session.user_id});
+      return;
     }
     res.send({email: '', id: ''})
     
