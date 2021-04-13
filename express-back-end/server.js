@@ -45,11 +45,13 @@ const usersRoutes = require("./routes/users");
 const productRoutes = require("./routes/product");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
+const cartRoutes = require("./routes/cart");
 
 app.use("/users", usersRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/product", productRoutes(db));
 app.use("/logout", logoutRoutes());
+app.use("/cart", cartRoutes());
 
 // Home page
 // Warning: avoid creating more routes in this file!
