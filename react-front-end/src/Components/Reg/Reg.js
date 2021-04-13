@@ -34,7 +34,7 @@ export default function Reg(props) {
 
   return (
     <div>
-        <Nav count = '5' setEm = {props.setEm} />
+        <Nav count = {props.count} setEm = {props.setEm} />
         <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>

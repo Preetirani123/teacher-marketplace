@@ -134,19 +134,19 @@ export default function Main(props) {
                 {state.email === '' ?
                 <Login  setEm = {setEm} />  
                 :
-                <ProductContainer setCart = {setCart} />
+                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
                 }
               </Route>
               <Route path = "/register" >
                 {state.email === '' ?
                 <Reg  setEm = {setEm} />  
                 :
-                <ProductContainer setCart = {setCart} />
+                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
                 }
               </Route>
               
               <Route path="/" >
-                <ProductContainer setCart = {setCart} count = {state.countItems} />
+                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
               </Route>
             </Switch>
           </div>
