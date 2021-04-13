@@ -13,9 +13,8 @@ const useStyles = makeStyles((theme) => ({
   },
   
   cartContainer: {
-    width: '80%',
+    
     borderRadius: '10px',
-    margin: 'auto',
   },
   root: {
     '& > span': {
@@ -39,9 +38,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50%'
   },
   cartwidth:{
-    width: '80%',
-    margin: 'auto'
-  },
+    
+  }
 }));
 
 

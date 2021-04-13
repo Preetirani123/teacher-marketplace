@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import {TextField, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
 import axios from 'axios'
+import Nav from '../Nav/Nav';
+import ProductContainer from '../ProductContainer/ProductContainer';
 export default function Login(props) {
   const classes = useStyles();
   const [email, setEmail] = useState('');
@@ -17,26 +19,24 @@ export default function Login(props) {
       email: email,
       password: password
     }).then((res)=> {
-      console.log(res)
-      const email = res.data.email
-      props.setEm(email)
-      console.log(props.msg)
-      console.log("########")
-      props.msg === undefined ? history.push('/') : history.push("/checkout")
+      
+      history.push('/')
       
     })
-    .catch(() => {
-      //Failed registration or username already taken.
-    })
-    ;
+    .catch((e) => {
+      
+    });
+    
   }
   function loginRoutes () {
-    props.msg === undefined ? history.push('/') : history.push("/cart")
+    
+    history.push('/')
   
   }
 
   return (
     <div >
+        <Nav count = {props.count} setEm = {props.setEm} />
         <Button onClick = {loginRoutes} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>
@@ -48,16 +48,14 @@ export default function Login(props) {
           <div>
             <TextField required id="standard-required"  label="Email" className={classes.spread} 
             value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
+            onChange={(event) => {setEmail(event.target.value);
             }} />
           </div>
           <div>
             <TextField required id="standard-password-input" label="Password" className={classes.spread} 
             type="password" autoComplete="current-password" 
             value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
+            onChange={(event) => {setPassword(event.target.value);
             }} />
           </div>
           <div>

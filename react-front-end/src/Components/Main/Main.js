@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductContainer from '../ProductContainer/ProductContainer'
-import Nav from '../Nav/Nav';
 import Login from '../Login/Login';
 import Reg from '../Reg/Reg';
 import useStyles from './styles';
@@ -8,16 +7,42 @@ import Footer from '../Footer/Footer';
 import Cart from '../Cart/Cart';
 import Chat from '../Chat/Chat';
 import Checkout from '../Checkout/Checkout';
+import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 export default function Main(props) {
+
   const classes = useStyles();
   const [state, setState] = useState({
     email : '',
     cart : [],
     countItems : 0
   })
+
+  useEffect(() => {
+    axios.get("/cart").then((all) => {
+      
+      console.log(all.data)
+      let cit = 0;
+      if (all.data !== []) {
+        for (let e of all.data) {
+          cit += e.qty
+        }
+      }
+      
+      setState((prev) =>
+      { 
+        return {
+          ...prev,
+          cart: all.data,
+          countItems: cit
+        }
+      });
+
+
+    });
+  }, []);
 
   const setEm = (email) => {
     setState((prev) =>
@@ -29,6 +54,7 @@ export default function Main(props) {
     });
   };
   const setCart = (newer) => {
+    let items = [...state.cart]
     let cnt = state.countItems
     cnt += 1;
     setState((prev) =>
@@ -42,7 +68,7 @@ export default function Main(props) {
     const found = state.cart.find(e => e.id === newer.id);
     if (found !== undefined) {
       let pos = state.cart.indexOf(found)
-      let items = [...state.cart]
+      
       let item  = {...items[pos]}
       let each_item_price = Number(item.price) / item.qty
       let total = Number(item.price)
@@ -50,6 +76,7 @@ export default function Main(props) {
       total += each_item_price
       item.price = Math.round((total + Number.EPSILON) * 100) / 100
       items[pos] = item
+      upd_cart(items)
       setState((prev) =>
       { 
         return {
@@ -66,7 +93,12 @@ export default function Main(props) {
             cart: [...prev.cart, newer]
           }
         });
-    }      
+        items.push(newer)
+        upd_cart(items)
+    }
+
+    
+    
   }
 
   const changeQty = (v, id) => {
@@ -87,6 +119,7 @@ export default function Main(props) {
         item.price = Math.round((total + Number.EPSILON) * 100) / 100
         items[pos] = item
       }
+      upd_cart(items)
 
       setState((prev) =>
       { 
@@ -104,6 +137,7 @@ export default function Main(props) {
       total += each_item_price
       item.price = Math.round((total + Number.EPSILON) * 100) / 100
       items[pos] = item
+      upd_cart(items)
       setState((prev) =>
       { 
         return {
@@ -112,40 +146,72 @@ export default function Main(props) {
           countItems: cnt
         }
       });
-    }  
+    }   
   }
+  
+
+  
+  function upd_cart (c) {
+    console.log(c)
+    console.log("555555555555555")
+    axios.post('/cart',
+    {
+      data: c
+    }).then((resp)=> {
+      console.log(resp.data)
+    })
+    .catch((e) => {
+      
+    });
+  }
+  
+
   
   return (
     <div>
       <Router>
 
         <main >
-          <Nav u_email = {state.email} setEm = {setEm} count = {state.countItems} />
+          
           <div className={classes.Route}>
-          <Switch >
-            <Route path = "/checkout" >
-              <Checkout items = {state.cart} />
-            </Route>
-            <Route path="/cart" >
-              <Cart items = {state.cart} changeQty = {changeQty} u_email = {state.email} />
-            </Route>
-            <Route path="/login_err" >
-              <Login setEm = {setEm} msg = {'You need to sign in first before proceeding to payment'} />  
-            </Route>
-            <Route path="/login" >
-              <Login setEm = {setEm} />  
-            </Route>
-            <Route path = "/register" >
-              <Reg setEm = {setEm} />
-            </Route>
-            <Route path = "/Chat" >
+
+            <Switch >
+              <Route path = "/checkout" >
+                {state.email === '' ?
+                <Login  setEm = {setEm} count = {state.countItems} /> 
+                :
+                <Checkout items = {state.cart} count = {state.countItems} u_email = {state.email} />
+                }
+              </Route>
+              <Route path="/cart" >
+                <Cart items = {state.cart} changeQty = {changeQty} count = {state.countItems} setEm = {setEm}  />
+              </Route>
+              <Route path="/login_err" >
+                <Login  msg = {'You need to sign in first before proceeding to payment'} />  
+              </Route>
+              <Route path="/login" >
+                {state.email === '' ?
+                <Login  setEm = {setEm} count = {state.countItems} />  
+                :
+                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
+                }
+              </Route>
+              <Route path = "/register" >
+                {state.email === '' ?
+                <Reg  setEm = {setEm} count = {state.countItems} />  
+                :
+                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
+                }
+              </Route>
+                <Route path = "/Chat" >
               <Chat />
             </Route>
-            
-            <Route path="/" >
-              <ProductContainer setCart = {setCart} />
-            </Route>
-          </Switch>
+              
+              <Route path="/" >
+                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
+              </Route>
+            </Switch>
+
           </div>
 
 
