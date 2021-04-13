@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
   
   tableHead: {
-    backgroundColor: '#3f51b5d4',
+    backgroundColor: '#ff00008a',
     color: '#ffffff'
   },
   
