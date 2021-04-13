@@ -2,6 +2,7 @@
 import { Grid } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import Product from '../Product/Product';
+import Nav from '../Nav/Nav';
 import useStyles from './styles';
 import axios from "axios";
 
@@ -57,25 +58,27 @@ export default function ProductContainer(props) {
   });
 
   return (
-
-    <div className={classes.containWidth}>
-     <TopContent />
-      <Grid container justify="center" spacing={4} className={classes.spread}>
-        {renderProds}
-      </Grid>
-      <div class="paginate">
-        <ReactPaginate
-          previousLabel={"<"}
-          nextLabel={">"}
-          breakLabel={"..."}
-          breakClassName={"break-me"}
-          pageCount={totalPages}
-          marginPagesDisplayed={5}
-          pageRangeDisplayed={30}
-          onPageChange={handleClick}
-          containerClassName={"pagination"}
-          activeClassName={"active"}
-        />
+    <div>
+      <Nav count = {props.count} />
+      <div className={classes.containWidth}>
+      <TopContent />
+        <Grid container justify="center" spacing={4} className={classes.spread}>
+          {renderProds}
+        </Grid>
+        <div class="paginate">
+          <ReactPaginate
+            previousLabel={"<"}
+            nextLabel={">"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            pageCount={totalPages}
+            marginPagesDisplayed={5}
+            pageRangeDisplayed={30}
+            onPageChange={handleClick}
+            containerClassName={"pagination"}
+            activeClassName={"active"}
+          />
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import {TextField, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
 import axios from 'axios'
+import Nav from '../Nav/Nav';
 export default function Reg(props) {
   const classes = useStyles();
   
@@ -14,7 +15,6 @@ export default function Reg(props) {
 
   function register (e) {
     e.preventDefault();
-    console.log("Aaaaaaaaaaaaa")
     return axios.post('/users', 
      {
        name : name,
@@ -22,11 +22,8 @@ export default function Reg(props) {
        password: password
      })
     .then((res)=> {
-      console.log(res)
-      console.log("@@@@@@@@@@@")
-      const email = res.data.email
-      console.log(email)
-      props.setEm(email)
+      
+      
       history.push("/")
 
     })
@@ -37,6 +34,7 @@ export default function Reg(props) {
 
   return (
     <div>
+        <Nav count = '5' setEm = {props.setEm} />
         <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>

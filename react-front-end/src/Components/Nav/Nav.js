@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { CssBaseline, AppBar, Toolbar, Typography, InputBase, Button, IconButton, Badge} from '@material-ui/core';
 import   SearchIcon  from '@material-ui/icons/Search';
 import useStyles from './styles';
@@ -9,12 +9,27 @@ import axios from 'axios'
 
 export default function Nav(props) {
   const history = useHistory();
+  const [em, setEma] = useState('');
+  axios.get('/login')
+  .then((resp) => {
+    console.log(resp.data)
+    setEma(resp.data.email)
+    props.setEm(resp.data.email)
+    
+  })
+  .catch((e) => {
+
+  });
+  
+  
 
   function logout(e) {
     e.preventDefault();
-    props.setEm("");
+    
     return axios.post('/logout').then((res) => {
       console.log(res)
+      setEma('')
+      props.setEm('')
       history.push('/')
 
     }).catch((e) => {
@@ -57,7 +72,7 @@ export default function Nav(props) {
             <Typography variant= "h6">
 
             
-              {props.u_email === "" ? 
+              {em === '' ? 
               <div className = {classes.logOut1}>
                 <Link to = "/login" className={classes.logOut2}>Login</Link>
                 <Link to = "/register" className={classes.logOut2}>SignUp</Link>
@@ -76,7 +91,7 @@ export default function Nav(props) {
               : 
               <div>         
                   <form className={classes.logOut1} noValidate autoComplete="off" onSubmit={logout}>
-                      <Link to = "/login" className={classes.logOut2}>{props.u_email}</Link>
+                      <Link to = "/login" className={classes.logOut2}>{em}</Link>
                       <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
 
                         Logout
