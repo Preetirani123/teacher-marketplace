@@ -90,7 +90,7 @@ module.exports = (db) => {
         res.send(e);
       });
   });
-
+  
   // Delete product route 
   router.delete("/:productID", (req,res) => {
     // const userID = req.session.user_id; /// < ------ Uncomment this and delete next line when code is running with FrontEnd

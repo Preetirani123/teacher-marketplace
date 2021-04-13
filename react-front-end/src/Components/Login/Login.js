@@ -22,7 +22,8 @@ export default function Login(props) {
       props.setEm(email)
       console.log(props.msg)
       console.log("########")
-      props.msg === undefined ? history.push('/') : history.push("/checkout")
+      //props.msg === undefined ? history.push('/') : history.push("/checkout")
+      history.push('/')
       
     })
     .catch(() => {
@@ -31,7 +32,8 @@ export default function Login(props) {
     ;
   }
   function loginRoutes () {
-    props.msg === undefined ? history.push('/') : history.push("/cart")
+    //props.msg === undefined ? history.push('/') : history.push("/cart")
+    history.push('/')
   
   }
 
