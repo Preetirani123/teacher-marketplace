@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/analytics';
+import Nav from '../Nav/Nav';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -28,17 +29,21 @@ function Chat() {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="App">
-      <header1>
+    <>
+     <Nav />
+    
+    <div className="AppChat">
+      <header>
         <h1>💬  Chat With Us</h1>
         <SignOut />
-      </header1>
+      </header>
 
       <section>
         {user ? <ChatRoom /> : <SignIn />}
       </section>
 
     </div>
+    </>
   );
 }
 
@@ -92,13 +97,14 @@ function ChatRoom() {
   }
 
   return (<>
-    <main1>
+  
+    <main>
 
       {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
       <span ref={dummy}></span>
 
-    </main1>
+    </main>
 
     <form onSubmit={sendMessage}>
 

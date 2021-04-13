@@ -1,7 +1,7 @@
 body {
   background-color: #282c34;
 }
-header1 {
+.AppChat header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,10 +9,10 @@ header1 {
 background: #ff00008a;
 padding: 10px 20px;
 }
-h1{
+.AppChat h1{
   margin-right: 44px;
 }
-.sign-out {
+.AppChat .sign-out {
   padding: 0px 36px;
   margin: 0px;
   border-radius: 11px;
@@ -22,7 +22,7 @@ h1{
   cursor: pointer;
 }
 
-.App {
+.AppChat {
   
   max-width: 100%;
   margin: 0 auto;
@@ -32,7 +32,7 @@ h1{
   background: rgb(246, 246, 247);
   }
   
-  main1{
+  .AppChat main{
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -78,7 +78,7 @@ flex-direction: row-reverse;
   font-size: 15px;
         }
     
-        form {
+        .AppChat form {
           height: 8vh;
           
           background-color: rgb(24, 23, 23);
@@ -88,7 +88,7 @@ flex-direction: row-reverse;
           font-size: 1.5rem;
         }
            
-    form button {
+        .AppChat form button {
       width: 20%;
       background-color: #3f51b5;
       color: #ffffff;
@@ -96,7 +96,7 @@ flex-direction: row-reverse;
     }
     
     
-    input {
+    .AppChat input {
       line-height: 1.5;
       width: 100%;
       font-size: 1.5rem;

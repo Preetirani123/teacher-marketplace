@@ -11,6 +11,7 @@ import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
+
 export default function Main(props) {
 
   const classes = useStyles();
@@ -170,7 +171,7 @@ export default function Main(props) {
   return (
     <div>
       <Router>
-
+       
         <main >
           
           <div className={classes.Route}>
@@ -204,8 +205,8 @@ export default function Main(props) {
                 }
               </Route>
                 <Route path = "/Chat" >
-              <Chat />
-            </Route>
+                <Chat />
+                </Route>
               
               <Route path="/" >
                 <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />

@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff',
     textDecoration: 'none',
   },
+  a:{
+    color: 'gray',
+  },
   logOut1: {
     color: 'red',
     display: 'flex',
