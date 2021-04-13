@@ -16,6 +16,14 @@ export default function Cart(props) {
   function changeQ (sign, id) {
      props.changeQty(sign, id)
   }
+
+  function total () {
+   if (props.items === [] || props.items === undefined) {
+     return 0;
+   }
+   let t =  props.items.map((e) => e.price).reduce((a, v) => a + v);
+   return Math.round((t + Number.EPSILON) * 100) / 100;
+  }
   
   
   return (
@@ -63,6 +71,12 @@ export default function Cart(props) {
                         <TableCell align="right">{row.price}</TableCell>
                       </TableRow>
                     ))}
+                    <TableRow>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell></TableCell>
+                      <TableCell>${total}</TableCell>
+                    </TableRow>
                   </TableBody>
                 </Table>
               

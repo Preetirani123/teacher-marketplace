@@ -116,6 +116,28 @@ const deleteProduct = function(productID, db) {
     });
 };
 
+const addOrder = function(amount, id, db) {
+  let query =   `INSERT INTO orders (cust_id, amount) VALUES ($1, $2) RETURNING *`;
+  const values = [id, amount];
+  return db.query(query,values)
+    .then(res => res.rows[0])
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+
+}
+
+const addOrderDetails = function(o_id, p_id, qty, db) {
+  let query =   `INSERT INTO order_details (order_id, prod_id, quantity) VALUES ($1, $2, $3) RETURNING *`;
+  const values = [o_id, p_id, qty];
+  return db.query(query,values)
+    .then(res => res.rows[0])
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+
+}
+
 
 
 module.exports = {
@@ -125,5 +147,7 @@ module.exports = {
   getProduct,
   insertProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  addOrder,
+  addOrderDetails
 };

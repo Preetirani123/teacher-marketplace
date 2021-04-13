@@ -17,7 +17,7 @@ create TABLE orders (
   id SERIAL PRIMARY KEY,
   cust_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   amount INTEGER,
-  purchased TIMESTAMP
+  purchased timestamp default current_timestamp
 );
 CREATE TABLE category (
   id SERIAL PRIMARY KEY NOT NULL,
