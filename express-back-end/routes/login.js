@@ -7,8 +7,12 @@ module.exports = (db) => {
   // To be replaced by a POST, and to be accessed via axios requests whenever needed, thereby preventing cookie management issues
   // // Login as specified user (by given id) and redirect to main page
   router.get("/", (req, res) => {
-    req.session.user_id = req.params.id;
-    res.redirect("/");
+
+    if (req.session && req.session.user_id) {
+      res.send({email: req.session.email, id: req.session.user_id});
+    }
+    res.send({email: '', id: ''})
+    
   });
 
   // Login user using information provided in form
@@ -21,7 +25,8 @@ module.exports = (db) => {
           return res.send('test');
         }
         req.session.user_id = user.id;
-        res.send({pande: user.id, name: user.name, email: user.email, id: user.id});
+        req.session.email = user.email
+        res.send({name: user.name, email: user.email, id: user.id});
       })
       .catch(e => res.send(e));
   });

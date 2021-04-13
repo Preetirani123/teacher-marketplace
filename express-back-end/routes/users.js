@@ -28,7 +28,8 @@ module.exports = (db) => {
     addUser(user, db)
       .then((user) => {
         req.session.user_id = user.id;
-        res.send(user);
+        req.session.email = user.email
+        res.send({name: user.name, email: user.email, id: user.id});
       })
       .catch((err) => res.send(err));
   });

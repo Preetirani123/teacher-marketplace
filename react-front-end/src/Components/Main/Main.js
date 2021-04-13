@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ProductContainer from '../ProductContainer/ProductContainer'
-import Nav from '../Nav/Nav';
 import Login from '../Login/Login';
 import Reg from '../Reg/Reg';
 import useStyles from './styles';
@@ -119,29 +118,37 @@ export default function Main(props) {
       <Router>
 
         <main >
-          <Nav u_email = {state.email} setEm = {setEm} count = {state.countItems} />
+          
           <div className={classes.Route}>
-          <Switch >
-            <Route path = "/checkout" >
-              <Checkout items = {state.cart} />
-            </Route>
-            <Route path="/cart" >
-              <Cart items = {state.cart} changeQty = {changeQty} u_email = {state.email} />
-            </Route>
-            <Route path="/login_err" >
-              <Login setEm = {setEm} msg = {'You need to sign in first before proceeding to payment'} />  
-            </Route>
-            <Route path="/login" >
-              <Login setEm = {setEm} />  
-            </Route>
-            <Route path = "/register" >
-              <Reg setEm = {setEm} />
-            </Route>
-            
-            <Route path="/" >
-              <ProductContainer setCart = {setCart} />
-            </Route>
-          </Switch>
+            <Switch >
+              <Route path = "/checkout" >
+                <Checkout items = {state.cart} />
+              </Route>
+              <Route path="/cart" >
+                <Cart items = {state.cart} changeQty = {changeQty}  />
+              </Route>
+              <Route path="/login_err" >
+                <Login  msg = {'You need to sign in first before proceeding to payment'} />  
+              </Route>
+              <Route path="/login" >
+                {state.email === '' ?
+                <Login  setEm = {setEm} />  
+                :
+                <ProductContainer setCart = {setCart} />
+                }
+              </Route>
+              <Route path = "/register" >
+                {state.email === '' ?
+                <Reg  setEm = {setEm} />  
+                :
+                <ProductContainer setCart = {setCart} />
+                }
+              </Route>
+              
+              <Route path="/" >
+                <ProductContainer setCart = {setCart} count = {state.countItems} />
+              </Route>
+            </Switch>
           </div>
 
 
