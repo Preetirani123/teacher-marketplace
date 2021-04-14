@@ -18,6 +18,7 @@ export default function Main(props) {
   const [state, setState] = useState({
     email : '',
     cart : [],
+    total : 0,
     countItems : 0
   })
 
@@ -26,18 +27,23 @@ export default function Main(props) {
       
       console.log(all.data)
       let cit = 0;
+      let t = 0;
+      
       if (all.data !== []) {
         for (let e of all.data) {
           cit += e.qty
+          t += Number(e.price)
         }
       }
-      
+      let t_r = Math.round((t + Number.EPSILON) * 100) / 100
+      console.log(t_r, "kkkkkkkkkkkkk")
       setState((prev) =>
       { 
         return {
           ...prev,
           cart: all.data,
-          countItems: cit
+          countItems: cit,
+          total : t_r
         }
       });
 
@@ -54,6 +60,7 @@ export default function Main(props) {
       }
     });
   };
+
   const setCart = (newer) => {
     let items = [...state.cart]
     let cnt = state.countItems
@@ -62,7 +69,8 @@ export default function Main(props) {
       { 
         return {
           ...prev,
-          countItems: cnt
+          countItems: cnt,
+        
         }
     });
     newer.qty = 1
@@ -82,7 +90,8 @@ export default function Main(props) {
       { 
         return {
           ...prev,
-          cart: items
+          cart: items,
+         
         }
       });
 
@@ -91,7 +100,8 @@ export default function Main(props) {
         { 
           return {
             ...prev,
-            cart: [...prev.cart, newer]
+            cart: [...prev.cart, newer],
+           
           }
         });
         items.push(newer)
@@ -107,8 +117,9 @@ export default function Main(props) {
     let item = state.cart.find(e => e.id === id)
     let each_item_price = Number(item.price) / item.qty
     let total = Number(item.price)
-    let pos = state.cart.indexOf(item)
+    let pos = state.cart.indexOf(item)    
     let items = [...state.cart]
+
     if (v === '-') {
       let cnt = state.countItems
       cnt -= 1;
@@ -147,7 +158,8 @@ export default function Main(props) {
           countItems: cnt
         }
       });
-    }   
+    } 
+    
   }
   
 
@@ -160,9 +172,24 @@ export default function Main(props) {
       data: c
     }).then((resp)=> {
       console.log(resp.data)
+      let t = 0;
+      if (resp.data !== []) {
+        for (let e of resp.data) {
+          t += Number(e.price)
+        }
+      }
+      let t_r = Math.round((t + Number.EPSILON) * 100) / 100
+      setState((prev) =>
+      { 
+        return {
+          ...prev,
+          total : t_r
+        }
+      });
+
     })
     .catch((e) => {
-      
+       console.log(e)
     });
   }
   
@@ -179,37 +206,36 @@ export default function Main(props) {
             <Switch >
               <Route path = "/checkout" >
                 {state.email === '' ?
-                <Login  setEm = {setEm} count = {state.countItems} /> 
+                <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
                 :
-                <Checkout items = {state.cart} count = {state.countItems} u_email = {state.email} />
+                <Checkout items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} />
                 }
               </Route>
               <Route path="/cart" >
-                <Cart items = {state.cart} changeQty = {changeQty} count = {state.countItems} setEm = {setEm}  />
+                <Cart items = {state.cart} changeQty = {changeQty} count = {state.countItems} total = {state.total} setEm = {setEm}  />
               </Route>
-              <Route path="/login_err" >
+              {/* <Route path="/login_err" >
                 <Login  msg = {'You need to sign in first before proceeding to payment'} />  
-              </Route>
+              </Route> */}
               <Route path="/login" >
                 {state.email === '' ?
-                <Login  setEm = {setEm} count = {state.countItems} />  
+                <Login  setEm = {setEm} count = {state.countItems} total = {state.total} />  
                 :
-                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
+                <ProductContainer setCart = {setCart} count = {state.countItems} total = {state.total} setEm = {setEm} />
                 }
               </Route>
               <Route path = "/register" >
                 {state.email === '' ?
-                <Reg  setEm = {setEm} count = {state.countItems} />  
+                <Reg  setEm = {setEm} count = {state.countItems} total = {state.total} />  
                 :
-                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
+                <ProductContainer setCart = {setCart} count = {state.countItems} total = {state.total} setEm = {setEm} />
                 }
               </Route>
-                <Route path = "/Chat" >
-                <Chat />
-                </Route>
-              
+              <Route path = "/Chat" >
+                <Chat count = {state.countItems} total = {state.total} />
+              </Route>
               <Route path="/" >
-                <ProductContainer setCart = {setCart} count = {state.countItems} setEm = {setEm} />
+                <ProductContainer setCart = {setCart} count = {state.countItems} total = {state.total} setEm = {setEm} />
               </Route>
             </Switch>
 

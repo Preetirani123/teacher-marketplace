@@ -13,23 +13,13 @@ import axios from 'axios'
 export default function Cart(props) {
   const history = useHistory();
   const classes = useStyles();
-  const [total, setTotal] = useState(0);
+  
   
   function changeQ (sign, id) {
      props.changeQty(sign, id)
   }
 
-  useEffect(() => {
-     axios.get("/cart")
-     .then((all) => {
-      let t = all.data.map((e) => Number(e.price)).reduce((a, v) => a + v);
-      let t_r = Math.round((t + Number.EPSILON) * 100) / 100
-      setTotal(t_r)
-     })
-     .catch((e) => {
-      console.log(e)
-     })
-  }, [])
+ 
   
   return (
     
@@ -61,6 +51,9 @@ export default function Cart(props) {
                       <TableCell align="right">Price</TableCell>
                     </TableRow>
                   </TableHead>
+                  {props.items.length === 0 ?
+                  <p>Cart is empty</p>
+                  :
                   <TableBody key = {Math.random()}>
                     {props.items.map((row) => (
                       <TableRow key={row.name}>
@@ -80,9 +73,10 @@ export default function Cart(props) {
                       <TableCell></TableCell>
                       <TableCell></TableCell>
                       <TableCell></TableCell>
-                      <TableCell>${total}</TableCell>
+                      <TableCell>${props.total}</TableCell>
                     </TableRow>
                   </TableBody>
+                  }
                 </Table>
               
               </TableContainer>
