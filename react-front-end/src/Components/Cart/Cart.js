@@ -13,14 +13,12 @@ import axios from 'axios'
 export default function Cart(props) {
   const history = useHistory();
   const classes = useStyles();
-  
-  
+
   function changeQ (sign, id) {
      props.changeQty(sign, id)
   }
 
- 
-  
+
   return (
     
       <div>

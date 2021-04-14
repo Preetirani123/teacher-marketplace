@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductContainer from '../ProductContainer/ProductContainer'
+import ProductDetails from '../Product/ProductDetails'
 import Login from '../Login/Login';
 import Reg from '../Reg/Reg';
 import useStyles from './styles';
@@ -8,9 +9,7 @@ import Cart from '../Cart/Cart';
 import Chat from '../Chat/Chat';
 import Checkout from '../Checkout/Checkout';
 import axios from 'axios'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-
+import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
 
 export default function Main(props) {
 
@@ -192,9 +191,7 @@ export default function Main(props) {
        console.log(e)
     });
   }
-  
-
-  
+ 
   return (
     <div>
       <Router>
@@ -204,6 +201,7 @@ export default function Main(props) {
           <div className={classes.Route}>
 
             <Switch >
+              
               <Route path = "/checkout" >
                 {state.email === '' ?
                 <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
@@ -234,14 +232,14 @@ export default function Main(props) {
               <Route path = "/Chat" >
                 <Chat count = {state.countItems} total = {state.total} />
               </Route>
+              <Route path = "/:productID">
+                <ProductDetails setCart = {setCart} count={state.countItems} total = {state.total} />
+              </Route>
               <Route path="/" >
                 <ProductContainer setCart = {setCart} count = {state.countItems} total = {state.total} setEm = {setEm} />
               </Route>
             </Switch>
-
           </div>
-
-
           <Footer />
         </main>
       </Router>
