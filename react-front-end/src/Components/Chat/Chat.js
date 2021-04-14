@@ -5,18 +5,20 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/analytics';
 import Nav from '../Nav/Nav';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
+const {REACT_APP_APIKEY, REACT_APP_AUTHDOMAIN, REACT_APP_PROJECTID,
+  REACT_APP_STORAGEBUCKET, REACT_APP_MESSAGINGSENDERID, REACT_APP_APPID, REACT_APP_MEASUREMENTID} = process.env
+
 firebase.initializeApp({
-    apiKey: "AIzaSyCr38dB8AqGmUo2yjZmOOFuOINDQcuQp3c",
-    authDomain: "smarter-teacher-project.firebaseapp.com",
-    projectId: "smarter-teacher-project",
-    storageBucket: "smarter-teacher-project.appspot.com",
-    messagingSenderId: "833613300119",
-    appId: "1:833613300119:web:04fd2a3998e103e38184d2",
-    measurementId: "G-7L4LP2RSMZ"
+    apiKey: REACT_APP_APIKEY,
+    authDomain: REACT_APP_AUTHDOMAIN,
+    projectId: REACT_APP_PROJECTID,
+    storageBucket: REACT_APP_STORAGEBUCKET,
+    messagingSenderId: REACT_APP_MESSAGINGSENDERID,
+    appId: REACT_APP_APPID,
+    measurementId: REACT_APP_MEASUREMENTID
 })
 
 const auth = firebase.auth();

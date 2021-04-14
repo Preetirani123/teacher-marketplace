@@ -46,14 +46,14 @@ const productRoutes = require("./routes/product");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 const cartRoutes = require("./routes/cart");
-const orderRoutes = require("./routes/orders");
+// const orderRoutes = require("./routes/orders");
 
 app.use("/users", usersRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/product", productRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/cart", cartRoutes());
-app.use("/orders", orderRoutes(db));
+// app.use("/orders", orderRoutes(db));
 
 // Home page
 // Warning: avoid creating more routes in this file!
