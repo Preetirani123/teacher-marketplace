@@ -4,6 +4,7 @@ import useStyles from './styles';
 import {AddShoppingCart} from '@material-ui/icons'
 import {BrowserRouter as Router, Route, Link, Switch, useParams} from 'react-router-dom'
 import ProductDetails from './ProductDetails'
+import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 
 export default function Product(props) {
   function add() {
@@ -58,7 +59,7 @@ export default function Product(props) {
             Material posted By {props.product.owner_id}
           </Typography>
           <Link to={`/${props.product.id}`}>
-            <p>More Details</p>
+            <Typography align="center" style={{fontSize: '15px', cursor: 'pointer', textDecoration: 'none'}}><AddCircleOutlineRoundedIcon />More Details</Typography>
           </Link>
         </CardContent>
       </Card>
