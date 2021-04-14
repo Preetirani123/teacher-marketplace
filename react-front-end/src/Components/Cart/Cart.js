@@ -4,6 +4,7 @@ import useStyles from './styles';
 import { useHistory, Link } from "react-router-dom";
 import Login from '../Login/Login';
 import Nav from '../Nav/Nav';
+import axios from 'axios'
 
 
 
@@ -12,19 +13,23 @@ import Nav from '../Nav/Nav';
 export default function Cart(props) {
   const history = useHistory();
   const classes = useStyles();
+  const [total, setTotal] = useState(0);
   
   function changeQ (sign, id) {
      props.changeQty(sign, id)
   }
 
-  function total () {
-   if (props.items === [] || props.items === undefined) {
-     return 0;
-   }
-   let t =  props.items.map((e) => e.price).reduce((a, v) => a + v);
-   return Math.round((t + Number.EPSILON) * 100) / 100;
-  }
-  
+  useEffect(() => {
+     axios.get("/cart")
+     .then((all) => {
+      let t = all.data.map((e) => Number(e.price)).reduce((a, v) => a + v);
+      let t_r = Math.round((t + Number.EPSILON) * 100) / 100
+      setTotal(t_r)
+     })
+     .catch((e) => {
+      console.log(e)
+     })
+  }, [])
   
   return (
     
@@ -45,9 +50,9 @@ export default function Cart(props) {
                   </Button>  
               </div>   
               
-              <TableContainer component={Paper} className={classes.cartContainer} style={{boxshadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'}} >
+              <TableContainer key = {Math.random()} component={Paper} className={classes.cartContainer} style={{boxshadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'}} >
               
-                <Table className={classes.table} aria-label="simple table" >
+                <Table key = {Math.random()} className={classes.table} aria-label="simple table" >
                   <TableHead color="primary">
                     <TableRow className={classes.tableHead} >
                       <TableCell color="primary">Image</TableCell>
@@ -56,7 +61,7 @@ export default function Cart(props) {
                       <TableCell align="right">Price</TableCell>
                     </TableRow>
                   </TableHead>
-                  <TableBody>
+                  <TableBody key = {Math.random()}>
                     {props.items.map((row) => (
                       <TableRow key={row.name}>
                         <TableCell component="th" scope="row">
@@ -68,7 +73,7 @@ export default function Cart(props) {
                           <Button onClick = {() => changeQ('+', row.id)}>+</Button>{row.qty}
                           <Button onClick = {() => changeQ('-', row.id)}>-</Button>
                         </TableCell>
-                        <TableCell align="right">{row.price}</TableCell>
+                        <TableCell align="right">${row.price}</TableCell>
                       </TableRow>
                     ))}
                     <TableRow>
