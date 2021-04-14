@@ -65,7 +65,7 @@ export default function ProductContainer(props) {
         <Grid container justify="center" spacing={4} className={classes.spread}>
           {renderProds}
         </Grid>
-        <div class="paginate">
+        <div className="paginate">
           <ReactPaginate
             previousLabel={"<"}
             nextLabel={">"}
