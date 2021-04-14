@@ -238,10 +238,7 @@ export default function Main(props) {
                 <ProductContainer setCart = {setCart} count = {state.countItems} total = {state.total} setEm = {setEm} />
               </Route>
             </Switch>
-
           </div>
-
-
           <Footer />
         </main>
       </Router>

@@ -19,8 +19,7 @@ export default function Cart(props) {
      props.changeQty(sign, id)
   }
 
- 
-  
+
   return (
     
       <div>
