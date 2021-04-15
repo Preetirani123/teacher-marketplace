@@ -161,8 +161,6 @@ export default function Main(props) {
     
   }
   
-
-  
   function upd_cart (c) {
     console.log(c)
     console.log("555555555555555")
@@ -202,12 +200,12 @@ export default function Main(props) {
 
             <Switch >
               
-              
+
               <Route path = "/checkout" >
                 {state.email === '' ?
                 <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
                 :
-                <Checkout items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} />
+                <Checkout items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} />
                 }
               </Route>
               <Route path="/cart" >

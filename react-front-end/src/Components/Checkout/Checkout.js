@@ -5,6 +5,7 @@ import useStyles from './styles';
 import { useHistory, Link } from "react-router-dom";
 import emailjs from 'emailjs-com';
 import{ init } from 'emailjs-com';
+import Nav from '../Nav/Nav';
 
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
@@ -23,6 +24,24 @@ export default function Checkout(props) {
   function finalizeSale(e) {
     e.preventDefault();
     console.log('completed sale');
+
+    //post to server order 
+
+
+    //Clear the cart
+    // props.setCart((prevState) => ({
+    //   ...prevState, 
+    //   cart: [],
+    //   total: 0,
+    //   countItems: 0
+    // }))
+
+    //redirect to Receipt
+
+
+
+    //send email to buyer and seller
+    
   }
 
   // function for email
@@ -51,6 +70,9 @@ export default function Checkout(props) {
 
   return (
     <div>
+      <>
+      <Nav count={props.count} setEm={props.setEm} />
+      </>
       <TableContainer
         key={Math.random()}
         component={Paper}
