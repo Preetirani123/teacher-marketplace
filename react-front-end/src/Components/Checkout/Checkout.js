@@ -27,6 +27,18 @@ export default function Checkout(props) {
     console.log(props);
     //post to server order 
 
+        
+    return axios.post('/orders',
+    {
+      
+    }).then((res)=> {
+      
+      history.push('/')
+      
+    })
+    .catch((e) => {
+      
+    });
 
 
     //Clear the cart
