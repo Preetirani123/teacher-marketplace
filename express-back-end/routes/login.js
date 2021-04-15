@@ -4,10 +4,10 @@ const { login } = require('./helperFunctions');
 
 module.exports = (db) => {
   
+
   // To be replaced by a POST, and to be accessed via axios requests whenever needed, thereby preventing cookie management issues
   // // Login as specified user (by given id) and redirect to main page
   router.get("/", (req, res) => {
-
     if (req.session && req.session.user_id) {
       res.send({email: req.session.email, id: req.session.user_id});
       return;

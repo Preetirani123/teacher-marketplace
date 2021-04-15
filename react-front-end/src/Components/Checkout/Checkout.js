@@ -24,8 +24,9 @@ export default function Checkout(props) {
   function finalizeSale(e) {
     e.preventDefault();
     console.log('completed sale');
-
+    console.log(props);
     //post to server order 
+
 
 
     //Clear the cart
@@ -37,7 +38,6 @@ export default function Checkout(props) {
     // }))
 
     //redirect to Receipt
-
 
 
     //send email to buyer and seller

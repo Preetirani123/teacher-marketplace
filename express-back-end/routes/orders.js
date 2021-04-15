@@ -1,18 +1,44 @@
 const express = require("express");
 const router = express.Router();
-const { addOrder, addOrderDetails } = require('./helperFunctions');
+const { addOrder, addOrderDetails, getOrders, getOrder } = require('./helperFunctions');
 
 module.exports = (db) => {
   
-  //insert into order details table
-  //insert into orders table
-  //read 
- 
+  // Get the orders Table
+  router.get("/", (req, res) => {
+    getOrders(db)
+      .then(orders => res.send(orders))
+      .catch(e => {
+        res.send(e);
+      });
+  });
+
+  // get a specific order
+  router.get("/:orderID", (req, res) => {
+    const orderID = req.params.orderID
+    getOrder(orderID, db)
+      .then(orders => res.send(orders))
+      .catch(e => {
+        res.send(e);
+      });
+  });
+
+    //Get a specific product
+    router.get("/:productID", (req, res) => {
+      const productID = req.params.productID;
+      getProduct(productID, db)
+        .then(products => res.send(products))
+        .catch(e => {
+          res.send(e);
+        });
+  });
+
 
   // insert an order 
   router.post('/', (req, res) => {
-    const { amount, id } = req.body;
-    //const id = req.session.user_id
+    const { amount } = req.body;
+    const id = req.session.user_id
+    console.log('id from req.session.user_id', id)
     addOrder(amount, id, db)
       .then((resp) => {
         if (!resp) {
