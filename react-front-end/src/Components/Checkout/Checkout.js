@@ -114,12 +114,13 @@ export default function Checkout(props) {
           )}
         </Table>
       </TableContainer>
+      <br/>
       <div className="stripe">
         <Elements stripe={promise}>
           <CheckoutForm />
         </Elements>
-        {/* BACKEND IS NOT INTEGRATED */}
       </div>
+      <br/>
       <div className="AutoPay">
         <form
           className={classes.root}
