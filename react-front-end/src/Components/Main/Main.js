@@ -202,6 +202,7 @@ export default function Main(props) {
 
             <Switch >
               
+              
               <Route path = "/checkout" >
                 {state.email === '' ?
                 <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 

@@ -19,8 +19,11 @@ export default function Checkout(props) {
   const history = useHistory();
   const classes = useStyles();
   console.log(history);
-  console.log("%%%%%%%%%%%%%%%%%%%%");
-  console.log(props);
+
+  function finalizeSale(e) {
+    e.preventDefault();
+    console.log('completed sale');
+  }
 
   // function for email
   function sendEmail(e) {
@@ -89,16 +92,28 @@ export default function Checkout(props) {
           )}
         </Table>
       </TableContainer>
-      <div className='stripe'>
+      <div className="stripe">
         <Elements stripe={promise}>
           <CheckoutForm />
         </Elements>
         {/* BACKEND IS NOT INTEGRATED */}
       </div>
-      <div className='AutoPay'>
-      <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
+      <div className="AutoPay">
+        <form
+          className={classes.root}
+          noValidate
+          autoComplete="off"
+          onSubmit={finalizeSale}
+        >
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.spread}
+          >
             Demo Mode - AutoPay
-      </Button>
+          </Button>
+        </form>
       </div>
     </div>
   );
