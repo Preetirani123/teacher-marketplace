@@ -124,6 +124,13 @@ const getOrders = function(db) {
     .catch((err, res) => res.send(err));
 }
 
+const getAllOrderDetails = function(db) {
+  const query = `SELECT * FROM order_details`
+  return db.query(query)
+    .then(res => res.rows)// returns an array of objects of objs (JSON FORMAT)
+    .catch((err, res) => res.send(err));
+}
+
 const getOrder = function(orderID, db) {
   const query = `SELECT * FROM orders WHERE id = $1`
   const value = [orderID];
@@ -133,7 +140,7 @@ const getOrder = function(orderID, db) {
 }
 
 const addOrder = function(amount, id, db) {
-  let query =   `INSERT INTO orders (cust_id, amount, purchased) VALUES ($1, $2, $3) RETURNING *`;
+  let query = `INSERT INTO orders (cust_id, amount, purchased) VALUES ($1, $2, $3) RETURNING *`;
   const purchaseDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
   const values = [id, amount, purchaseDate];
   return db.query(query,values)
@@ -144,7 +151,7 @@ const addOrder = function(amount, id, db) {
 }
 
 const addOrderDetails = function(o_id, p_id, qty, db) {
-  let query =   `INSERT INTO order_details (order_id, prod_id, quantity) VALUES ($1, $2, $3) RETURNING *`;
+  let query = `INSERT INTO order_details (order_id, prod_id, quantity) VALUES ($1, $2, $3) RETURNING *`;
   const values = [o_id, p_id, qty];
   return db.query(query,values)
     .then(res => res.rows[0])
@@ -164,5 +171,6 @@ module.exports = {
   getOrders,
   getOrder,
   addOrder,
-  addOrderDetails
+  addOrderDetails,
+  getAllOrderDetails
 };

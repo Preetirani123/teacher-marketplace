@@ -221,13 +221,13 @@ INSERT INTO product (cat_id, name, owner_id, description, price, thumbnail_url, 
 (1, 'worksheet', 2, 'A worksheet for students in Grade 5 English in the province of Ontario', 1.23, 'https://www.science.edu/acellus/wp-content/uploads/2016/12/Algebra-Spanish-720x388.jpg', 4, 6, 6);
 
 
-INSERT INTO order_details(order_id, prod_id, quantity) 
-VALUES (1, 1, 2),
-  (1, 2, 3),
-  (2, 4, 1),
-  (3, 1, 1),
-  (3, 4, 2),
-  (3, 2, 1);
+INSERT INTO order_details(order_id, prod_id, price, quantity) 
+VALUES (1, 1, 10.21, 2),
+  (1, 2, 13.57, 3),
+  (2, 4, 19.00, 1),
+  (3, 1, 20, 1),
+  (3, 4, 13.22, 2),
+  (3, 2, 18.10,1);
 
 
 

@@ -51,15 +51,16 @@ create TABLE order_details (
   id SERIAL PRIMARY KEY,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
   prod_id INTEGER REFERENCES product(id) ON DELETE CASCADE,
+  price NUMERIC NOT NULL,
   quantity INTEGER
 );
 
--- ALTER TABLE users OWNER TO dev;
--- ALTER TABLE orders OWNER TO dev;
--- ALTER TABLE category OWNER TO dev;
--- ALTER TABLE level OWNER TO dev;
--- ALTER TABLE province OWNER TO dev;
--- ALTER TABLE subject OWNER TO dev;
--- ALTER TABLE product OWNER TO dev;
--- ALTER TABLE order_details OWNER TO dev;
+ALTER TABLE users OWNER TO dev;
+ALTER TABLE orders OWNER TO dev;
+ALTER TABLE category OWNER TO dev;
+ALTER TABLE level OWNER TO dev;
+ALTER TABLE province OWNER TO dev;
+ALTER TABLE subject OWNER TO dev;
+ALTER TABLE product OWNER TO dev;
+ALTER TABLE order_details OWNER TO dev;
 

@@ -17,42 +17,66 @@ const promise = loadStripe("pk_test_51IamO7F2v7FmERryBHILYa3LMwxLz5T5K4xSOzE8zlX
 const {REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID} = process.env
 
 export default function Checkout(props) {
+
+  const [orderNumber, setOrderNumber] = useState();
+
   const history = useHistory();
   const classes = useStyles();
   console.log(history);
+
+  function postOrder() {
+    return axios.post('/orders',
+    {
+      amount: props.total,
+      cart: props.items
+    })
+  }
+
+  function postOrderDetails(ordID, prodID, qty) {
+    return axios.post('/orders/details',
+    {
+      orderID: ordID,
+      productID: prodID,
+      quantity: qty
+    });
+  }
 
   function finalizeSale(e) {
     e.preventDefault();
     console.log('completed sale');
     console.log(props);
     //post to server order 
-
-        
-    return axios.post('/orders',
-    {
-      
-    }).then((res)=> {
-      
-      history.push('/')
-      
-    })
-    .catch((e) => {
-      
+    postOrder()
+      .then((resp)=> {
+        console.log(resp.data)
+        setOrderNumber(resp.data.id)
     });
-
-
-    //Clear the cart
-    // props.setCart((prevState) => ({
-    //   ...prevState, 
-    //   cart: [],
-    //   total: 0,
-    //   countItems: 0
-    // }))
+    for (const item of props.items) {
+      postOrderDetails(orderNumber, item.id, item.qty)
+      .then(() => {
+        console.log('posted to order details')
+      });
+    }
+      ////Clear the cart
+      // props.setCart((prevState) => ({
+      //   ...prevState, 
+      //   cart: [],
+      //   total: 0,
+      //   countItems: 0
+      // }))
 
     //redirect to Receipt
-
+    // history.push('/')
 
     //send email to buyer and seller
+      
+    // })
+    // .catch((e) => {
+      
+    // });
+
+
+
     
   }
 
