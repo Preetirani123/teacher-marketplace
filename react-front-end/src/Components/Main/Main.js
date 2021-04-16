@@ -25,7 +25,7 @@ export default function Main(props) {
   useEffect(() => {
     axios.get("/cart").then((all) => {
       
-      console.log(all.data)
+      console.log('all data from mainJS', all.data)
       let cit = 0;
       let t = 0;
       

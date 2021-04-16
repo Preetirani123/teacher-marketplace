@@ -24,6 +24,7 @@ export default function Checkout(props) {
   const classes = useStyles();
   console.log(history);
 
+  console.log('props', props);
   function postOrder() {
     return axios.post('/orders',
     {
@@ -59,37 +60,28 @@ export default function Checkout(props) {
         console.log('posted to order details')
       });
     }
-
+    
     //send email to buyer and seller
-    // })
-    // .catch((e) => {
-    // });
-
-      //Clear the cart
-      //Maybe want to do this in receipts?
-      // props.setCart((prevState) => ({
-      //   ...prevState, 
-      //   cart: [],
-      //   total: 0,
-      //   countItems: 0
-      // }))
+    // Going to wait to implement this.
+    // sendEmail()
 
     //redirect to Receipt
-    // history.push('/receipt')
-
-
-    
+    history.push('/receipt')
   }
 
   // function for email
-  function sendEmail(e) {
-    e.preventDefault();
+
+  function sendEmail() {
+
+    const emailVariables = {
+      name: props.u_email
+    };
 
     emailjs
-      .sendForm(
+      .send(
         "REACT_APP_SERVICE_ID",
         "REACT_APP_TEMPLATE_ID",
-        e.target,
+        emailVariables,
         "REACT_APP_USER_ID"
       )
       .then(
@@ -145,7 +137,7 @@ export default function Checkout(props) {
               <TableRow>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
-                <TableCell>Total ${props.total}</TableCell>
+                <TableCell align='right'>Total ${props.total}</TableCell>
               </TableRow>
             </TableBody>
           )}
