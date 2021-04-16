@@ -46,6 +46,7 @@ const productRoutes = require("./routes/product");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
 const cartRoutes = require("./routes/cart");
+const awsRoutes = require("./routes/aws");
 // const orderRoutes = require("./routes/orders");
 
 app.use("/users", usersRoutes(db));
@@ -53,6 +54,7 @@ app.use("/login", loginRoutes(db));
 app.use("/product", productRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/cart", cartRoutes());
+app.use("/test_aws", awsRoutes());
 // app.use("/orders", orderRoutes(db));
 
 // Home page

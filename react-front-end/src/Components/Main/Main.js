@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import Cart from '../Cart/Cart';
 import Chat from '../Chat/Chat';
 import Checkout from '../Checkout/Checkout';
+import Products from '../Products/Products';
 import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -204,11 +205,18 @@ export default function Main(props) {
           <div className={classes.Route}>
 
             <Switch >
+              <Route path = "/products" >
+                {state.email === '' ?
+                <Login  setEm = {setEm} count = {state.countItems} total = {state.total} msg = 'Please sign in first' /> 
+                :
+                <Products setEm = {setEm} items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} />
+                }
+              </Route>
               <Route path = "/checkout" >
                 {state.email === '' ?
-                <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
+                <Login  setEm = {setEm} count = {state.countItems} total = {state.total} msg = 'Please sign in first' /> 
                 :
-                <Checkout items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} />
+                <Checkout setEm = {setEm} items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} />
                 }
               </Route>
               <Route path="/cart" >

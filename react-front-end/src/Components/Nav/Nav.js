@@ -78,7 +78,7 @@ export default function Nav(props) {
               {em === '' ? 
               <div className = {classes.logOut1}>
                 <Link to = "/Chat" className={classes.logOut2}>Chat</Link>
-
+                
                 <Link to = "/login" className={classes.logOut2}>Login</Link>
                 <Link to = "/register" className={classes.logOut2}>SignUp</Link>
                 <Link to = "/cart" className={classes.navLink}>
@@ -96,9 +96,10 @@ export default function Nav(props) {
               : 
               <div>         
                   <form className={classes.logOut1} noValidate autoComplete="off" onSubmit={logout}>
+                      
                       <Link to = "/login" className={classes.logOut2}>{em}</Link>
+                      <Link to = "/products" className={classes.logOut2}>Dashboard</Link>
                       <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
-
                         Logout
                       </Button>
                       <Link to = "/cart" className={classes.navLink}>

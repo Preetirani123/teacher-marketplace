@@ -138,6 +138,16 @@ const addOrderDetails = function(o_id, p_id, qty, db) {
 
 }
 
+const getProdsByUser = function (u_id, db) {
+  let query = `SELECT * FROM PRODUCT AS p INNER JOIN USERS AS u
+  ON p.owner_id = u.id
+  WHERE p.owner_id = $1;`
+  const values = [u_id]
+  return db.query(query, values)
+  .then((res) => res.rows)
+  .catch((e) => console.log(e))
+}
+
 
 
 module.exports = {
@@ -149,5 +159,6 @@ module.exports = {
   updateProduct,
   deleteProduct,
   addOrder,
-  addOrderDetails
+  addOrderDetails,
+  getProdsByUser
 };

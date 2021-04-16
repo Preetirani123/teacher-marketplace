@@ -1,25 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const { addUser } = require('./helperFunctions');
+const { addUser, getProdsByUser } = require('./helperFunctions');
 
 
 module.exports = (db) => {
-  // To be replaced by a POST, and to be accessed via axios requests whenever needed, thereby preventing cookie management issues
-  // router.get("/", (req, res) => {
-  //   const userID = req.session.user_id;
-  //   if (userID) {
-  //     db.query(`SELECT * FROM users WHERE id = $1;`, [userID])
-  //       .then((data) => {
-  //         const users = data.rows[0];
-  //         res.send({ id: users.id, name: users.name, email: users.email });
-  //       })
-  //       .catch((err) => {
-  //         res.status(500).json({ error: err.message });
-  //       });
-  //   } else {
-  //     res.send({});
-  //   }
-  // });
+ 
+  //get products belonging to a particular user
+  router.get('/products/:id', (req, res) => {
+    const id = req.params.id
+    getProdsByUser(id, db)
+    .then((resp) => {
+      console.log(resp)
+      res.send(resp);
+    })
+    .catch((e) => console.log(e))
+  });
 
   // Registration route (by clicking register button in header when not logged in)
   router.post("/", (req, res) => {
