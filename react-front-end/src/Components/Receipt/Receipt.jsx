@@ -15,7 +15,6 @@ export default function Receipt(props) {
   useEffect(() => {
     transferCart();
     if (tempCart.length !== 0) {
-      console.log("Clearing actual Cart");
       ////clear Cart
       props.setCart((prevState) => ({
         ...prevState,
@@ -23,6 +22,7 @@ export default function Receipt(props) {
         total: 0,
         countItems: 0,
       }));
+      axios.delete('/cart')
     }
     // return () => {
     //   setTempCart([]);
@@ -32,8 +32,6 @@ export default function Receipt(props) {
   function transferCart(){
     setTempCart(props.items);
   }
-
-  
 
   const PDFLinks = tempCart.map((item, index) => {
     return (
