@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   navLogo: {
     width: '30%',
+    
     [theme.breakpoints.down('sm')]:{
       width: '100%',
       textAlign: 'center'
