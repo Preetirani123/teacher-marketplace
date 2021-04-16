@@ -38,7 +38,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     height: '200px'
   },
-  cartwidth:{
+  cartMain: {
+    width: '100%',
+  },
+  cartwidth: {
+    width: '60%',
+    margin: '30px auto',
     
   }
 }));
