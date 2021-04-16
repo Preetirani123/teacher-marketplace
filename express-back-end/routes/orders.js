@@ -22,6 +22,15 @@ module.exports = (db) => {
       });
   });
 
+  router.get('/:userID', (req,res) => {
+    getOrderID(req.session.user_id, db)
+    .then(id => res.send(id))
+    .catch(e => {
+      res.send(e);
+    });
+});
+
+
   // insert an order
   router.post("/", (req, res) => {
     const { amount, cart } = req.body;
@@ -35,6 +44,11 @@ module.exports = (db) => {
       })
       .catch((e) => res.send(e));
   });
+
+
+
+
+
 
   return router;
 };

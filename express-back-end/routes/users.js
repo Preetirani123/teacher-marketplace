@@ -21,6 +21,10 @@ module.exports = (db) => {
   //   }
   // });
 
+
+
+
+
   // Registration route (by clicking register button in header when not logged in)
   router.post("/", (req, res) => {
     const user = req.body;
@@ -33,6 +37,8 @@ module.exports = (db) => {
       })
       .catch((err) => res.send(err));
   });
+
+
 
 
   

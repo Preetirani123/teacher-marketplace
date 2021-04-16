@@ -33,7 +33,7 @@ export default function Checkout(props) {
   }
 
   function postOrderDetails(ordID, prodID, price, qty) {
-    return axios.post('/orders/details',
+    return axios.post('/orderdetails',
     {
       orderID: ordID,
       productID: prodID,
@@ -60,9 +60,13 @@ export default function Checkout(props) {
       });
     }
 
+    //send email to buyer and seller
+    // })
+    // .catch((e) => {
+    // });
 
-
-      ////Clear the cart
+      //Clear the cart
+      //Maybe want to do this in receipts?
       // props.setCart((prevState) => ({
       //   ...prevState, 
       //   cart: [],
@@ -71,15 +75,7 @@ export default function Checkout(props) {
       // }))
 
     //redirect to Receipt
-    // history.push('/')
-
-    //send email to buyer and seller
-      
-    // })
-    // .catch((e) => {
-      
-    // });
-
+    // history.push('/receipt')
 
 
     

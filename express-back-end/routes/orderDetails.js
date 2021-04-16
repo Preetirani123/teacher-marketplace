@@ -9,9 +9,8 @@ module.exports = (db) => {
      .then((details) => res.send(details))
      .catch((e) => res.send(e));
   });
-
   
-  // // insert order details
+  // insert order details
   router.post("/", (req, res) => {
     const { orderID, productID, price, quantity } = req.body;
     addOrderDetails(orderID, productID, price, quantity, db)
