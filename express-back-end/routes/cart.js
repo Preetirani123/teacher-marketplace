@@ -18,7 +18,10 @@ module.exports = () => {
       res.send(req.session.cart)  
     });
 
-    
+    router.delete('/', (req, res) => {
+      req.session.cart = [];
+      res.send([]);
+    });
 
     return router;
 };    
