@@ -37,6 +37,8 @@ padding: 10px 20px;
   flex-direction: column;
   width: 100%;
   padding: 12px;
+  height: 400px;
+  overflow-y: scroll;
   }
 
 .message.received {
@@ -118,11 +120,22 @@ flex-direction: row-reverse;
     background: transparent;
     text-align: center;
     width: 100%;
-      cursor: pointer;
-      
+      cursor: pointer;  
     }
-
-  
     .sign-in :hover{
       color: #3f51b5;
+    }
+    @media only screen and (max-width: 768px){
+      .AppChat{
+        margin: 90px auto;
+      }
+      .AppChat h1 {
+        margin-right: 16px;
+        font-size: 18px;
+    }
+    .AppChat .sign-out{
+      padding: 2px 17px;
+      font-size: 16px;
+
+    }
     }
