@@ -47,4 +47,9 @@ li.previous.disabled, li.next {
   color: #3f51b5;
   
 }
+@media only screen and (max-width: 768px){
+  .paginate{
+    display: none;
+  }
+}
 

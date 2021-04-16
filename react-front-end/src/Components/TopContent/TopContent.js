@@ -1,10 +1,12 @@
 import { Container, Typography } from '@material-ui/core'
-import React from 'react'
+import React from 'react';
+import './TopContent.scss';
+
 
 export default function TopContent() {
   return (
     <>
-      <Container maxWidth="md" style={{marginTop: '40px', marginBottom: '40px'}}>
+      <Container maxWidth="md"  className="topcontent">
       <Typography variant="h4" align="center" color="textPrimary"  gutterBottom>
         Teacher Pay Teachers
       </Typography>

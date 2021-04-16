@@ -4,6 +4,7 @@ import {TextField, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
 import axios from 'axios'
 import Nav from '../Nav/Nav';
+import '../Login/Login.scss';
 export default function Reg(props) {
   const classes = useStyles();
   
@@ -35,6 +36,7 @@ export default function Reg(props) {
   return (
     <div>
         <Nav count = {props.count} setEm = {props.setEm} />
+        <div className = {classes.registration}>
         <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>
@@ -74,6 +76,7 @@ export default function Reg(props) {
             </Button>
           </div>
         </form> 
+        </div>
     </div>
   )
 }  
