@@ -5,11 +5,25 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: '50ch',
+      [theme.breakpoints.down('sm')]:{
+        width: '40ch',
+       
+      }
     
     },
   },
   spread: {
-    margin: 10
+    margin: '10px',
+    
+  },
+  registration:{
+    [theme.breakpoints.down('sm')]:{
+      marginTop: '87px',
+    },
+
+  },
+  input:{
+
   }
 }));
 

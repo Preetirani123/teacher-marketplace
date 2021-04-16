@@ -6,6 +6,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios'
+import './Nav.scss';
 
 export default function Nav(props) {
   const history = useHistory();
@@ -47,7 +48,7 @@ export default function Nav(props) {
     <header className={classes.header}>
     <CssBaseline />
     <AppBar position= "relative">
-      <Toolbar>
+      <Toolbar >
         <div className={classes.navLogo}>
         <Link to = "/" className={classes.logo}>
         <Typography variant= "h6" className={classes.navLogotext}>

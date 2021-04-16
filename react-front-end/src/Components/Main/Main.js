@@ -193,7 +193,7 @@ export default function Main(props) {
   }
  
   return (
-    <div>
+   
       <Router>
        
         <main >
@@ -243,6 +243,6 @@ export default function Main(props) {
           <Footer />
         </main>
       </Router>
-    </div>
+    
   )
 }

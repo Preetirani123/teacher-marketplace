@@ -3,6 +3,7 @@
 }
 body {
   font-family: 'Rajdhani', sans-serif;
+  width: 100%;
 }
 
 .App-logo {
@@ -25,6 +26,18 @@ body {
 .App-link {
   color: #61dafb;
 }
+* {
+  box-sizing: border-box !important;
+}
+
+html {
+  box-sizing: border-box;
+  width: 100%;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 
 @keyframes App-logo-spin {
   from {
