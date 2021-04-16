@@ -124,13 +124,6 @@ const getOrders = function(db) {
     .catch((err, res) => res.send(err));
 }
 
-const getAllOrderDetails = function(db) {
-  const query = `SELECT * FROM order_details`
-  return db.query(query)
-    .then(res => res.rows)// returns an array of objects of objs (JSON FORMAT)
-    .catch((err, res) => res.send(err));
-}
-
 const getOrder = function(orderID, db) {
   const query = `SELECT * FROM orders WHERE id = $1`
   const value = [orderID];
@@ -148,6 +141,13 @@ const addOrder = function(amount, id, db) {
     .catch(err => {
       console.error('query error', err.stack);
     });
+}
+
+const getAllOrderDetails = function(db) {
+  const query = `SELECT * FROM order_details`
+  return db.query(query)
+    .then(res => res.rows)// returns an array of objects of objs (JSON FORMAT)
+    .catch((err, res) => res.send(err));
 }
 
 const addOrderDetails = function(o_id, p_id, price, qty, db) {

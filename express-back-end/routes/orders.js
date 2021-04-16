@@ -36,23 +36,5 @@ module.exports = (db) => {
       .catch((e) => res.send(e));
   });
 
-
-  router.get("/details", (req, res) => {
-    getAllOrderDetails(db)
-     .then((details) => res.send(details))
-     .catch((e) => res.send(e));
-  });
-
-  
-  // // insert order details
-  router.post("/details", (req, res) => {
-    const { orderID, productID, price, quantity } = req.body;
-    addOrderDetails(orderID, productID, price, quantity, db)
-      .then((resp) => {
-        res.send(resp);
-      })
-      .catch((e) => res.send(e));
-  });
-
   return router;
 };
