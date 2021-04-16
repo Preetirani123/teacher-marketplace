@@ -4,9 +4,7 @@ const { getProducts, insertProduct, updateProduct, deleteProduct, getProduct } =
 
 module.exports = () => {
 
-
     router.get("/", (req, res) => {
-
       if (req.session.cart) {
         res.send(req.session.cart);
         return;
@@ -16,7 +14,6 @@ module.exports = () => {
     });
 
     router.post("/", (req, res) => {
-      console.log("aakkaklkalkalka")
       req.session.cart = req.body.data
       res.send(req.session.cart)  
     });

@@ -16,7 +16,7 @@ CREATE TABLE users (
 create TABLE orders (
   id SERIAL PRIMARY KEY,
   cust_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  amount INTEGER,
+  amount NUMERIC,
   purchased timestamp default current_timestamp
 );
 CREATE TABLE category (
@@ -45,21 +45,24 @@ CREATE TABLE product (
   thumbnail_url VARCHAR(255),
   subject_id INTEGER REFERENCES subject(id) ON DELETE CASCADE,
   level_id INTEGER REFERENCES level(id) ON DELETE CASCADE,
-  province_id INTEGER REFERENCES province(id) ON DELETE CASCADE
+  province_id INTEGER REFERENCES province(id) ON DELETE CASCADE,
+  pdf_link VARCHAR(255) default 'Fake_PDF_Link'
 );
+
 create TABLE order_details (
   id SERIAL PRIMARY KEY,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
   prod_id INTEGER REFERENCES product(id) ON DELETE CASCADE,
+  price NUMERIC NOT NULL,
   quantity INTEGER
 );
 
--- ALTER TABLE users OWNER TO dev;
--- ALTER TABLE orders OWNER TO dev;
--- ALTER TABLE category OWNER TO dev;
--- ALTER TABLE level OWNER TO dev;
--- ALTER TABLE province OWNER TO dev;
--- ALTER TABLE subject OWNER TO dev;
--- ALTER TABLE product OWNER TO dev;
--- ALTER TABLE order_details OWNER TO dev;
+ALTER TABLE users OWNER TO dev;
+ALTER TABLE orders OWNER TO dev;
+ALTER TABLE category OWNER TO dev;
+ALTER TABLE level OWNER TO dev;
+ALTER TABLE province OWNER TO dev;
+ALTER TABLE subject OWNER TO dev;
+ALTER TABLE product OWNER TO dev;
+ALTER TABLE order_details OWNER TO dev;
 

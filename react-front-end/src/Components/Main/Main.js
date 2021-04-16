@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import Cart from '../Cart/Cart';
 import Chat from '../Chat/Chat';
 import Checkout from '../Checkout/Checkout';
+import Receipt from '../Receipt/Receipt';
 import axios from 'axios'
 import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
 
@@ -24,7 +25,7 @@ export default function Main(props) {
   useEffect(() => {
     axios.get("/cart").then((all) => {
       
-      console.log(all.data)
+      console.log('all data from mainJS', all.data)
       let cit = 0;
       let t = 0;
       
@@ -161,8 +162,6 @@ export default function Main(props) {
     
   }
   
-
-  
   function upd_cart (c) {
     console.log(c)
     console.log("555555555555555")
@@ -195,18 +194,21 @@ export default function Main(props) {
   return (
    
       <Router>
-       
         <main >
-          
           <div className={classes.Route}>
-
             <Switch >
-              
+              <Route path = '/receipt'>
+                {state.email === '' ?
+                <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
+                :
+                <Receipt items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} />
+                }
+              </Route>
               <Route path = "/checkout" >
                 {state.email === '' ?
                 <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
                 :
-                <Checkout items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} />
+                <Checkout items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} />
                 }
               </Route>
               <Route path="/cart" >
