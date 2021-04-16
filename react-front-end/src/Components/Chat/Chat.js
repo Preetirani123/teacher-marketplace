@@ -36,7 +36,7 @@ function Chat() {
     
     <div className="AppChat">
       <header>
-        <h1>💬  Chat With Us</h1>
+        <h3>💬  Chat With Us</h3>
         <SignOut />
       </header>
 

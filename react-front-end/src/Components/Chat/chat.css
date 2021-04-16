@@ -9,7 +9,7 @@ body {
 background: #ff00008a;
 padding: 10px 20px;
 }
-.AppChat h1{
+.AppChat h3{
   margin-right: 44px;
 }
 .AppChat .sign-out {
@@ -81,7 +81,7 @@ flex-direction: row-reverse;
         }
     
         .AppChat form {
-          height: 8vh;
+          height: 6vh;
           
           background-color: rgb(24, 23, 23);
           width: 100%;
@@ -125,17 +125,28 @@ flex-direction: row-reverse;
     .sign-in :hover{
       color: #3f51b5;
     }
-    @media only screen and (max-width: 768px){
+
+    @media (min-width: 768px) and (max-width: 1024px){
+      .AppChat {
+        margin: 120px 45px;
+        width: 100%;
+      }
+      
+    }
+    
+    @media only screen and (max-width: 767px){
       .AppChat{
         margin: 90px auto;
       }
-      .AppChat h1 {
+      .AppChat h3 {
         margin-right: 16px;
         font-size: 18px;
-    }
-    .AppChat .sign-out{
-      padding: 2px 17px;
-      font-size: 16px;
+      }
+      .AppChat .sign-out{
+        padding: 2px 17px;
+        font-size: 16px;
 
+      }
     }
-    }
+
+    
