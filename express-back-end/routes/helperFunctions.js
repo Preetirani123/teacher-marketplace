@@ -150,9 +150,9 @@ const addOrder = function(amount, id, db) {
     });
 }
 
-const addOrderDetails = function(o_id, p_id, qty, db) {
-  let query = `INSERT INTO order_details (order_id, prod_id, quantity) VALUES ($1, $2, $3) RETURNING *`;
-  const values = [o_id, p_id, qty];
+const addOrderDetails = function(o_id, p_id, price, qty, db) {
+  let query = `INSERT INTO order_details (order_id, prod_id, price, quantity) VALUES ($1, $2, $3, $4) RETURNING *`;
+  const values = [o_id, p_id, price, qty];
   return db.query(query,values)
     .then(res => res.rows[0])
     .catch(err => {

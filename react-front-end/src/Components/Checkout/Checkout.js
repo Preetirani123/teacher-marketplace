@@ -32,31 +32,36 @@ export default function Checkout(props) {
     })
   }
 
-  function postOrderDetails(ordID, prodID, qty) {
+  function postOrderDetails(ordID, prodID, price, qty) {
     return axios.post('/orders/details',
     {
       orderID: ordID,
       productID: prodID,
+      price: price,
       quantity: qty
     });
   }
 
   function finalizeSale(e) {
     e.preventDefault();
-    console.log('completed sale');
-    console.log(props);
+
     //post to server order 
     postOrder()
       .then((resp)=> {
         console.log(resp.data)
         setOrderNumber(resp.data.id)
     });
+
+    // post to order details
     for (const item of props.items) {
-      postOrderDetails(orderNumber, item.id, item.qty)
+      postOrderDetails(orderNumber, item.id, item.price, item.qty)
       .then(() => {
         console.log('posted to order details')
       });
     }
+
+
+
       ////Clear the cart
       // props.setCart((prevState) => ({
       //   ...prevState, 

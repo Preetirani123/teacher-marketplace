@@ -22,13 +22,6 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/details", (req, res) => {
-    getAllOrderDetails(db)
-     .then((details) => res.send(details))
-     .catch((e) => res.send(e));
-  });
-
-
   // insert an order
   router.post("/", (req, res) => {
     const { amount, cart } = req.body;
@@ -43,6 +36,14 @@ module.exports = (db) => {
       .catch((e) => res.send(e));
   });
 
+
+  router.get("/details", (req, res) => {
+    getAllOrderDetails(db)
+     .then((details) => res.send(details))
+     .catch((e) => res.send(e));
+  });
+
+  
   // // insert order details
   router.post("/details", (req, res) => {
     const { orderID, productID, price, quantity } = req.body;
