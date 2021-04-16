@@ -12,6 +12,8 @@ section {
       .productimg {
         width: 40%;
         text-align: center;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px!important;
+        border-radius: 10px;
         img {
           object-fit: cover;
           height: auto;
@@ -47,6 +49,10 @@ section {
     }
     
   } 
+
+  .MuiCard-root {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px!important;
+}
 
   @media only screen and (max-width: 768px){
     section {
