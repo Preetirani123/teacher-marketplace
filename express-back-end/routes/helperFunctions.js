@@ -59,7 +59,7 @@ const insertProduct = function(userID, name, categoryID, description, price, thu
 };
 
 const updateProduct = function(productID, name, categoryID, description, price, thumbnail_url, subject_id, grade, province, db) {
-  console.log("vincee")
+  
   let query = `UPDATE product SET`;
   const queryParams = [];
 
