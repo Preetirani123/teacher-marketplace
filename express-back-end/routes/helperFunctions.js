@@ -59,6 +59,7 @@ const insertProduct = function(userID, name, categoryID, description, price, thu
 };
 
 const updateProduct = function(productID, name, categoryID, description, price, thumbnail_url, subject_id, grade, province, db) {
+  console.log("vincee")
   let query = `UPDATE product SET`;
   const queryParams = [];
 
@@ -100,7 +101,11 @@ const updateProduct = function(productID, name, categoryID, description, price, 
 
 
   return db.query(query, queryParams)
-  .then(res => res.rows[0])
+  .then(res => {
+    console.log(query)
+    console.log("debug----------------------------")
+    res.rows[0]
+  })
   .catch(err => {
     console.error('query error', err.stack);
   });
@@ -138,15 +143,7 @@ const addOrderDetails = function(o_id, p_id, qty, db) {
 
 }
 
-// const getProdsByUser = function (u_id, db) {
-//   let query = `SELECT * FROM PRODUCT AS p INNER JOIN USERS AS u
-//   ON p.owner_id = u.id
-//   WHERE p.owner_id = $1;`
-//   const values = [u_id]
-//   return db.query(query, values)
-//   .then((res) => res.rows)
-//   .catch((e) => console.log(e))
-// }
+
 const getProdsByUser = function (u_id, db) {
   let query = `SELECT * FROM product WHERE owner_id = $1;`
   const values = [u_id]

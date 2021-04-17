@@ -67,8 +67,9 @@ export default function Products(props) {
           .catch(err => console.error(err))
       
   }
-  function handleUploadNew (e) {
+  function prevProds (e) {
     console.log(e.target.files[0])
+    let i = e.target.name
     const config = {
       bucketName: S3_BUCKET,
       dirName: `photos/users/${props.u_id}`,
@@ -79,7 +80,9 @@ export default function Products(props) {
     uploadFile(e.target.files[0], config)
     .then(data => {    
       console.log(data);
-      setNewProd((prev) => {return { ...prev, img: encodeURI(data.location) }})    
+       
+      setState({...state, allProds : [...state.allProds.slice(0,i), 
+        {...state.allProds[i], thumbnail_url: encodeURI(data.location)}, ...state.allProds.slice(i+1)]}) 
     })
     .catch(err => console.error(err))
 
@@ -106,16 +109,41 @@ export default function Products(props) {
     })
     .catch((e) => {console.log(e)})
   }
+
+  function upProd (i, elem_id) {
+    axios.put(`/product/${elem_id}`, {
+       productID: elem_id,
+       name: state.allProds[i].name,
+       description: state.allProds[i].description,
+       categoryID: state.allProds[i].cat_id,
+       price: state.allProds[i].price,
+       thumbnail_url: state.allProds[i].thumbnail_url,
+       subject_id: state.allProds[i].subject_id,
+       grade: state.allProds[i].level_id,
+       province: state.allProds[i].province_id
+    })
+    .then(resp => {
+      console.log(resp)
+      loadAll()
+    })
+    .catch(e => {
+      console.log(e)
+    })
+  }
+  function delProd (elem_id) {
+    axios.delete(`/product/${elem_id}`)
+    .then(resp => {
+      console.log(resp)
+      loadAll()
+    })
+    .catch(e => {
+      console.log(e)
+    })
+  }
   
   useEffect(() => {
     
     loadAll();
-
-    // axios.get(`/users/products/${props.u_id}`)
-    // .then((resp) => {  
-    //   setState((prev) => {return { ...prev, allProds: resp.data }})    
-    // })
-    // .catch(e => console.log(e))
 
      axios.get('/fixed/cats')
      .then(resp => {
@@ -169,7 +197,7 @@ export default function Products(props) {
         {state.allProds.length === 0 ?
                   <TableRow>
                             <TableCell> 
-                                  <input accept="image/*" onChange={(e) => handleUpload(e)}
+                                  <input accept="image/*" onChange={handleUpload}
                                   className={classes.input} id="icon-button-file" type="file" />
                                   <label htmlFor="icon-button-file">
                                     <IconButton color="primary" aria-label="upload picture" component="span">
@@ -275,12 +303,12 @@ export default function Products(props) {
                   </TableRow>
                   :
                   <>
-                  {state.allProds.map((elem) => (
+                  {state.allProds.map((elem, i) => (
                        <TableRow key = {Math.random()}>
                        <TableCell> 
-                             <input accept="image/*" 
-                             className={classes.input} id="icon-button-file" type="file" />
-                             <label htmlFor="icon-button-file">
+                             <input accept="image/*" onChange = {prevProds}
+                             className={classes.input} id={`icon-button-file-${elem.id}`} name = {i} type="file" />
+                             <label htmlFor={`icon-button-file-${elem.id}`}>
                                <IconButton color="primary" aria-label="upload picture" component="span">
                                  <PhotoCamera />
                                </IconButton>
@@ -294,16 +322,22 @@ export default function Products(props) {
                        <TableCell>
                            <TextField required id="standard-required"  label="Name" className={classes.spread} 
                            value={elem.name}
+                           onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
+                            {...state.allProds[i], name: e.target.value}, ...state.allProds.slice(i+1)]})}
                             />
                        </TableCell>
                        <TableCell>
                            <TextField required id="standard-required"  label="Description" className={classes.spread} 
                            value={elem.description}
+                           onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
+                            {...state.allProds[i], description: e.target.value}, ...state.allProds.slice(i+1)]})}
                             />
                        </TableCell>
                        <TableCell>
                            <TextField required id="standard-required"  label="Price" className={classes.spread} 
                            value={elem.price}
+                           onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
+                            {...state.allProds[i], price: e.target.value}, ...state.allProds.slice(i+1)]})}
                            />
                        </TableCell>
                        <TableCell>
@@ -313,6 +347,8 @@ export default function Products(props) {
                              id="demo-simple-select-filled"
                              value={elem.cat_id}
                              defaultValue=""
+                             onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
+                              {...state.allProds[i], cat_id: e.target.value}, ...state.allProds.slice(i+1)]})}
                            >
                              <MenuItem value="">
                                <em>None</em>
@@ -330,6 +366,8 @@ export default function Products(props) {
                              id="demo-simple-select-filled"
                              value={elem.level_id}
                              defaultValue=""
+                             onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
+                              {...state.allProds[i], level_id: e.target.value}, ...state.allProds.slice(i+1)]})}
                              
                            >
                              <MenuItem value="">
@@ -348,6 +386,8 @@ export default function Products(props) {
                              id="demo-simple-select-filled"
                              value={elem.subject_id}
                              defaultValue=""
+                             onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
+                              {...state.allProds[i], subject_id: e.target.value}, ...state.allProds.slice(i+1)]})}
                              
                            >
                              <MenuItem value="">
@@ -366,6 +406,8 @@ export default function Products(props) {
                              id="demo-simple-select-filled"
                              value={elem.province_id}
                              defaultValue=""
+                             onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
+                              {...state.allProds[i], province_id: e.target.value}, ...state.allProds.slice(i+1)]})}
                              
                            >
                              <MenuItem value="">
@@ -379,14 +421,14 @@ export default function Products(props) {
                        </TableCell>
                        <TableCell >
                          
-                           <Button  type = "submit" variant="contained" color="primary" className = {classes.spread}>
+                           <Button  onClick={() => upProd(i, elem.id)} type = "submit" variant="contained" color="primary" className = {classes.spread}>
                              Update
                            </Button>  
                          
                        </TableCell>
                        <TableCell >
                          
-                           <Button  type = "submit" variant="contained" color="primary" className = {classes.spread}>
+                           <Button  onClick={() => delProd(elem.id)} type = "submit" variant="contained" color="primary" className = {classes.spread}>
                              Delete
                            </Button>  
                          
@@ -397,8 +439,8 @@ export default function Products(props) {
 
                   <TableRow>
                             <TableCell> 
-                                  <input accept="image/*" onChange={handleUploadNew}
-                                  className={classes.input} id="icon-button-file2" type="file" />
+                                  <input accept="image/*" onChange={handleUpload}
+                                  className={classes.input} id="icon-button-file-additional" type="file" />
                                   <label htmlFor="icon-button-file2">
                                     <IconButton color="primary" aria-label="upload picture" component="span">
                                       <PhotoCamera />
@@ -501,20 +543,7 @@ export default function Products(props) {
                               {/* </form> */}
                             </TableCell>         
                   </TableRow>
-
-                  
                   </>
-
-                 
-
-
-
-                   
-
-                  
-
-                   
-                  
 
         }
         </TableBody>
