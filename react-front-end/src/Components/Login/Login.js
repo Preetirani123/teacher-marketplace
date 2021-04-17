@@ -36,7 +36,7 @@ export default function Login(props) {
 
   return (
     <div >
-        <Nav count = {props.count} setEm = {props.setEm} />
+        <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
         <Button onClick = {loginRoutes} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>

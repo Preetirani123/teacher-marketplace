@@ -24,7 +24,7 @@ export default function Cart(props) {
   return (
     
       <div>
-        <Nav count = {props.count} setEm = {props.setEm} />
+        <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
             <div className={classes.cartwidth}>
               <div className = {classes.butts}>
                   <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>

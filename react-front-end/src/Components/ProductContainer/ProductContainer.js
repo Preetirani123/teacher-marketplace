@@ -59,7 +59,7 @@ export default function ProductContainer(props) {
 
   return (
     <div>
-      <Nav  count = {props.count} setEm = {props.setEm} />
+      <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
       <div className={classes.containWidth}>
       <TopContent />
         <Grid container justify="center" spacing={4} className={classes.spread}>

@@ -18,6 +18,7 @@ export default function Nav(props) {
     console.log(resp.data)
     setEma(resp.data.email)
     props.setEm(resp.data.email)
+    props.setId(resp.data.id)
     
     })
     .catch((e) => {
@@ -32,6 +33,7 @@ export default function Nav(props) {
       console.log(res)
       setEma('')
       props.setEm('')
+      props.setId('')
       history.push('/')
 
     }).catch((e) => {
