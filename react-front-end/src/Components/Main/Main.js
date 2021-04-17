@@ -216,7 +216,7 @@ export default function Main(props) {
 
             <Switch >
               <Route path = "/products" >
-                {state.email === '' && state.id === '' ?
+                {state.email === ''  ?
                 <Login  setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
                 msg = 'Please sign in first' /> 
                 :

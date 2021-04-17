@@ -17,8 +17,10 @@ export default function Nav(props) {
     .then((resp) => {
     console.log(resp.data)
     setEma(resp.data.email)
-    props.setEm(resp.data.email)
     props.setId(resp.data.id)
+    props.setEm(resp.data.email)
+    
+    
     
     })
     .catch((e) => {
