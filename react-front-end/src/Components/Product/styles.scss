@@ -40,6 +40,7 @@ section {
           color: #ffffff;
           padding: 10px;
           font-weight: 500;
+          width: 160px;
           &:hover{
             background-color: #ff00008a;
             
@@ -50,7 +51,7 @@ section {
     
   } 
 
-  .MuiCard-root {
+  .MuiCard-root:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px!important;
 }
 

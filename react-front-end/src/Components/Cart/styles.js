@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
   cartContainer: {
     
     borderRadius: '10px',
+    marginBottom: '15px',
+    
   },
   root: {
     '& > span': {
@@ -34,18 +36,38 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between'
   },
   CardMedia: {
-    width: '200px',
+    width: '150px',
     borderRadius: '50%',
-    height: '200px'
+    height: '150px',
+    [theme.breakpoints.down('sm')]:{
+      width: '70px',
+      height: '70px',
+    }
   },
   cartMain: {
     width: '100%',
+    [theme.breakpoints.down('sm')]:{
+      marginTop: '70px',
+    },
   },
   cartwidth: {
     width: '60%',
     margin: '30px auto',
+    [theme.breakpoints.down('sm')]:{
+      width: '100%',
+    }
     
-  }
+  },
+  cartQty: {
+    width: 'initial'
+  },
+  cartQtyNo: {
+    margin: 'auto 10px',
+    [theme.breakpoints.down('sm')]:{
+      margin: 'auto 25px',
+    },
+  },
+  
 }));
 
 

@@ -98,10 +98,11 @@ export default function Checkout(props) {
   //and call the sendEmail funtion in checkout form like this onSubmit={sendEmail}
 
   return (
-    <div>
+    <div className="checkoutOutter">
       <>
       <Nav count={props.count} setEm={props.setEm} />
       </>
+      <div className="checkoutinner">
       <TableContainer
         key={Math.random()}
         component={Paper}
@@ -118,8 +119,8 @@ export default function Checkout(props) {
         >
           <TableHead color="primary">
             <TableRow className={classes.tableHead}>
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Quantity</TableCell>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="center">Quantity</TableCell>
               <TableCell align="right">Price</TableCell>
             </TableRow>
           </TableHead>
@@ -129,15 +130,15 @@ export default function Checkout(props) {
             <TableBody key={Math.random()}>
               {props.items.map((row) => (
                 <TableRow key={row.name}>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.qty}</TableCell>
+                  <TableCell align="left">{row.name}</TableCell>
+                  <TableCell align="center">{row.qty}</TableCell>
                   <TableCell align="right">${row.price}</TableCell>
                 </TableRow>
               ))}
               <TableRow>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
-                <TableCell align='right'>Total ${props.total}</TableCell>
+                <TableCell align='right'><b>Total : </b> ${props.total}</TableCell>
               </TableRow>
             </TableBody>
           )}
@@ -166,6 +167,7 @@ export default function Checkout(props) {
             Demo Mode - AutoPay
           </Button>
         </form>
+      </div>
       </div>
     </div>
   );
