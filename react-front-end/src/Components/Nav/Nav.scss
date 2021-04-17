@@ -1,0 +1,13 @@
+@media only screen and (max-width: 768px){
+  .MuiToolbar-root{
+    flex-direction: column;
+  }
+}
+
+.makeStyles-logo-9:hover{
+  color: red !important;
+  text-decoration: none;
+}
+.MuiBadge-root:hover{
+  color: #ffffff !important;
+}

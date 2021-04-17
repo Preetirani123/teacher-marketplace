@@ -7,9 +7,6 @@ const useStyles = makeStyles((theme) => ({
       width: '25ch',
     },
   },
-  spread: {
-    margin: 10
-  }
 }));
 
 export default useStyles;

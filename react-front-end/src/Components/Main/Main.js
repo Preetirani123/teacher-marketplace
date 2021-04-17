@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductContainer from '../ProductContainer/ProductContainer'
+import ProductDetails from '../Product/ProductDetails'
 import Login from '../Login/Login';
 import Reg from '../Reg/Reg';
 import useStyles from './styles';
@@ -7,11 +8,13 @@ import Footer from '../Footer/Footer';
 import Cart from '../Cart/Cart';
 import Chat from '../Chat/Chat';
 import Checkout from '../Checkout/Checkout';
+
 import Products from '../Products/Products';
+
+import Receipt from '../Receipt/Receipt';
+
 import axios from 'axios'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-
-
+import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
 
 export default function Main(props) {
 
@@ -27,7 +30,7 @@ export default function Main(props) {
   useEffect(() => {
     axios.get("/cart").then((all) => {
       
-      console.log(all.data)
+      console.log('all data from mainJS', all.data)
       let cit = 0;
       let t = 0;
       
@@ -173,8 +176,6 @@ export default function Main(props) {
     
   }
   
-
-  
   function upd_cart (c) {
     console.log(c)
     console.log("555555555555555")
@@ -203,18 +204,14 @@ export default function Main(props) {
        console.log(e)
     });
   }
-  
-
-  
+ 
   return (
-    <div>
+   
       <Router>
-       
         <main >
-          
           <div className={classes.Route}>
-
             <Switch >
+
               <Route path = "/products" >
                 {state.email === ''  ?
                 <Login  setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
@@ -222,6 +219,13 @@ export default function Main(props) {
                 :
                 <Products setEm = {setEm} setId = {setId} items = {state.cart} 
                 count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+
+              <Route path = '/receipt'>
+                {state.email === '' ?
+                <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
+                :
+                <Receipt items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} />
+
                 }
               </Route>
               <Route path = "/checkout" >
@@ -229,8 +233,12 @@ export default function Main(props) {
                 <Login  setEm = {setEm} setId = {setId} count = {state.countItems} 
                 total = {state.total} msg = 'Please sign in first' /> 
                 :
+
                 <Checkout setEm = {setEm} setId = {setId} items = {state.cart} 
                 count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+
+                <Checkout items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} />
+
                 }
               </Route>
               <Route path="/cart" >
@@ -257,18 +265,18 @@ export default function Main(props) {
               <Route path = "/Chat" >
                 <Chat count = {state.countItems} total = {state.total} />
               </Route>
+              <Route path = "/:productID">
+                <ProductDetails setCart = {setCart} count={state.countItems} total = {state.total} />
+              </Route>
               <Route path="/" >
                 <ProductContainer setId = {setId} setCart = {setCart} count = {state.countItems} 
                 total = {state.total} setEm = {setEm} u_id = {state.id} />
               </Route>
             </Switch>
-
           </div>
-
-
           <Footer />
         </main>
       </Router>
-    </div>
+    
   )
 }

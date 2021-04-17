@@ -4,7 +4,8 @@ import {TextField, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
 import axios from 'axios'
 import Nav from '../Nav/Nav';
-import ProductContainer from '../ProductContainer/ProductContainer';
+
+import './Login.scss';
 export default function Login(props) {
   const classes = useStyles();
   const [email, setEmail] = useState('');
@@ -36,7 +37,9 @@ export default function Login(props) {
 
   return (
     <div >
+
         <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+
         <Button onClick = {loginRoutes} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>
@@ -65,6 +68,7 @@ export default function Login(props) {
             </Button>
           </div>
         </form> 
+        </div>
     </div>
   )
 }  

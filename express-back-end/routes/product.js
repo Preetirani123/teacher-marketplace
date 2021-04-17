@@ -7,7 +7,6 @@ module.exports = (db) => {
   
   //get all products
   router.get("/", (req, res) => {
-    console.log("jaja");
     getProducts(db)
       .then(products => res.send(products))
       .catch(e => {

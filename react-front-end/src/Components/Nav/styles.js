@@ -48,21 +48,41 @@ const useStyles = makeStyles((theme) => ({
   navLogo: {
     width: '30%',
     
+    [theme.breakpoints.down('sm')]:{
+      width: '100%',
+      textAlign: 'center'
+      
+    },
+    
   },
 
   navSearch: {
-    width: '30%'
+    width: '30%',
+    lineHeight: '35px',
+    [theme.breakpoints.down('sm')]:{
+      width: '100%',
+      lineHeight: '34px',
+      margin: '10px  0px'
+    },
   },
   navRight: {
     width: '40%',
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    [theme.breakpoints.down('sm')]:{
+      width: '100%',
+      justifyContent: 'center',
+    },
   },
   navRight_1:{
     width: '20%',
     display: 'flex',
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    [theme.breakpoints.down('sm')]:{
+      width: 'initial'
+
+    }
   },
   navLink: {
     marginRight: '10px',
@@ -117,6 +137,12 @@ navLogotext: {
   fontFamily: '"Dancing Script", cursive' ,
   fontSize: '2rem'
 },
+
+
+
+
 }));
+
+
 
 export default useStyles;

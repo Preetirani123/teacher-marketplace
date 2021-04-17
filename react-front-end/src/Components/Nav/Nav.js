@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, AppBar, Toolbar, Typography, InputBase, Button, IconButton, Badge} from '@material-ui/core';
-import   SearchIcon  from '@material-ui/icons/Search';
+import SearchIcon  from '@material-ui/icons/Search';
 import useStyles from './styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 import {Link, useHistory} from 'react-router-dom';
 import axios from 'axios'
+import './Nav.scss';
 
 export default function Nav(props) {
   const history = useHistory();
@@ -51,7 +52,7 @@ export default function Nav(props) {
     <header className={classes.header}>
     <CssBaseline />
     <AppBar position= "relative">
-      <Toolbar>
+      <Toolbar >
         <div className={classes.navLogo}>
         <Link to = "/" className={classes.logo}>
         <Typography variant= "h6" className={classes.navLogotext}>

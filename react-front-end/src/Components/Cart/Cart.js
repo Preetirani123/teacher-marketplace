@@ -13,18 +13,19 @@ import axios from 'axios'
 export default function Cart(props) {
   const history = useHistory();
   const classes = useStyles();
-  
-  
+
   function changeQ (sign, id) {
      props.changeQty(sign, id)
   }
 
- 
-  
+
   return (
     
+
       <div>
         <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+
+      
             <div className={classes.cartwidth}>
               <div className = {classes.butts}>
                   <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
@@ -63,8 +64,8 @@ export default function Cart(props) {
                         </TableCell>
                         <TableCell align="right">{row.name}</TableCell>
                         <TableCell align="right">
-                          <Button onClick = {() => changeQ('+', row.id)}>+</Button>{row.qty}
-                          <Button onClick = {() => changeQ('-', row.id)}>-</Button>
+                          <Button className={classes.cartQty} onClick = {() => changeQ('+', row.id)}>+</Button><span className={classes.cartQtyNo}>{row.qty}</span>
+                          <Button className={classes.cartQty} onClick = {() => changeQ('-', row.id)}>-</Button>
                         </TableCell>
                         <TableCell align="right">${row.price}</TableCell>
                       </TableRow>
@@ -73,7 +74,7 @@ export default function Cart(props) {
                       <TableCell></TableCell>
                       <TableCell></TableCell>
                       <TableCell></TableCell>
-                      <TableCell>${props.total}</TableCell>
+                      <TableCell align="right"><b>Total</b>  :  ${props.total}</TableCell>
                     </TableRow>
                   </TableBody>
                   }
