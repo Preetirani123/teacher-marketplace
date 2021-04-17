@@ -33,6 +33,7 @@ function Chat() {
   return (
     <>
      <Nav />
+     
     
     <div className="AppChat">
       <header>
