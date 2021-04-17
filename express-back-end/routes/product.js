@@ -24,6 +24,8 @@ module.exports = (db) => {
         });
   });
 
+  
+
   //creates a new product
   router.post("/", (req,res) => {
     // const userID = req.session.user_id; /// < ------ Uncomment this and delete next line when code is running.

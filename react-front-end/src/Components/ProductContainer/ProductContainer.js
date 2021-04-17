@@ -5,6 +5,7 @@ import Product from '../Product/Product';
 import Nav from '../Nav/Nav';
 import useStyles from './styles';
 import axios from "axios";
+import { useHistory, Link } from "react-router-dom";
 
 import ReactPaginate from 'react-paginate';
 import './paginateStyle.scss';
@@ -19,10 +20,9 @@ export default function ProductContainer(props) {
     prod: [],
     offset: 0
   });
-
+  const history = useHistory();
   useEffect(() => {
     Promise.all([axios.get("/product")]).then((all) => {
-      // console.log(all[0].data);
       setState((prev) => ({
         ...prev,
         prod: all[0].data,
@@ -59,7 +59,7 @@ export default function ProductContainer(props) {
 
   return (
     <div>
-      <Nav count = {props.count} setEm = {props.setEm} />
+      <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
       <div className={classes.containWidth}>
       <TopContent />
         <Grid container justify="center" spacing={4} className={classes.spread}>

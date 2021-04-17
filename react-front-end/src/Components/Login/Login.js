@@ -37,16 +37,18 @@ export default function Login(props) {
 
   return (
     <div >
-        <Nav count = {props.count} setEm = {props.setEm} />
-        <div className = {classes.loginclass}>
+
+        <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+
         <Button onClick = {loginRoutes} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>
-        <p>{props.msg}</p>
+        <Typography variant = "h2" className={classes.spread}>{props.msg !== undefined ? props.msg : ''}</Typography>
         <form className={classes.root} noValidate autoComplete="off" onSubmit = {login}>
          <Typography variant = "h4" className={classes.spread}>
            Login
          </Typography>
+         
           <div>
             <TextField required id="standard-required"  label="Email" className={classes.spread} 
             value={email}

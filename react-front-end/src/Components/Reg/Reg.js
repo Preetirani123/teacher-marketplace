@@ -35,8 +35,12 @@ export default function Reg(props) {
 
   return (
     <div>
-        <Nav count = {props.count} setEm = {props.setEm} />
+
+        <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+
+        
         <div className = {classes.registration}>
+
         <Button onClick = {() => {history.push('/')}} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>

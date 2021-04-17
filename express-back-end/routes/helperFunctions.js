@@ -59,6 +59,7 @@ const insertProduct = function(userID, name, categoryID, description, price, thu
 };
 
 const updateProduct = function(productID, name, categoryID, description, price, thumbnail_url, subject_id, grade, province, db) {
+  
   let query = `UPDATE product SET`;
   const queryParams = [];
 
@@ -100,7 +101,11 @@ const updateProduct = function(productID, name, categoryID, description, price, 
 
 
   return db.query(query, queryParams)
-  .then(res => res.rows[0])
+  .then(res => {
+    console.log(query)
+    console.log("debug----------------------------")
+    res.rows[0]
+  })
   .catch(err => {
     console.error('query error', err.stack);
   });
@@ -160,6 +165,52 @@ const addOrderDetails = function(o_id, p_id, price, qty, db) {
     });
 }
 
+
+
+const getProdsByUser = function (u_id, db) {
+  let query = `SELECT * FROM product WHERE owner_id = $1;`
+  const values = [u_id]
+  return db.query(query, values)
+  .then((res) => res.rows)
+  .catch((e) => console.log(e))
+}
+
+const getCats = function(db) {
+  let query =   `SELECT * FROM category`;
+  return db.query(query)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
+const getSubj = function(db) {
+  let query =   `SELECT * FROM subject`;
+  return db.query(query)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
+const getLevs = function(db) {
+  let query =   `SELECT * FROM level`;
+  return db.query(query)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
+const getProv = function(db) {
+  let query =   `SELECT * FROM province`;
+  return db.query(query)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
 // const getOrderID = function (customer_ID, db) {
 //   let query = `SELECT id FROM orders WHERE cust_id=$1 ORDER BY id DESC LIMIT 1`;
 //   const value = [customer_ID];
@@ -170,6 +221,7 @@ const addOrderDetails = function(o_id, p_id, price, qty, db) {
 //       console.error("query error", err.stack);
 //     });
 // };
+
 
 module.exports = {
   addUser,
@@ -183,5 +235,11 @@ module.exports = {
   getOrder,
   addOrder,
   addOrderDetails,
+  getProdsByUser,
+  getCats,
+  getLevs,
+  getProv,
+  getSubj,
   getAllOrderDetails
+
 };
