@@ -5,6 +5,10 @@ body {
   font-family: 'Rajdhani', sans-serif;
   width: 100%;
 }
+a:hover{
+  color: red!important;
+  text-decoration: none!important;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

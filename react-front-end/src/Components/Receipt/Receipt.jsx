@@ -5,6 +5,7 @@ import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/c
 import useStyles from '../Checkout/styles';
 import axios from 'axios';
 import Product from '../Product/Product';
+import './Receipt.scss';
 
 
 export default function Receipt(props) {
@@ -50,8 +51,9 @@ export default function Receipt(props) {
 
   //Have not implemented Order Number yet. Waiting to see what Vineet does.
   return (
-    <div>
+    <div className="receiptoutter">
       <Nav />
+      <div className="receiptinner">
       <h1>Thank you for your Order.</h1>
       <h2>Your Order Number is: {/* ORDER NUMBER WOULD GO HERE*/}</h2>
       <h2>You will be recieving a confirmation email shortly </h2>
@@ -62,8 +64,8 @@ export default function Receipt(props) {
         >
           <TableHead color="primary">
             <TableRow className={classes.tableHead}>
-              <TableCell align="right">Name</TableCell>
-              <TableCell align="right">Quantity</TableCell>
+              <TableCell align="left">Name</TableCell>
+              <TableCell align="center">Quantity</TableCell>
               <TableCell align="right">Price</TableCell>
             </TableRow>
           </TableHead>
@@ -73,8 +75,8 @@ export default function Receipt(props) {
             <TableBody key={Math.random()}>
               {tempCart.map((row) => (
                 <TableRow key={row.name}>
-                  <TableCell align="right">{row.name}</TableCell>
-                  <TableCell align="right">{row.qty}</TableCell>
+                  <TableCell align="left">{row.name}</TableCell>
+                  <TableCell align="center">{row.qty}</TableCell>
                   <TableCell align="right">${row.price}</TableCell>
                 </TableRow>
               ))}
@@ -90,6 +92,7 @@ export default function Receipt(props) {
           <h3>Download your files here:</h3>
             {PDFLinks}
         </div>
+      </div>
     </div>
   );
 }
