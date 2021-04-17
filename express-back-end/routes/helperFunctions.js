@@ -148,7 +148,41 @@ const getProdsByUser = function (u_id, db) {
   .catch((e) => console.log(e))
 }
 
+const getCats = function(db) {
+  let query =   `SELECT * FROM category`;
+  return db.query(query)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
 
+const getSubj = function(db) {
+  let query =   `SELECT * FROM subject`;
+  return db.query(query)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
+const getLevs = function(db) {
+  let query =   `SELECT * FROM level`;
+  return db.query(query)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
+const getProv = function(db) {
+  let query =   `SELECT * FROM province`;
+  return db.query(query)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
 
 module.exports = {
   addUser,
@@ -160,5 +194,9 @@ module.exports = {
   deleteProduct,
   addOrder,
   addOrderDetails,
-  getProdsByUser
+  getProdsByUser,
+  getCats,
+  getLevs,
+  getProv,
+  getSubj
 };

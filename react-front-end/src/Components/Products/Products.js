@@ -13,13 +13,6 @@ const {REACT_APP_S_ACCESS_KEY, REACT_APP_S_SECRET_KEY} = process.env
 const S3_BUCKET ='admin-teachers-marketplace';
 const REGION ='us-west-2';
 
-const config = {
-    bucketName: S3_BUCKET,
-    dirName: 'photos/t',
-    region: REGION,
-    accessKeyId: REACT_APP_S_ACCESS_KEY,
-    secretAccessKey: REACT_APP_S_SECRET_KEY
-}
 //put onchange handlers on each input of each product. when one onchange is called, enable the update button for that row.
 //on click update, the whole product must get updated
 export default function Products(props) {
@@ -33,8 +26,14 @@ export default function Products(props) {
     cat: '',
     level: '',
     prov: '',
-    subj: ''
+    subj: '',
   });
+  const [fixed, setFixed] = useState({
+    cats: [],
+    provs: [],
+    subjs: [],
+    levels: []
+  })
   const [na, setNa] = useState('')
   
 
@@ -59,8 +58,43 @@ export default function Products(props) {
   function insProd () {
     
     
+    
   }
 
+  useEffect(() => {
+     axios.get('/fixed/cats')
+     .then(resp => {
+       console.log(resp.data)
+       setFixed((prev) => {return { ...prev, cats: resp.data }})
+       
+     })
+     .catch(e => console.log(e))
+
+     axios.get('/fixed/subs')
+     .then(resp => {
+       setFixed((prev) => {return { ...prev, subjs: resp.data }}) 
+     })
+     .catch(e => console.log(e))
+
+     axios.get('/fixed/levels')
+     .then(resp => {
+       setFixed((prev) => {return { ...prev, levels:  resp.data }}) 
+     })
+     .catch(e => console.log(e))
+
+     axios.get('/fixed/provs')
+     .then(resp => {
+       setFixed((prev) => {return { ...prev, provs:  resp.data }}) 
+     })
+     .catch(e => console.log(e))
+  }, [])
+
+  function disp1 (d) {
+    console.log(d)
+    for (let r of d) {
+      console.log(r)
+    }
+  }
  
   return (
     <div>
@@ -76,8 +110,8 @@ export default function Products(props) {
                       <TableCell align="right">Price</TableCell>
                       <TableCell align="right">Category</TableCell>
                       <TableCell align="right">Level</TableCell>
-                      <TableCell align="right">Province</TableCell>
                       <TableCell align="right">Subject</TableCell>
+                      <TableCell align="right">Province</TableCell>
                       <TableCell align="right"></TableCell>
                       <TableCell align="right"></TableCell>
           </TableRow>
@@ -126,14 +160,63 @@ export default function Products(props) {
                                   <MenuItem value="">
                                     <em>None</em>
                                   </MenuItem>
-                                  <MenuItem value={1}>Ten</MenuItem>
-                                  <MenuItem value={2}>Twenty</MenuItem>
-                                  <MenuItem value={3}>Thirty</MenuItem>
+                                  {
+                                  fixed.cats.map(cat => (
+                                    <MenuItem value={cat.id}>{cat.name}</MenuItem>
+                                  ))} 
                                 </Select>
                             </TableCell>
-                            <TableCell></TableCell>
-                            <TableCell></TableCell>
-                            <TableCell></TableCell>
+                            <TableCell>
+                                <InputLabel id="demo-simple-select-filled-label">Levels</InputLabel>
+                                <Select
+                                  labelId="demo-simple-select-filled-label"
+                                  id="demo-simple-select-filled"
+                                  value={newProd.level}
+                                  onChange={(e) => {setNewProd({...newProd, level: e.target.value })}}
+                                >
+                                  <MenuItem value="">
+                                    <em>None</em>
+                                  </MenuItem>
+                                  
+                                  {fixed.levels.map(lev => (
+                                    <MenuItem value={lev.id}>{lev.name}</MenuItem>
+                                  ))} 
+                                </Select>
+                            </TableCell>
+                            <TableCell>
+                                <InputLabel id="demo-simple-select-filled-label">Subjects</InputLabel>
+                                <Select
+                                  labelId="demo-simple-select-filled-label"
+                                  id="demo-simple-select-filled"
+                                  value={newProd.subj}
+                                  onChange={(e) => {setNewProd({...newProd, subj: e.target.value })}}
+                                >
+                                  <MenuItem value="">
+                                    <em>None</em>
+                                  </MenuItem>
+                                  
+                                  {fixed.subjs.map(sub => (
+                                    <MenuItem value={sub.id}>{sub.name}</MenuItem>
+                                  ))} 
+                                </Select>
+                            </TableCell>
+                            <TableCell>
+                                <InputLabel id="demo-simple-select-filled-label">Provinces</InputLabel>
+                                <Select
+                                  labelId="demo-simple-select-filled-label"
+                                  id="demo-simple-select-filled"
+                                  value={newProd.prov}
+                                  onChange={(e) => {setNewProd({...newProd, prov: e.target.value })}}
+                                >
+                                  <MenuItem value="">
+                                    <em>None</em>
+                                  </MenuItem>
+                                  
+                                  {fixed.provs.map(prov => (
+                                    <MenuItem value={prov.id}>{prov.name}</MenuItem>
+                                  ))} 
+                                </Select>
+                            </TableCell>
                             <TableCell colSpan = {2}>
                               <Button onClick = {() => insProd()} type = "submit" variant="contained" color="primary" className = {classes.spread}>
                                  Create
