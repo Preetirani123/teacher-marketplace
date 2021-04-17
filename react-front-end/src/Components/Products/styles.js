@@ -51,9 +51,10 @@ const useStyles = makeStyles((theme) => ({
   },
   CardMedia: {
     width: '200px',
-    borderRadius: '50%',
+    borderRadius: '2%',
     height: '200px'
   },
+  
   cartwidth:{
     
   }
