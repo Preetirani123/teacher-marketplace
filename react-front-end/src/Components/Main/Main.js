@@ -10,7 +10,7 @@ import Chat from '../Chat/Chat';
 import Checkout from '../Checkout/Checkout';
 
 import Products from '../Products/Products';
-
+import OrderContainer from '../OrderContainer/OrderContainer';
 import Receipt from '../Receipt/Receipt';
 
 import axios from 'axios'
@@ -217,7 +217,7 @@ export default function Main(props) {
                   <Login  setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
                   msg = 'Please sign in first' /> 
                   :
-                  <Products setEm = {setEm} setId = {setId} items = {state.cart} 
+                  <OrderContainer setEm = {setEm} setId = {setId} items = {state.cart} 
                   count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
                   }
               </Route>

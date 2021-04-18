@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from '../Nav/Nav';
-
-
-import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+import Order from '../Order/Order'
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-
 
 export default function OrderContainer(props) {
 
-  [orders, SetOrders] = useState({
+  const [orders, setOrders] = useState({
     ords: [],
     ordDetails: [],
   });
@@ -23,21 +16,27 @@ export default function OrderContainer(props) {
     axios.get(`users/orders/${props.u_id}`).then((res) => {
       setOrders((prevState) => ({
         ...prevState,
-        ords: res[0].data,
+        ords: res.data,
       }));
     })
-  });
+  },[]);
 
-  const renderOrders = orders.ords.map((order) => {
+  const renderOrders = orders.ords.slice(0).reverse().map((order) => {
     return (
+      <>
       <Order orderID = {order.id} amount = {order.amount} purchased={order.purchased}/>
+      <Divider />
+      </>
     )
   });
 
   return (
     <div>
       <Nav count={props.count} setEm={props.setEm} setId={props.setId} />
+      <h4>Below are your previous orders:</h4>
+      <List component="nav">
       {renderOrders}
+      </List>
     </div>
   );
 }

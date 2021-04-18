@@ -1,4 +1,3 @@
-
 import { Grid } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import Product from '../Product/Product';
@@ -17,7 +16,7 @@ export default function ProductContainer(props) {
     prod: [],
     offset: 0
   });
-  
+
   const history = useHistory();
   useEffect(() => {
     Promise.all([axios.get("/product")]).then((all) => {
