@@ -212,7 +212,15 @@ export default function Main(props) {
         <main >
           <div className={classes.Route}>
             <Switch>
-
+              <Route path = '/orders'>
+                {state.email === ''  ?
+                  <Login  setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
+                  msg = 'Please sign in first' /> 
+                  :
+                  <Products setEm = {setEm} setId = {setId} items = {state.cart} 
+                  count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+                  }
+              </Route>
               <Route path = "/products" >
                 {state.email === ''  ?
                 <Login  setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
