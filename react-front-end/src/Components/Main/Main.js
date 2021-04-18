@@ -14,6 +14,7 @@ import Products from '../Products/Products';
 import Receipt from '../Receipt/Receipt';
 
 import axios from 'axios'
+
 import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
 
 export default function Main(props) {
@@ -206,11 +207,11 @@ export default function Main(props) {
   }
  
   return (
-   
+     
       <Router>
         <main >
           <div className={classes.Route}>
-            <Switch >
+            <Switch>
 
               <Route path = "/products" >
                 {state.email === ''  ?
@@ -219,7 +220,8 @@ export default function Main(props) {
                 :
                 <Products setEm = {setEm} setId = {setId} items = {state.cart} 
                 count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
-
+                }
+              </Route>  
               <Route path = '/receipt'>
                 {state.email === '' ?
                 <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
@@ -237,8 +239,7 @@ export default function Main(props) {
                 <Checkout setEm = {setEm} setId = {setId} items = {state.cart} 
                 count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
 
-                <Checkout items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} />
-
+                
                 }
               </Route>
               <Route path="/cart" >
@@ -272,11 +273,17 @@ export default function Main(props) {
                 <ProductContainer setId = {setId} setCart = {setCart} count = {state.countItems} 
                 total = {state.total} setEm = {setEm} u_id = {state.id} />
               </Route>
+
             </Switch>
+
           </div>
+
           <Footer />
+
         </main>
+
       </Router>
+      
     
   )
 }
