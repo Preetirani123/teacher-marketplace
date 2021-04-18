@@ -10,7 +10,7 @@ module.exports = (db) => {
      .catch((e) => res.send(e));
   });
 
-  router.get("/:orderID", (req, res) => {
+  router.get("/order/:orderID", (req, res) => {
     getOrderDetailsByID(req.params.orderID, db)
      .then((details) => res.send(details))
      .catch((e) => res.send(e));

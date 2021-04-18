@@ -173,9 +173,9 @@ const addOrder = function(amount, id, db) {
 }
 
 const getAllOrdersByUserID = (id, db) => {
-  let query = 'SELECT * FROM orders WHERE id= $1';
+  let query = 'SELECT * FROM orders WHERE cust_id = $1';
   const values = [id];
-  return db.query(query,values)
+  return db.query(query, values)
   .then(res => res.rows)
   .catch(err => {
     console.error('query error', err.stack);

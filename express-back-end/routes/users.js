@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { addUser, getProdsByUser } = require('./helperFunctions');
+const { addUser, getProdsByUser, getAllOrdersByUserID } = require('./helperFunctions');
 
 
 module.exports = (db) => {
@@ -17,6 +17,7 @@ module.exports = (db) => {
 
   //get all orders belonging to a particular user
   router.get("/orders/:id", (req, res) => {
+    console.log('in users/orders');
     const id = req.params.id;
     getAllOrdersByUserID(id, db)
       .then((id) => res.send(id))

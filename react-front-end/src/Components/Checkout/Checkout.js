@@ -18,7 +18,6 @@ const {REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID} = process
 
 export default function Checkout(props) {
 
-  const [orderNumber, setOrderNumber] = useState();
   const history = useHistory();
   const classes = useStyles();
 
@@ -46,9 +45,6 @@ export default function Checkout(props) {
     //post to server order
     postOrder().then((resp) => {
       console.log("this is resp.data", resp.data);
-      // setOrderNumber(resp.data.id);
-      console.log("set the orderNumber");
-
       // post to order details
       for (const item of props.items) {
         console.log(
