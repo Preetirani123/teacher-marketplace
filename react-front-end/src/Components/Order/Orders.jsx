@@ -3,14 +3,19 @@ import axios from 'axios';
 
 export default function Orders(props) {
 
-  function getAllOrders() {
-    axios.get('users/orders/:id')
-
-    props.u_id
-  };
-
+  function getOrderDetails(orderID) {
+    axios.get(`/orderdetails/order/${orderID}`).then((res) => {
+      setOrders((prevState) => ({
+        ...prevState,
+        ordDetails: res[0].data
+      }));
+    });
+  }
+  
+  
   return (
     <div>
+
 
 
 

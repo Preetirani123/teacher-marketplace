@@ -12,14 +12,12 @@ import './paginateStyle.scss';
 
 import TopContent from '../TopContent/TopContent'
 
-
-
-
 export default function ProductContainer(props) {
   const [state, setState] = useState({
     prod: [],
     offset: 0
   });
+  
   const history = useHistory();
   useEffect(() => {
     Promise.all([axios.get("/product")]).then((all) => {
