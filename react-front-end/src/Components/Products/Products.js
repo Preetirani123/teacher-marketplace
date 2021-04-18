@@ -6,6 +6,7 @@ import { useHistory, Link } from "react-router-dom";
 import Nav from '../Nav/Nav';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import { uploadFile, deleteFile } from 'react-s3';
+import { SettingsInputAntennaOutlined } from "@material-ui/icons";
 
 
 const {REACT_APP_S_ACCESS_KEY, REACT_APP_S_SECRET_KEY} = process.env
@@ -65,8 +66,8 @@ export default function Products(props) {
             setNewProd((prev) => {return { ...prev, img: encodeURI(data.location) }})    
           })
           .catch(err => console.error(err))
-      
   }
+
   function prevProds (e) {
     console.log(e.target.files[0])
     let i = e.target.name
@@ -139,6 +140,22 @@ export default function Products(props) {
     .catch(e => {
       console.log(e)
     })
+  }
+
+  function changeName (e) { 
+    let i = Number(e.target.name)
+    setState({...state, allProds : [...state.allProds.slice(0,i), 
+      {...state.allProds[i], name: e.target.value}, ...state.allProds.slice(i+1)]})
+  }
+  function changeDesc (e) { 
+    let i = Number(e.target.name)
+    setState({...state, allProds : [...state.allProds.slice(0,i), 
+      {...state.allProds[i], description: e.target.value}, ...state.allProds.slice(i+1)]})
+  }
+  function changePrice (e) { 
+    let i = Number(e.target.name)
+    setState({...state, allProds : [...state.allProds.slice(0,i), 
+      {...state.allProds[i], price: e.target.value}, ...state.allProds.slice(i+1)]})
   }
   
   useEffect(() => {
@@ -237,8 +254,8 @@ export default function Products(props) {
                                     <em>None</em>
                                   </MenuItem>
                                   {
-                                  fixed.cats.map(cat => (
-                                    <MenuItem key = {Math.random()} value={cat.id}>{cat.name}</MenuItem>
+                                  fixed.cats.map((cat, index) => (
+                                    <MenuItem key = {index} value={cat.id}>{cat.name}</MenuItem>
                                   ))} 
                                 </Select>
                             </TableCell>
@@ -254,8 +271,8 @@ export default function Products(props) {
                                     <em>None</em>
                                   </MenuItem>
                                   
-                                  {fixed.levels.map(lev => (
-                                    <MenuItem key = {Math.random()} value={lev.id}>{lev.name}</MenuItem>
+                                  {fixed.levels.map((lev, index) => (
+                                    <MenuItem key = {index} value={lev.id}>{lev.name}</MenuItem>
                                   ))} 
                                 </Select>
                             </TableCell>
@@ -271,8 +288,8 @@ export default function Products(props) {
                                     <em>None</em>
                                   </MenuItem>
                                   
-                                  {fixed.subjs.map(sub => (
-                                    <MenuItem key = {Math.random()} value={sub.id}>{sub.name}</MenuItem>
+                                  {fixed.subjs.map((sub, index) => (
+                                    <MenuItem key = {index} value={sub.id}>{sub.name}</MenuItem>
                                   ))} 
                                 </Select>
                             </TableCell>
@@ -288,26 +305,27 @@ export default function Products(props) {
                                     <em>None</em>
                                   </MenuItem>
                                   
-                                  {fixed.provs.map(prov => (
-                                    <MenuItem key = {Math.random()} value={prov.id}>{prov.name}</MenuItem>
+                                  {fixed.provs.map((prov, index) => (
+                                    <MenuItem key = {index} value={prov.id}>{prov.name}</MenuItem>
                                   ))} 
                                 </Select>
                             </TableCell>
                             <TableCell colSpan = {2}>
-                              {/* <form onSubmit = {insProd}> */}
+                              
                                 <Button onClick={() => insProd()} type = "submit" variant="contained" color="primary" className = {classes.spread}>
                                   Create
                                 </Button>  
-                              {/* </form> */}
+                             
                             </TableCell>         
                   </TableRow>
+                  
                   :
                   <>
                   {state.allProds.map((elem, i) => (
-                       <TableRow key = {Math.random()}>
+                       <TableRow key = {i}>
                        <TableCell> 
                              <input accept="image/*" onChange = {prevProds}
-                             className={classes.input} id={`icon-button-file-${elem.id}`} name = {i} type="file" />
+                             className={classes.input} id={`icon-button-file-${elem.id}`} name = {`${i}`} type="file" />
                              <label htmlFor={`icon-button-file-${elem.id}`}>
                                <IconButton color="primary" aria-label="upload picture" component="span">
                                  <PhotoCamera />
@@ -320,24 +338,21 @@ export default function Products(props) {
                              }
                        </TableCell>
                        <TableCell>
-                           <TextField required id="standard-required"  label="Name" className={classes.spread} 
+                           <TextField required id="standard-required"  name = {`${i}`} label="Name" className={classes.spread} 
                            value={elem.name}
-                           onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
-                            {...state.allProds[i], name: e.target.value}, ...state.allProds.slice(i+1)]})}
+                           onChange={(e) => changeName(e)}
                             />
                        </TableCell>
                        <TableCell>
-                           <TextField required id="standard-required"  label="Description" className={classes.spread} 
+                           <TextField required id="standard-required"  name = {`${i}`} label="Description" className={classes.spread} 
                            value={elem.description}
-                           onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
-                            {...state.allProds[i], description: e.target.value}, ...state.allProds.slice(i+1)]})}
+                           onChange={(e) => changeDesc(e)}
                             />
                        </TableCell>
                        <TableCell>
-                           <TextField required id="standard-required"  label="Price" className={classes.spread} 
+                           <TextField required id="standard-required"  name = {`${i}`} label="Price" className={classes.spread} 
                            value={elem.price}
-                           onChange={(e) => setState({...state, allProds : [...state.allProds.slice(0,i), 
-                            {...state.allProds[i], price: e.target.value}, ...state.allProds.slice(i+1)]})}
+                           onChange={(e) => changePrice(e)}
                            />
                        </TableCell>
                        <TableCell>
@@ -354,8 +369,8 @@ export default function Products(props) {
                                <em>None</em>
                              </MenuItem>
                              {
-                             fixed.cats.map(cat => (
-                               <MenuItem key = {Math.random()} value={cat.id}>{cat.name}</MenuItem>
+                             fixed.cats.map((cat, index) => (
+                               <MenuItem key = {index} value={cat.id}>{cat.name}</MenuItem>
                              ))} 
                            </Select>
                        </TableCell>
@@ -374,8 +389,8 @@ export default function Products(props) {
                                <em>None</em>
                              </MenuItem>
                              
-                             {fixed.levels.map(lev => (
-                               <MenuItem key = {Math.random()} value={lev.id}>{lev.name}</MenuItem>
+                             {fixed.levels.map((lev, index) => (
+                               <MenuItem key = {index} value={lev.id}>{lev.name}</MenuItem>
                              ))} 
                            </Select>
                        </TableCell>
@@ -394,8 +409,8 @@ export default function Products(props) {
                                <em>None</em>
                              </MenuItem>
                              
-                             {fixed.subjs.map(sub => (
-                               <MenuItem key = {Math.random()} value={sub.id}>{sub.name}</MenuItem>
+                             {fixed.subjs.map((sub, index) => (
+                               <MenuItem key = {index} value={sub.id}>{sub.name}</MenuItem>
                              ))} 
                            </Select>
                        </TableCell>
@@ -414,8 +429,8 @@ export default function Products(props) {
                                <em>None</em>
                              </MenuItem>
                              
-                             {fixed.provs.map(prov => (
-                               <MenuItem key = {Math.random()} value={prov.id}>{prov.name}</MenuItem>
+                             {fixed.provs.map((prov, index) => (
+                               <MenuItem key = {index} value={prov.id}>{prov.name}</MenuItem>
                              ))} 
                            </Select>
                        </TableCell>
@@ -441,7 +456,7 @@ export default function Products(props) {
                             <TableCell> 
                                   <input accept="image/*" onChange={handleUpload}
                                   className={classes.input} id="icon-button-file-additional" type="file" />
-                                  <label htmlFor="icon-button-file2">
+                                  <label htmlFor="icon-button-file-additional">
                                     <IconButton color="primary" aria-label="upload picture" component="span">
                                       <PhotoCamera />
                                     </IconButton>
@@ -479,8 +494,8 @@ export default function Products(props) {
                                     <em>None</em>
                                   </MenuItem>
                                   {
-                                  fixed.cats.map(cat => (
-                                    <MenuItem key = {Math.random()} value={cat.id}>{cat.name}</MenuItem>
+                                  fixed.cats.map((cat, index) => (
+                                    <MenuItem key = {index} value={cat.id}>{cat.name}</MenuItem>
                                   ))} 
                                 </Select>
                             </TableCell>
@@ -496,8 +511,8 @@ export default function Products(props) {
                                     <em>None</em>
                                   </MenuItem>
                                   
-                                  {fixed.levels.map(lev => (
-                                    <MenuItem key = {Math.random()} value={lev.id}>{lev.name}</MenuItem>
+                                  {fixed.levels.map((lev, index) => (
+                                    <MenuItem key = {index} value={lev.id}>{lev.name}</MenuItem>
                                   ))} 
                                 </Select>
                             </TableCell>
@@ -513,8 +528,8 @@ export default function Products(props) {
                                     <em>None</em>
                                   </MenuItem>
                                   
-                                  {fixed.subjs.map(sub => (
-                                    <MenuItem key = {Math.random()} value={sub.id}>{sub.name}</MenuItem>
+                                  {fixed.subjs.map((sub, index) => (
+                                    <MenuItem key = {index} value={sub.id}>{sub.name}</MenuItem>
                                   ))} 
                                 </Select>
                             </TableCell>
@@ -530,8 +545,8 @@ export default function Products(props) {
                                     <em>None</em>
                                   </MenuItem>
                                   
-                                  {fixed.provs.map(prov => (
-                                    <MenuItem key = {Math.random()} value={prov.id}>{prov.name}</MenuItem>
+                                  {fixed.provs.map((prov, index) => (
+                                    <MenuItem key = {index} value={prov.id}>{prov.name}</MenuItem>
                                   ))} 
                                 </Select>
                             </TableCell>
