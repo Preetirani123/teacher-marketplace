@@ -64,34 +64,58 @@ const updateProduct = function(productID, name, categoryID, description, price, 
   const queryParams = [];
 
   if (categoryID) {
+    if (queryParams.length !== 0){
+      query += ',';
+    }
     queryParams.push(categoryID);
     query += ` cat_id = $${queryParams.length}`;
   }
   if (name) {
+    if (queryParams.length !== 0){
+      query += ',';
+    }
     queryParams.push(name);
     query += ` name = $${queryParams.length}`;
   }
   if (description) {
+    if (queryParams.length !== 0){
+      query += ',';
+    }
     queryParams.push(description);
     query += ` description = $${queryParams.length}`;
   }
   if(price){
+    if (queryParams.length !== 0){
+      query += ',';
+    }
     queryParams.push(price);
     query += ` price = $${queryParams.length}`;
   }
   if(thumbnail_url){
+    if (queryParams.length !== 0){
+      query += ',';
+    }
     queryParams.push(thumbnail_url);
     query += ` thumbnail_url = $${queryParams.length}`;
   }
   if(subject_id){
+    if (queryParams.length !== 0){
+      query += ',';
+    }
     queryParams.push(subject_id);
     query += ` subject_id = $${queryParams.length}`;
   }
   if(grade){
+    if (queryParams.length !== 0){
+      query += ',';
+    }
     queryParams.push(grade);
     query += ` level_id = $${queryParams.length}`;
   }
   if(province){
+    if (queryParams.length !== 0){
+      query += ',';
+    }
     queryParams.push(province);
     query += ` province_id = $${queryParams.length}`;
   }
