@@ -5,11 +5,9 @@ $root: '.c-rainbow';
 
 :root {
  --color-background: #31037D;
- 
  --axis-x: 1px;
  --axis-y: 1rem;
  --delay: 10;
- 
  --color-black: #000;
  --color-white: #fff;
  --color-orange: #D49C3D;
@@ -18,12 +16,9 @@ $root: '.c-rainbow';
  --color-blue: #5762a3;
  --color-green: #5ACB3C;
  --color-yellow: #DEBF40;
- 
  --color-foreground: var(--color-white);
  --font-name: Righteous;
 }
-
-
 
 #{$root} {
  counter-reset: rainbow;
@@ -74,14 +69,14 @@ $root: '.c-rainbow';
  }
 }
 
-@keyframes rainbow {
- 0%, 100% {
-  transform: translatey(var(--axis-y)); 
- }
- 50% {
-  transform: translatey(calc(var(--axis-y) * -1));
- }
-} 
+// @keyframes rainbow {
+//  0%, 100% {
+//   transform: translatey(var(--axis-y)); 
+//  }
+//  50% {
+//   transform: translatey(calc(var(--axis-y) * -1));
+//  }
+// } 
 @media only screen and (max-width: 768px){
   .topcontent{
     margin-top: 100px ;
