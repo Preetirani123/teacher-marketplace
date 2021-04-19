@@ -49,11 +49,11 @@ export default function Login(props) {
                   </article>
         )}
         </div>
-
+          <div className="LoginInner"> 
         <Button onClick = {loginRoutes} variant="contained" color="primary" className = {classes.spread}>
           Back
         </Button>
-        <Typography variant = "h2" className={classes.spread}>{props.msg !== undefined ? props.msg : ''}</Typography>
+        <Typography variant = "h4" className={classes.spread}>{props.msg !== undefined ? props.msg : ''}</Typography>
         <form className={classes.root} noValidate autoComplete="off" onSubmit = {login}>
          <Typography variant = "h4" className={classes.spread}>
            Login
@@ -78,6 +78,7 @@ export default function Login(props) {
             </Button>
           </div>
         </form> 
+        </div>
     </div>
     
   )

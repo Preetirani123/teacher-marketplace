@@ -4,6 +4,7 @@ import axios from 'axios';
 import Order from '../Order/Order'
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import './OrderContainer.scss';
 
 export default function OrderContainer(props) {
 
@@ -30,12 +31,14 @@ export default function OrderContainer(props) {
   });
 
   return (
-    <div>
+    <div className="orderContain">
       <Nav count={props.count} setEm={props.setEm} setId={props.setId} />
+      <div className="orderContainInner">
       <h4>Below are your previous orders:</h4>
-      <List component="nav">
+      <List component="nav" >
       {renderOrders}
       </List>
+      </div>
     </div>
   );
 }

@@ -10,3 +10,8 @@ label + .MuiInput-formControl {
 .MuiButton-containedPrimary{
   width: 117px;
 }
+@media only screen and (max-width: 768px){
+  .LoginInner {
+    margin: 105px 0px;
+}
+}

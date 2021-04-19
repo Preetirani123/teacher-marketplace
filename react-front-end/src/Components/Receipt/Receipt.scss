@@ -13,11 +13,17 @@
   }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   .receiptoutter{
     margin-top: 61px;
   }
   .receiptinner{
     width: 100%;
+    h1{
+      font-size: 2.5em;
+    }
+    h2{
+      font-size: 1.8em;
+    }
   }
 }

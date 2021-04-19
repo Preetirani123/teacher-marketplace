@@ -9,7 +9,7 @@ export default function Footer() {
       <footer className={classes.footer}>
       <CssBaseline />
         <Typography  align= "center" gutterBottom style={{fontFamily: 'Rajdhani'}}>
-        Copyright © LOGO. Website Design For Final Project
+        Copyright © Smarter Teacher. Website Design For Final Project
         </Typography>
       </footer>
     </>

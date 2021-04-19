@@ -53,7 +53,12 @@ const useStyles = makeStyles((theme) => ({
   CardMedia: {
     width: '200px',
     borderRadius: '2%',
-    height: '200px'
+    height: '200px',
+    [theme.breakpoints.down('sm')]:{
+    width: '80px',
+    borderRadius: '50%',
+    height: '80px',
+    }
   },
   
   dashboard: {
@@ -62,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
   dashboardinner: {
     width: '95%',
     margin: '70px auto',
+    [theme.breakpoints.down('sm')]:{
+      margin: '100px auto',
+    }
   }
 }));
 

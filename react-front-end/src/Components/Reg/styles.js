@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   registration:{
     [theme.breakpoints.down('sm')]:{
-      marginTop: '87px',
+      margin: '105px auto',
     },
 
   },
