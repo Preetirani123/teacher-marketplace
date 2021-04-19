@@ -28,7 +28,6 @@ export default function Cart(props) {
   return (
     <div>
       <Nav count={props.count} setEm={props.setEm} setId={props.setId} />
-
       <div className={classes.cartwidth}>
         <div className={classes.butts}>
           <Button
