@@ -34,6 +34,15 @@ export default function ProductContainer(props) {
 
   const totalPages = Math.ceil( prod.length / productsPerPage);
 
+  const scrollToTop = () =>{
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth'
+      /* you can also use 'auto' behaviour
+         in place of 'smooth' */
+    });
+  };
+
   const handleClick = (data) => {
     let selected = data.selected;
     let newOffset = Math.ceil(selected * productsPerPage);
@@ -42,7 +51,11 @@ export default function ProductContainer(props) {
       ...prevState,
       offset: newOffset
     }));
+    scrollToTop();
   };
+
+
+
 
   const currentProds = prod.slice(offset, offset+productsPerPage);
 
