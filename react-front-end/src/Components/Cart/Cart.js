@@ -26,8 +26,22 @@ export default function Cart(props) {
   }
 
   return (
+
+
     <div className={classes.cartMain}>
-      <Nav count={props.count} setEm={props.setEm} setId={props.setId} />
+      
+      <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+      <div style = {{zIndex : 1000}}>
+        {props.results.map((res, i) => 
+                  <article key = {i}>
+                    <Link to = {`/${res.id}`} key = {i}>
+                      {res.name}
+                    </Link>
+                  </article>
+        )}
+      </div>
+    
+
       <div className={classes.cartwidth}>
         <div className={classes.butts}>
           <Button
@@ -40,6 +54,7 @@ export default function Cart(props) {
           >
             Back
           </Button>
+
 
           {props.items.length === 0 ? (
             <Button

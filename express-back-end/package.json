@@ -10,6 +10,8 @@
     "start": "./node_modules/.bin/nodemon -L express_server.js"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^7.12.0",
+    "array.prototype.flatmap": "^1.2.4",
     "aws-sdk": "^2.888.0",
     "body-parser": "^1.19.0",
     "cookie-session": "^1.4.0",
