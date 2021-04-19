@@ -15,7 +15,7 @@ position: fixed;
 font-size: 3.5rem;
 z-index: 1;
 cursor: pointer;
-color: red;
+color: #3f51b5;
 width: 70px;
 height: 70px;
 text-decoration: none;

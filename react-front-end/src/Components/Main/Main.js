@@ -238,8 +238,7 @@ export default function Main(props) {
                 {state.email === '' ?
                 <Login  setEm = {setEm} count = {state.countItems} total = {state.total} /> 
                 :
-                <Receipt items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} />
-
+                <Receipt items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
                 }
               </Route>
               <Route path = "/checkout" >

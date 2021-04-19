@@ -26,6 +26,15 @@ const login = function(email, password, db) {
     .catch((err, res) => res.send(err));
 };
 
+// gets a users info
+const getUserInfo = function(id, db) {
+  const query = `SELECT * FROM users WHERE id = $1`;
+  const value = [id];
+  return db.query(query, value)
+  .then(res => res.rows[0])
+  .catch((err, res) => res.send(err));
+};
+
 //Gets all the products in the DB
 const getProducts = function(db) {
   const query = `SELECT * FROM product`
@@ -252,16 +261,15 @@ const getProv = function(db) {
     });
 }
 
-// const getOrderID = function (customer_ID, db) {
-//   let query = `SELECT id FROM orders WHERE cust_id=$1 ORDER BY id DESC LIMIT 1`;
-//   const value = [customer_ID];
-//   return db
-//     .query(query, values)
-//     .then((res) => res.rows[0])
-//     .catch((err) => {
-//       console.error("query error", err.stack);
-//     });
-// };
+const getLastOrderID = function (customer_ID, db) {
+  let query = `SELECT id FROM orders WHERE cust_id=$1 ORDER BY id DESC LIMIT 1`;
+  const values = [customer_ID];
+  return db.query(query, values)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.error("query error", err.stack);
+    });
+};
 
 
 module.exports = {
@@ -269,6 +277,7 @@ module.exports = {
   login,
   getProducts,
   getProduct,
+  getUserInfo,
   insertProduct,
   updateProduct,
   deleteProduct,
@@ -283,5 +292,6 @@ module.exports = {
   getSubj,
   getAllOrderDetails,
   getAllOrdersByUserID,
-  getOrderDetailsByID
+  getOrderDetailsByID,
+  getLastOrderID
 };

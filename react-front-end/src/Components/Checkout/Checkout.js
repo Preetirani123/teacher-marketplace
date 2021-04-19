@@ -21,6 +21,10 @@ export default function Checkout(props) {
   const history = useHistory();
   const classes = useStyles();
 
+  if (history[-1] !== "/cart") {
+    history.push("/");
+  };
+
   function postOrder() {
     return axios.post('/orders',
     {
@@ -44,16 +48,10 @@ export default function Checkout(props) {
 
     //post to server order
     postOrder().then((resp) => {
-      console.log("this is resp.data", resp.data);
       // post to order details
       for (const item of props.items) {
-        console.log(
-          "posting to order details this is order Number:",
-          resp.data.id
-        );
         postOrderDetails(resp.data.id, item.id, item.price, item.qty).then(
           () => {
-            console.log("posted to order details");
           }
         );
       }

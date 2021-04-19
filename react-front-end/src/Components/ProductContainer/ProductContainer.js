@@ -5,7 +5,6 @@ import Nav from '../Nav/Nav';
 import useStyles from './styles';
 import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
-
 import ReactPaginate from 'react-paginate';
 import './paginateStyle.scss';
 
@@ -34,6 +33,15 @@ export default function ProductContainer(props) {
 
   const totalPages = Math.ceil( prod.length / productsPerPage);
 
+  const scrollToTop = () =>{
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth'
+      /* you can also use 'auto' behaviour
+         in place of 'smooth' */
+    });
+  };
+
   const handleClick = (data) => {
     let selected = data.selected;
     let newOffset = Math.ceil(selected * productsPerPage);
@@ -42,6 +50,7 @@ export default function ProductContainer(props) {
       ...prevState,
       offset: newOffset
     }));
+    scrollToTop();
   };
 
   const currentProds = prod.slice(offset, offset+productsPerPage);
