@@ -56,8 +56,12 @@ const useStyles = makeStyles((theme) => ({
     height: '200px'
   },
   
-  cartwidth:{
-    
+  dashboard: {
+    width: '100%'
+  },
+  dashboardinner: {
+    width: '95%',
+    margin: '70px auto',
   }
 }));
 

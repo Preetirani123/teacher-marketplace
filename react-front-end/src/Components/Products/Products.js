@@ -224,7 +224,9 @@ export default function Products(props) {
 
   
   return (
-    <div>
+    <div className={classes.dashboard}>
+
+
 
     <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
         <div style = {{zIndex : 1000}}>
@@ -236,7 +238,8 @@ export default function Products(props) {
                   </article>
         )}
         </div>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className={classes.dashboardinner}>
+
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
