@@ -174,12 +174,12 @@ button:disabled {
 
 
 
-@media only screen and (max-width: 767px){
+@media only screen and (max-width: 768px){
   .checkoutinner {
     width: 100%;
   }
   .checkoutOutter{
-    margin-top: 95px;
+    margin: 95px auto;
   }
   #payment-form {
     width: 100%;

@@ -1,0 +1,20 @@
+.orderContain{
+  width: 100%;
+}
+.orderContainInner{
+  width: 40%;
+  margin: 90px auto;
+  text-align: center;
+
+}
+
+@media only screen and (max-width: 768px){
+  .orderContainInner {
+    width: 100%;
+    margin: 110px 0px;
+  }
+
+}
+
+
+

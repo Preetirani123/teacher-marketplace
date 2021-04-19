@@ -47,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
   cartMain: {
     width: '100%',
     [theme.breakpoints.down('sm')]:{
-      marginTop: '70px',
+      marginTop: '80px',
+      
     },
   },
   cartwidth: {
@@ -55,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '30px auto',
     [theme.breakpoints.down('sm')]:{
       width: '100%',
+      
     }
     
   },

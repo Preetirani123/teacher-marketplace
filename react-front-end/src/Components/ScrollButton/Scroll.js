@@ -22,5 +22,12 @@ text-decoration: none;
 bottom: 90px;
 right: 20px;
 border-radius: 50%;
+@media only screen and (max-width: 768px){
+   font-size: 2.5rem;
+   width: 40px;
+   height: 40px;
+   bottom: 110px;
+   right: 8px;
+}
 
 `
