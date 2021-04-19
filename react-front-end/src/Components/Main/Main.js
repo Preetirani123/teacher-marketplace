@@ -30,7 +30,6 @@ export default function Main(props) {
   })
   const [results, setResults] = useState([])
 
- 
 
   useEffect(() => {
 
