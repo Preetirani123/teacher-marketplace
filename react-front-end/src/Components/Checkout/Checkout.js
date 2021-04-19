@@ -18,13 +18,13 @@ const {REACT_APP_SERVICE_ID, REACT_APP_TEMPLATE_ID, REACT_APP_USER_ID} = process
 
 export default function Checkout(props) {
 
-  const [orderNumber, setOrderNumber] = useState();
-
   const history = useHistory();
   const classes = useStyles();
-  console.log(history);
 
-  console.log('props', props);
+  if (history[-1] !== "/cart") {
+    history.push("/");
+  };
+
   function postOrder() {
     return axios.post('/orders',
     {
@@ -46,27 +46,23 @@ export default function Checkout(props) {
   function finalizeSale(e) {
     e.preventDefault();
 
-    //post to server order 
-    postOrder()
-      .then((resp)=> {
-        console.log(resp.data)
-        setOrderNumber(resp.data.id)
+    //post to server order
+    postOrder().then((resp) => {
+      // post to order details
+      for (const item of props.items) {
+        postOrderDetails(resp.data.id, item.id, item.price, item.qty).then(
+          () => {
+          }
+        );
+      }
     });
 
-    // post to order details
-    for (const item of props.items) {
-      postOrderDetails(orderNumber, item.id, item.price, item.qty)
-      .then(() => {
-        console.log('posted to order details')
-      });
-    }
-    
     //send email to buyer and seller
     // Going to wait to implement this.
     // sendEmail()
 
     //redirect to Receipt
-    history.push('/receipt')
+    history.push("/receipt");
   }
 
   // function for email

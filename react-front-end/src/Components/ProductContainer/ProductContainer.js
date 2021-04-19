@@ -1,4 +1,3 @@
-
 import { Grid } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import Product from '../Product/Product';
@@ -6,20 +5,17 @@ import Nav from '../Nav/Nav';
 import useStyles from './styles';
 import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
-
 import ReactPaginate from 'react-paginate';
 import './paginateStyle.scss';
 
 import TopContent from '../TopContent/TopContent'
-
-
-
 
 export default function ProductContainer(props) {
   const [state, setState] = useState({
     prod: [],
     offset: 0
   });
+
   const history = useHistory();
   useEffect(() => {
     Promise.all([axios.get("/product")]).then((all) => {
@@ -37,6 +33,15 @@ export default function ProductContainer(props) {
 
   const totalPages = Math.ceil( prod.length / productsPerPage);
 
+  const scrollToTop = () =>{
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth'
+      /* you can also use 'auto' behaviour
+         in place of 'smooth' */
+    });
+  };
+
   const handleClick = (data) => {
     let selected = data.selected;
     let newOffset = Math.ceil(selected * productsPerPage);
@@ -45,6 +50,7 @@ export default function ProductContainer(props) {
       ...prevState,
       offset: newOffset
     }));
+    scrollToTop();
   };
   
 

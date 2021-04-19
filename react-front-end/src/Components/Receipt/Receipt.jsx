@@ -4,16 +4,25 @@ import Nav from '../Nav/Nav'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import useStyles from '../Checkout/styles';
 import axios from 'axios';
-import Product from '../Product/Product';
 import './Receipt.scss';
 
 
 export default function Receipt(props) {
   const history = useHistory();
   const classes = useStyles();
+
+  if (history[-1] !== "/checkout") {
+    history.push("/");
+  }
+
   const [tempCart, setTempCart] = useState([]);
+  const [order, setOrder]= useState();
 
   useEffect(() => {
+    axios.get(`/users/${props.u_id}/lastOrder`).then((resp) => {
+      setOrder(resp.data.id);
+    });
+
     transferCart();
     if (tempCart.length !== 0) {
       ////clear Cart
@@ -25,6 +34,7 @@ export default function Receipt(props) {
       }));
       axios.delete('/cart')
     }
+    
     // return () => {
     //   setTempCart([]);
     // };
@@ -45,20 +55,20 @@ export default function Receipt(props) {
     );
   });
 
-  // if (history[-1] !== "/checkout") {
-  //   history.push("/");
-  // }
+  const total = tempCart.reduce((total, prod) => {
+    return total + Number(prod.price);
+  }, 0)
 
-  //Have not implemented Order Number yet. Waiting to see what Vineet does.
+
   return (
     <div className="receiptoutter">
       <Nav />
       <div className="receiptinner">
       <h1>Thank you for your Order.</h1>
-      <h2>Your Order Number is: {/* ORDER NUMBER WOULD GO HERE*/}</h2>
+      <h2>Your Order Number is: {order} </h2>
       <h2>You will be recieving a confirmation email shortly </h2>
       <Table
-          key={Math.random()}
+          key={1}
           className={classes.table}
           aria-label="simple table"
         >
@@ -72,7 +82,7 @@ export default function Receipt(props) {
           {tempCart.length === 0 ? (
             <p>Cart is empty - Go to the main page and buy some things</p>
           ) : (
-            <TableBody key={Math.random()}>
+            <TableBody key={2}>
               {tempCart.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell align="left">{row.name}</TableCell>
@@ -83,7 +93,7 @@ export default function Receipt(props) {
               <TableRow>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
-                <TableCell align='right'>Total ${props.total}</TableCell>
+                <TableCell align='right'>Total ${total}</TableCell>
               </TableRow>
             </TableBody>
           )}

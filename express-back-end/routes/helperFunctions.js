@@ -26,6 +26,15 @@ const login = function(email, password, db) {
     .catch((err, res) => res.send(err));
 };
 
+// gets a users info
+const getUserInfo = function(id, db) {
+  const query = `SELECT * FROM users WHERE id = $1`;
+  const value = [id];
+  return db.query(query, value)
+  .then(res => res.rows[0])
+  .catch((err, res) => res.send(err));
+};
+
 //Gets all the products in the DB
 const getProducts = function(db) {
   const query = `SELECT * FROM product`
@@ -172,12 +181,31 @@ const addOrder = function(amount, id, db) {
     });
 }
 
+const getAllOrdersByUserID = (id, db) => {
+  let query = 'SELECT * FROM orders WHERE cust_id = $1';
+  const values = [id];
+  return db.query(query, values)
+  .then(res => res.rows)
+  .catch(err => {
+    console.error('query error', err.stack);
+  });
+}
+
 const getAllOrderDetails = function(db) {
   const query = `SELECT * FROM order_details`
   return db.query(query)
     .then(res => res.rows)// returns an array of objects of objs (JSON FORMAT)
     .catch((err, res) => res.send(err));
 }
+
+const getOrderDetailsByID = function(orderID, db) {
+  const query = 'SELECT * FROM order_details WHERE order_id = $1'
+  const values = [orderID];
+  return db.query(query, values)
+  .then((res) => res.rows)
+  .catch((e) => console.log(e))
+}
+
 
 const addOrderDetails = function(o_id, p_id, price, qty, db) {
   let query = `INSERT INTO order_details (order_id, prod_id, price, quantity) VALUES ($1, $2, $3, $4) RETURNING *`;
@@ -188,8 +216,6 @@ const addOrderDetails = function(o_id, p_id, price, qty, db) {
       console.error('query error', err.stack);
     });
 }
-
-
 
 const getProdsByUser = function (u_id, db) {
   let query = `SELECT * FROM product WHERE owner_id = $1;`
@@ -236,6 +262,7 @@ const getProv = function(db) {
 }
 
 
+
 //Gets all the products in the DB
 const indexOps = function(db) {
   const query = `SELECT * FROM product`
@@ -262,12 +289,24 @@ const indexOps = function(db) {
     
 
 
+const getLastOrderID = function (customer_ID, db) {
+  let query = `SELECT id FROM orders WHERE cust_id=$1 ORDER BY id DESC LIMIT 1`;
+  const values = [customer_ID];
+  return db.query(query, values)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.error("query error", err.stack);
+    });
+};
+
+
 
 module.exports = {
   addUser,
   login,
   getProducts,
   getProduct,
+  getUserInfo,
   insertProduct,
   updateProduct,
   deleteProduct,
@@ -281,6 +320,9 @@ module.exports = {
   getProv,
   getSubj,
   getAllOrderDetails,
-  indexOps
+  indexOps,
+  getAllOrdersByUserID,
+  getOrderDetailsByID,
+  getLastOrderID
 
 };

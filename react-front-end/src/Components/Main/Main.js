@@ -10,7 +10,8 @@ import Chat from '../Chat/Chat';
 import Checkout from '../Checkout/Checkout';
 
 import Products from '../Products/Products';
-
+import OrderContainer from '../OrderContainer/OrderContainer';
+import OrderDetails from '../Order/OrderDetails';
 import Receipt from '../Receipt/Receipt';
 
 import axios from 'axios'
@@ -234,7 +235,18 @@ export default function Main(props) {
           <div className={classes.Route}>
             
             <Switch>
-
+              <Route path = "/order/:orderID">
+                <OrderDetails setCart = {setCart} count={state.countItems} total = {state.total} />
+              </Route>
+              <Route path = '/orders'>
+                {state.email === ''  ?
+                  <Login  setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
+                  msg = 'Please sign in first' /> 
+                  :
+                  <OrderContainer setEm = {setEm} setId = {setId} items = {state.cart} 
+                  count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+                  }
+              </Route>
               <Route path = "/products" >
                 {state.email === ''  ?
                 <Login results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
@@ -248,8 +260,7 @@ export default function Main(props) {
                 {state.email === '' ?
                 <Login results = {results} setResults = {setResults} setEm = {setEm} count = {state.countItems} total = {state.total} /> 
                 :
-                <Receipt items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} />
-
+                <Receipt items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
                 }
               </Route>
               <Route path = "/checkout" >

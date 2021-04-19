@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { CssBaseline, AppBar, Toolbar, Typography, InputBase, Button, IconButton, Badge} from '@material-ui/core';
+import { CssBaseline, AppBar, Toolbar, Typography, InputBase, Button, Icon, IconButton, Badge} from '@material-ui/core';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon  from '@material-ui/icons/Search';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from './styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
@@ -11,8 +14,19 @@ import './Nav.scss';
 export default function Nav(props) {
   const history = useHistory();
   const [em, setEma] = useState('');
+
   const [val, setVal] = useState('')
-  
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+
   useEffect(() => {
 
 
@@ -104,7 +118,6 @@ export default function Nav(props) {
             <div className={classes.navRight_1}>
             <Typography variant= "h6">
 
-            
               {em === '' ? 
               <div className = {classes.logOut1}>
                 <Link to = "/Chat" className={classes.logOut2}>Chat</Link>
@@ -126,12 +139,21 @@ export default function Nav(props) {
               : 
               <div>         
                   <form className={classes.logOut1} noValidate autoComplete="off" onSubmit={logout}>
-                      
-                      <Link to = "/login" className={classes.logOut2}>{em}</Link>
-                      <Link to = "/products" className={classes.logOut2}>Dashboard</Link>
-                      <Button type = "submit" variant="contained" color="primary" className = {classes.spread}>
-                        Logout
-                      </Button>
+
+                  <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} className={classes.logOut2} endIcon={<ExpandMoreIcon/>}>
+                    {em}
+                  </Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorEl}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                  >
+                    <Link to = "/orders" ><MenuItem onClick={handleClose}>My Orders</MenuItem></Link>
+                    <Link to = "/products" ><MenuItem onClick={handleClose}>Product Dashboard</MenuItem></Link>
+                    <MenuItem onClick={logout}>Logout</MenuItem>
+                  </Menu>
                       <Link to = "/cart" className={classes.navLink}>
                           <div className={classes.grow} />
                           <div className={classes.button}>
