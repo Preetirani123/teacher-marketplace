@@ -8,8 +8,7 @@ import Divider from '@material-ui/core/Divider';
 export default function OrderContainer(props) {
 
   const [orders, setOrders] = useState({
-    ords: [],
-    ordDetails: [],
+    ords: []
   });
 
   useEffect(() => {
@@ -24,7 +23,7 @@ export default function OrderContainer(props) {
   const renderOrders = orders.ords.slice(0).reverse().map((order) => {
     return (
       <>
-      <Order orderID = {order.id} amount = {order.amount} purchased={order.purchased}/>
+      <Order className={order.id} orderID = {order.id} amount = {order.amount} purchased={order.purchased}/>
       <Divider />
       </>
     )

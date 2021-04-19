@@ -4,19 +4,14 @@ import axios from 'axios';
 import useStyles from './styles';
 
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import { LensTwoTone } from '@material-ui/icons';
+import { useHistory } from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Switch, useParams} from 'react-router-dom'
+import { Button } from '@material-ui/core';
 
 export default function Orders(props) {
-  // function getOrderDetails(orderID) {
-  //   axios.get(`/orderdetails/order/${orderID}`).then((res) => {
-  //     setOrders((prevState) => ({
-  //       ...prevState,
-  //       ordDetails: res[0].data
-  //     }));
-  //   });
-  // }
+  const classes = useStyles();
+  const history = useHistory();
 
   function printDate(ISODate) {
     const date = new Date(ISODate);
@@ -30,18 +25,21 @@ export default function Orders(props) {
     if (month < 10) {
       month = "0" + month;
     }
-    return `${year}-${month}-${dt}`
-  } 
-
-  const classes = useStyles();
+    return `${year}-${month}-${dt}`;
+  }
 
   return (
     <div className={classes.root}>
-      <ListItem button>
-        <ListItemText primary={`Order:`} secondary={`${props.orderID}`}/>
-        <ListItemText primary={`Purchased on:`} secondary={`${printDate(props.purchased)}`}/>
-        <ListItemText primary={`Amount:`} secondary={`${props.amount}`}/>
-      </ListItem>
+      <Link to={`/order/${props.orderID}`}>
+        <ListItem button className={props.className}>
+          <ListItemText primary={`Order:`} secondary={`${props.orderID}`} />
+          <ListItemText
+            primary={`Purchased on:`}
+            secondary={`${printDate(props.purchased)}`}
+          />
+          <ListItemText primary={`Amount:`} secondary={`${props.amount}`} />
+        </ListItem>
+      </Link>
     </div>
   );
 }
