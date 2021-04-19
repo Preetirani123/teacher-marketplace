@@ -28,7 +28,17 @@ export default function Main(props) {
     countItems : 0
   })
 
+ 
+
   useEffect(() => {
+
+   
+    // axios.post(`/search/delete/186`).then((resp) => {
+    //    console.log(resp)
+    // })
+    
+   
+    
     axios.get("/cart").then((all) => {
       
       console.log('all data from mainJS', all.data)
@@ -55,6 +65,7 @@ export default function Main(props) {
 
 
     });
+
   }, []);
 
   const setEm = (email) => {
@@ -263,7 +274,7 @@ export default function Main(props) {
                 total = {state.total} setEm = {setEm} u_id = {state.id} />
                 }
               </Route>
-              <Route path = "/Chat" >
+              <Route  path = "/Chat" >
                 <Chat count = {state.countItems} total = {state.total} />
               </Route>
               <Route path = "/:productID">

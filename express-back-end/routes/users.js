@@ -10,7 +10,7 @@ module.exports = (db) => {
     const id = req.params.id
     getProdsByUser(id, db)
     .then((resp) => {
-      console.log(resp)
+     // console.log(resp)
       res.send(resp);
     })
     .catch((e) => console.log(e))

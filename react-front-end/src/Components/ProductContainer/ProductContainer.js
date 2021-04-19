@@ -46,6 +46,7 @@ export default function ProductContainer(props) {
       offset: newOffset
     }));
   };
+  
 
   const currentProds = prod.slice(offset, offset+productsPerPage);
 
