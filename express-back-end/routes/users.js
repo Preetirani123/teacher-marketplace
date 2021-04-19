@@ -1,24 +1,30 @@
 const express = require("express");
 const router = express.Router();
-const { addUser, getProdsByUser } = require('./helperFunctions');
+const { addUser, getProdsByUser, getAllOrdersByUserID } = require('./helperFunctions');
 
 
 module.exports = (db) => {
- 
   //get products belonging to a particular user
-  router.get('/products/:id', (req, res) => {
-    const id = req.params.id
+  router.get("/products/:id", (req, res) => {
+    const id = req.params.id;
     getProdsByUser(id, db)
-    .then((resp) => {
-      console.log(resp)
-      res.send(resp);
-    })
-    .catch((e) => console.log(e))
+      .then((resp) => {
+        console.log(resp);
+        res.send(resp);
+      })
+      .catch((e) => console.log(e));
   });
 
-
-
-
+  //get all orders belonging to a particular user
+  router.get("/orders/:id", (req, res) => {
+    console.log('in users/orders');
+    const id = req.params.id;
+    getAllOrdersByUserID(id, db)
+      .then((id) => res.send(id))
+      .catch((e) => {
+        res.send(e);
+      });
+  });
 
   // Registration route (by clicking register button in header when not logged in)
   router.post("/", (req, res) => {
@@ -27,18 +33,11 @@ module.exports = (db) => {
     addUser(user, db)
       .then((user) => {
         req.session.user_id = user.id;
-        req.session.email = user.email
-        res.send({name: user.name, email: user.email, id: user.id});
+        req.session.email = user.email;
+        res.send({ name: user.name, email: user.email, id: user.id });
       })
       .catch((err) => res.send(err));
   });
-
-
-
-
-  
-
-
 
   return router;
 };

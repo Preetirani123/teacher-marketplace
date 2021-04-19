@@ -22,14 +22,6 @@ module.exports = (db) => {
       });
   });
 
-  router.get('/:userID', (req,res) => {
-    getOrderID(req.session.user_id, db)
-    .then(id => res.send(id))
-    .catch(e => {
-      res.send(e);
-    });
-});
-
 
   // insert an order
   router.post("/", (req, res) => {
