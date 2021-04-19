@@ -20,7 +20,7 @@ export default function TopContent(props) {
 
       <Typography variant="h4" align="center" color="textPrimary"  gutterBottom>
       <ul className="c-rainbow">
-      <li className="c-rainbow__layer c-rainbow__layer--blue">Teach to their own</li>
+      <li className="c-rainbow__layer c-rainbow__layer--blue">Teach To Their Own</li>
       </ul>
        
       </Typography>
