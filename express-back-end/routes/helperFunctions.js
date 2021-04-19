@@ -26,6 +26,15 @@ const login = function(email, password, db) {
     .catch((err, res) => res.send(err));
 };
 
+// gets a users info
+const getUserInfo = function(id, db) {
+  const query = `SELECT * FROM users WHERE id = $1`;
+  const value = [id];
+  return db.query(query, value)
+  .then(res => res.rows[0])
+  .catch((err, res) => res.send(err));
+};
+
 //Gets all the products in the DB
 const getProducts = function(db) {
   const query = `SELECT * FROM product`
@@ -269,6 +278,7 @@ module.exports = {
   login,
   getProducts,
   getProduct,
+  getUserInfo,
   insertProduct,
   updateProduct,
   deleteProduct,

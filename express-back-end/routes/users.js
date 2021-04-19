@@ -1,15 +1,22 @@
 const express = require("express");
 const router = express.Router();
-const { addUser, getProdsByUser, getAllOrdersByUserID } = require('./helperFunctions');
-
+const { addUser, getProdsByUser, getAllOrdersByUserID, getUserInfo } = require('./helperFunctions');
 
 module.exports = (db) => {
+  router.get('/:userID', (req,res) => {
+    const id = req.params.userID;
+    getUserInfo(id, db)
+    .then((resp) => {
+      res.send(resp);
+    })
+    .catch((e) => console.log(e));
+  });
+
   //get products belonging to a particular user
   router.get("/products/:id", (req, res) => {
     const id = req.params.id;
     getProdsByUser(id, db)
       .then((resp) => {
-        console.log(resp);
         res.send(resp);
       })
       .catch((e) => console.log(e));

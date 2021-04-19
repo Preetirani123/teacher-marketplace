@@ -5,7 +5,6 @@ import Nav from '../Nav/Nav';
 import useStyles from './styles';
 import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
-
 import ReactPaginate from 'react-paginate';
 import './paginateStyle.scss';
 
@@ -53,9 +52,6 @@ export default function ProductContainer(props) {
     }));
     scrollToTop();
   };
-
-
-
 
   const currentProds = prod.slice(offset, offset+productsPerPage);
 

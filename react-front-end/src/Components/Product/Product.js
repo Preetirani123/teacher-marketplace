@@ -1,19 +1,25 @@
+import React, {useState, useEffect} from "react";
 import { CardActions, CardContent, CardMedia, Typography, Card, IconButton } from '@material-ui/core';
-import React from "react";
+import axios from 'axios';
 import useStyles from './styles';
 import {AddShoppingCart} from '@material-ui/icons'
 import {BrowserRouter as Router, Route, Link, Switch, useParams} from 'react-router-dom'
-import ProductDetails from './ProductDetails'
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
 
 export default function Product(props) {
   function add() {
-    console.log("ssssssssssssssss");
-    console.log(props.product);
     props.setCart(props.product);
   }
-
   const classes = useStyles();
+
+  const [owner, setOwner] = useState('');
+
+  useEffect(() => {
+    axios.get(`/users/${props.product.owner_id}`).then((res) => {
+      setOwner(res.data.name)
+    });
+  }, [])
+
 
   return (
     <div>
@@ -56,7 +62,7 @@ export default function Product(props) {
             align="center"
             className={classes.owner}
           >
-            Material posted By {props.product.owner_id}
+            Material posted By {owner}
           </Typography>
           <Link to={`/${props.product.id}`}>
             <Typography align="center" style={{fontSize: '15px', cursor: 'pointer', textDecoration: 'none'}}><AddCircleOutlineRoundedIcon />More Details</Typography>
