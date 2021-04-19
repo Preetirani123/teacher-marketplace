@@ -21,10 +21,6 @@ export default function Checkout(props) {
   const history = useHistory();
   const classes = useStyles();
 
-  if (history[-1] !== "/cart") {
-    history.push("/");
-  };
-
   function postOrder() {
     return axios.post('/orders',
     {
