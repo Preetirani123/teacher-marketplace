@@ -16,7 +16,7 @@ import Receipt from '../Receipt/Receipt';
 
 import axios from 'axios'
 
-import { BrowserRouter as Router, Route, Switch, useParams } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 export default function Main(props) {
 
@@ -227,6 +227,23 @@ export default function Main(props) {
        console.log(e)
     });
   }
+
+  function checkoutDecision() {
+    if (state.email === '')
+    {
+     return (<Login results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} count = {state.countItems} 
+        total = {state.total} msg = 'Please sign in first' /> )
+    } else if (state.cart.length === 0){
+      return (
+        <Redirect to="/" /> 
+      )
+    } else {
+      return(<Checkout setEm = {setEm} setId = {setId} items = {state.cart} 
+        count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+    )
+    }
+  }
+
  
   return (
      
@@ -264,16 +281,7 @@ export default function Main(props) {
                 }
               </Route>
               <Route path = "/checkout" >
-                {state.email === '' ?
-                <Login results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} count = {state.countItems} 
-                total = {state.total} msg = 'Please sign in first' /> 
-                :
-
-                <Checkout setEm = {setEm} setId = {setId} items = {state.cart} 
-                count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
-
-                
-                }
+                {checkoutDecision}
               </Route>
               <Route path="/cart" >
                 <Cart results = {results} setResults = {setResults} items = {state.cart} setId = {setId} changeQty = {changeQty} 
