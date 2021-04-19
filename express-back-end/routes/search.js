@@ -63,6 +63,37 @@ module.exports = (db, client) => {
     // })
     // res.send(body.hits.hits)
 
+
+    client.search({
+
+      index: 'products',
+  
+      body: {
+            query: {
+                fuzzy: {
+                    name: {
+                      value: req.params.data,
+                      fuzziness: 1
+                    }
+                }
+            }
+        }
+    }).then(function(resp) {
+      console.log("successful query");
+      
+      res.send(resp.body.hits.hits.map(hit => {
+        
+       
+       let tuple = hit._source
+       tuple['id'] = hit._id
+       return tuple;
+      
+      }))
+    }, function(err) {
+      console.trace(err.message);
+      res.send(err.message)
+    });
+
     
   });
 

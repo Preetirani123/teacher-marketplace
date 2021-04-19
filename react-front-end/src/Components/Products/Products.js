@@ -226,7 +226,16 @@ export default function Products(props) {
   return (
     <div>
 
-      <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+    <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+        <div style = {{zIndex : 1000}}>
+        {props.results.map((res, i) => 
+                  <article key = {i}>
+                    <Link to = {`/${res.id}`} key = {i}>
+                      {res.name}
+                    </Link>
+                  </article>
+        )}
+        </div>
       <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
