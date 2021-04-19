@@ -4,7 +4,7 @@ INSERT INTO users (name, email, password) VALUES ('Kira', 'kira@aol.com', 'test'
 INSERT INTO users (name, email, password) VALUES ('John', 'john@something.com', 'test');
 INSERT INTO users (name, email, password) VALUES ('Brett', 'brett@outlook.com', 'test');
 INSERT INTO users (name, email, password) VALUES ('Susan', 'S@a.com', 'test');
-INSERT INTO users (name, email, password) VALUES ('Jessica', 'jess@google.com', 'test');
+INSERT INTO users (name, email, password) VALUES ('Jess', 'jess@google.com', 'test');
 
 INSERT INTO orders(cust_id, amount, purchased) VALUES 
   (1, 2000, current_timestamp),
