@@ -46,7 +46,7 @@ CREATE TABLE product (
   subject_id INTEGER REFERENCES subject(id) ON DELETE CASCADE,
   level_id INTEGER REFERENCES level(id) ON DELETE CASCADE,
   province_id INTEGER REFERENCES province(id) ON DELETE CASCADE,
-  pdf_link VARCHAR(255) default 'Fake_PDF_Link'
+  pdf_link VARCHAR(255) default 'https://www.otffeo.on.ca/en/wp-content/uploads/sites/2/2014/09/Lesson-1_2_Cold-War-Scenario.pdf'
 );
 
 create TABLE order_details (
