@@ -261,16 +261,15 @@ const getProv = function(db) {
     });
 }
 
-// const getOrderID = function (customer_ID, db) {
-//   let query = `SELECT id FROM orders WHERE cust_id=$1 ORDER BY id DESC LIMIT 1`;
-//   const value = [customer_ID];
-//   return db
-//     .query(query, values)
-//     .then((res) => res.rows[0])
-//     .catch((err) => {
-//       console.error("query error", err.stack);
-//     });
-// };
+const getLastOrderID = function (customer_ID, db) {
+  let query = `SELECT id FROM orders WHERE cust_id=$1 ORDER BY id DESC LIMIT 1`;
+  const values = [customer_ID];
+  return db.query(query, values)
+    .then((res) => res.rows[0])
+    .catch((err) => {
+      console.error("query error", err.stack);
+    });
+};
 
 
 module.exports = {
@@ -293,5 +292,6 @@ module.exports = {
   getSubj,
   getAllOrderDetails,
   getAllOrdersByUserID,
-  getOrderDetailsByID
+  getOrderDetailsByID,
+  getLastOrderID
 };
