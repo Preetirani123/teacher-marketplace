@@ -137,7 +137,7 @@ const updateProduct = function(productID, name, categoryID, description, price, 
   .then(res => {
     console.log(query)
     console.log("debug----------------------------")
-    res.rows[0]
+    return res.rows[0]
   })
   .catch(err => {
     console.error('query error', err.stack);
@@ -145,7 +145,7 @@ const updateProduct = function(productID, name, categoryID, description, price, 
 };
 
 const deleteProduct = function(productID, db) {
-  let query = `DELETE FROM product WHERE id = $1`;
+  let query = `DELETE FROM product WHERE id = $1 RETURNING *`;
   const values = [productID];
   return db.query(query,values)
     .then(res => res.rows[0])
@@ -261,6 +261,34 @@ const getProv = function(db) {
     });
 }
 
+
+
+//Gets all the products in the DB
+const indexOps = function(db) {
+  const query = `SELECT * FROM product`
+  return db.query(query)
+    .then(res => res.rows)// returns an array of objects of objs (JSON FORMAT)
+    .catch((err, res) => res.send(err));
+}
+      // async function run (res) {
+      //   for (let p of res.rows) {
+      //     await client.index({
+      //     index: 'products',
+      //     body: {
+      //       name: p.name,
+      //       description: p.description
+      //     }
+      //     })
+      //   }
+      //   await client.indices.refresh({ index: 'products' })
+      // }
+      //res.send(resp.rows)
+      
+      
+    
+    
+
+
 const getLastOrderID = function (customer_ID, db) {
   let query = `SELECT id FROM orders WHERE cust_id=$1 ORDER BY id DESC LIMIT 1`;
   const values = [customer_ID];
@@ -270,6 +298,7 @@ const getLastOrderID = function (customer_ID, db) {
       console.error("query error", err.stack);
     });
 };
+
 
 
 module.exports = {
@@ -291,7 +320,9 @@ module.exports = {
   getProv,
   getSubj,
   getAllOrderDetails,
+  indexOps,
   getAllOrdersByUserID,
   getOrderDetailsByID,
   getLastOrderID
+
 };

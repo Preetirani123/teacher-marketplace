@@ -89,6 +89,16 @@ export default function Products(props) {
 
   }
 
+  function elasticInsert (n, d, i) {
+    axios.post(`/search/create/${i}`, {
+      name: n,
+      desc: d
+    })
+    .then((r) => {
+      console.log(r)
+    })
+  }
+
   function insProd () {
     
     axios.post('/product', {
@@ -104,11 +114,22 @@ export default function Products(props) {
     })
     .then((resp) => {
       console.log(resp);
+      elasticInsert(resp.data.name, resp.data.description, resp.data.id)
       setNewProd({...newProd, desc: '', img: '', price: 0, name: '', cat: '', prov: '', subj: '', level: '' })
       loadAll()
 
     })
     .catch((e) => {console.log(e)})
+  }
+
+  function elasticUpdate (n, d, i) {
+    axios.post(`/search/update/${i}`, {
+      name: n,
+      desc: d
+    })
+    .then((r) => {
+      console.log(r)
+    })
   }
 
   function upProd (i, elem_id) {
@@ -124,17 +145,29 @@ export default function Products(props) {
        province: state.allProds[i].province_id
     })
     .then(resp => {
-      console.log(resp)
+      console.log(resp.data)
+      console.log("^^^^^^^^^^^^^^^^^^^^^^^^^")
+      elasticUpdate(resp.data.name, resp.data.description, resp.data.id)
       loadAll()
     })
     .catch(e => {
       console.log(e)
     })
   }
+
+  function elasticDel (i) {
+    axios.post(`/search/delete/${i}`)
+    .then((r) => {
+      console.log(r)
+    })
+  }
+
   function delProd (elem_id) {
     axios.delete(`/product/${elem_id}`)
     .then(resp => {
       console.log(resp)
+      console.log(resp.data.id)
+      elasticDel(resp.data.id)
       loadAll()
     })
     .catch(e => {
@@ -193,7 +226,16 @@ export default function Products(props) {
   return (
     <div>
 
-      <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+    <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+        <div style = {{zIndex : 1000}}>
+        {props.results.map((res, i) => 
+                  <article key = {i}>
+                    <Link to = {`/${res.id}`} key = {i}>
+                      {res.name}
+                    </Link>
+                  </article>
+        )}
+        </div>
       <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>

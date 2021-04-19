@@ -15,6 +15,7 @@ export default function Nav(props) {
   const history = useHistory();
   const [em, setEma] = useState('');
 
+  const [val, setVal] = useState('')
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -25,23 +26,36 @@ export default function Nav(props) {
     setAnchorEl(null);
   };
 
+
   useEffect(() => {
 
 
     axios.get('/login')
-    .then((resp) => {
-    console.log(resp.data)
-    setEma(resp.data.email)
-    props.setId(resp.data.id)
-    props.setEm(resp.data.email)
-    
-    
-    
+      .then((resp) => {
+      console.log(resp.data)
+      setEma(resp.data.email)
+      props.setId(resp.data.id)
+      props.setEm(resp.data.email)
+  
     })
-    .catch((e) => {
+    .catch((e) => {console.log(e)});
 
-  });
+
+
+    
+
   }, [])
+
+  function search (e) {
+    setVal(e.target.value)
+    axios.get(`/search/${val}`)
+    .then((resp) => {
+      console.log(resp)
+      console.log("&&&&&&&&&&&&&&&&&&&&&&")
+      props.setResults([...resp.data])
+    })
+    .catch((e) => {console.log(e)})
+  }
   
   function logout(e) {
     e.preventDefault();
@@ -86,7 +100,18 @@ export default function Nav(props) {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              value = {val}
+              onChange = {search}
             />
+            {/* {results.map((res, i) => 
+                <article key = {i}>
+                  <Link to = {`/${res._id}`} key = {i}>
+                     hshshshshash {typeof res._source === undefined ? '' : '77'}
+                  </Link>
+                </article>
+            )} */}
+            
+            
           </div>
          </div>
          <div className={classes.navRight}>

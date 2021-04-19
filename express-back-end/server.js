@@ -27,19 +27,11 @@ const dbParams = require("./lib/db.js"); // check this..
 const db = new Pool(dbParams);
 db.connect();
 
-// Sample GET route
-// app.get("/api/data", (req, res) =>
-//   res.json({
-//     message: "Seems to work!",
-//   })
-// );
+'use strict'
 
-// Routes
-// / = home page
-// login POST AND GET
-// Logout POST
-// register GET AND POST
-// products GET AND POST
+const { Client } = require('@elastic/elasticsearch')
+const client = new Client({ node: 'http://localhost:9200' })
+
 
 const usersRoutes = require("./routes/users");
 const productRoutes = require("./routes/product");
@@ -52,12 +44,13 @@ const fixedDataRoutes = require("./routes/fixed_data");
 
 const orderRoutes = require("./routes/orders");
 const orderDetailsRoutes = require("./routes/orderDetails");
+const searchRoutes = require("./routes/search");
 
 
 
 app.use("/users", usersRoutes(db));
 app.use("/login", loginRoutes(db));
-app.use("/product", productRoutes(db));
+app.use("/product", productRoutes(db, client));
 app.use("/logout", logoutRoutes(db));
 app.use("/cart", cartRoutes());
 
@@ -66,6 +59,8 @@ app.use("/fixed", fixedDataRoutes(db));
 
 app.use("/orders", orderRoutes(db));
 app.use("/orderdetails", orderDetailsRoutes(db));
+app.use("/search", searchRoutes(db, client));
+
 
 
 // Home page

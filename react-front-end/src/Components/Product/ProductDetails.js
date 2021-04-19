@@ -1,14 +1,12 @@
 import React, {useState,useEffect} from 'react'
 import { IconButton, Button } from '@material-ui/core';
 import { AddShoppingCart } from '@material-ui/icons'
-import { useHistory } from "react-router-dom";
 import './styles.scss';
 import useStyles from './styles';
 import Nav from '../Nav/Nav';
 import axios from 'axios'
-import {
-  useParams
-} from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
+
 
 export default function ProductDetails(props) {
   const [productState, setProduct] = useState([{}]);
@@ -30,7 +28,16 @@ export default function ProductDetails(props) {
   return (
     <div>
       <div>
-        <Nav count={props.count} setEm={props.setEm} />
+      <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+      <div style = {{zIndex : 1000}}>
+        {props.results.map((res, i) => 
+                  <article key = {i}>
+                    <Link to = {`/${res.id}`} key = {i}>
+                      {res.name}
+                    </Link>
+                  </article>
+        )}
+        </div>
       </div>
       <section>
       <Button 

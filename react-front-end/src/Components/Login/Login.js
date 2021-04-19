@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory, Redirect, Link } from "react-router-dom";
 import {TextField, Button, Typography} from '@material-ui/core';
 import useStyles from './styles';
 import axios from 'axios'
@@ -38,7 +38,17 @@ export default function Login(props) {
   return (
     <div >
 
-        <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+        
+        <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+        <div style = {{zIndex : 1000}}>
+        {props.results.map((res, i) => 
+                  <article key = {i}>
+                    <Link to = {`/${res.id}`} key = {i}>
+                      {res.name}
+                    </Link>
+                  </article>
+        )}
+        </div>
 
         <Button onClick = {loginRoutes} variant="contained" color="primary" className = {classes.spread}>
           Back
