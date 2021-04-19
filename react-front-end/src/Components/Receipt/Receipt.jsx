@@ -8,12 +8,7 @@ import './Receipt.scss';
 
 
 export default function Receipt(props) {
-  const history = useHistory();
   const classes = useStyles();
-
-  if (history[-1] !== "/checkout") {
-    history.push("/");
-  }
 
   const [tempCart, setTempCart] = useState([]);
   const [order, setOrder]= useState();
