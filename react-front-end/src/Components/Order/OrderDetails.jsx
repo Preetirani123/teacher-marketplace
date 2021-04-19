@@ -3,6 +3,7 @@ import Nav from "../Nav/Nav";
 import axios from 'axios'
 import useStyles from '../Checkout/styles';
 import { useParams } from "react-router-dom";
+import './OrderDetail.scss';
 
 import {
   Table,
@@ -73,8 +74,9 @@ export default function OrderDetails(props) {
 
 
   return (
-    <div>
+    <div className="DetailOuter">
       <Nav count={props.count} setEm={props.setEm} setId={props.setId} />
+      <div className="DetailInner">
       <h4>Order Number: {orderID}</h4>
       <Table
           key={1}
@@ -82,7 +84,7 @@ export default function OrderDetails(props) {
           aria-label="simple table"
         >
           <TableHead color="primary">
-            <TableRow className={classes.tableHead}>
+            <TableRow className={classes.tableHead} className="headTable">
               <TableCell align="left">Name</TableCell>
               <TableCell align="center">Quantity</TableCell>
               <TableCell align="right">Price</TableCell>
@@ -107,7 +109,7 @@ export default function OrderDetails(props) {
           <h3>Download your files here:</h3>
             {PDFLinks}
         </div>
-
+        </div>
     </div>
   );
 }
