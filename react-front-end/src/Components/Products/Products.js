@@ -191,10 +191,10 @@ export default function Products(props) {
 
   
   return (
-    <div>
+    <div className={classes.dashboard}>
 
       <Nav count = {props.count} setEm = {props.setEm} setId = {props.setId} />
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className={classes.dashboardinner}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
