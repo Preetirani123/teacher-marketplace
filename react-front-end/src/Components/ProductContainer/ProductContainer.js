@@ -21,7 +21,7 @@ export default function ProductContainer(props) {
     Promise.all([axios.get("/product")]).then((all) => {
       setState((prev) => ({
         ...prev,
-        prod: all[0].data,
+        prod: all[0].data.reverse(),
       }));
     });
   }, []);
