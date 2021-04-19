@@ -93,7 +93,7 @@ export default function OrderDetails(props) {
                 <TableRow key={row.name}>
                   <TableCell align="left">{row.name}</TableCell>
                   {getQuantity(row.id)}
-                  <TableCell align="right">${row.price}</TableCell>
+                  <TableCell align="right">${Number(row.price).toFixed(2)}</TableCell>
                 </TableRow>
               ))}
               <TableRow>
