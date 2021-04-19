@@ -1,0 +1,21 @@
+.DetailOuter{
+  width: 100%;
+}
+.DetailInner{
+  width: 60%;
+  margin: 110px auto;
+  .headTable{
+    background-color: #ff00008a;
+  }
+  h4{
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 768px){
+  .DetailInner{
+    width: 100%;
+    .PDF.Links{
+      margin: 5px;
+    }
+  }
+}
