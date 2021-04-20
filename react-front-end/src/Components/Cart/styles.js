@@ -70,16 +70,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   srchBar: {
-    position: 'absolute',
+    position: 'fixed',
     background: '#B7ACAC',
-    width: '50%',
+    width: '29%',
     margin: 'auto',
     left: '31%',
+    right: '40%',
     top: '52',
     padding: '5',
     borderRadius: '5',
     zIndex: 10000
+  },
+  closeIcon: {
+    left: '59%',
+    right: '40%',
+    width: '1%',
+    position: 'fixed',
+    margin: 'auto'
   }
+
   
 }));
 

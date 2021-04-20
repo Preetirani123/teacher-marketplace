@@ -18,6 +18,7 @@ import Nav from "../Nav/Nav";
 import axios from "axios";
 
 export default function Cart(props) {
+  const [close, setClose] = useState('yes')
   const history = useHistory();
   const classes = useStyles();
 
@@ -25,13 +26,20 @@ export default function Cart(props) {
     props.changeQty(sign, id);
   }
 
+  
+
+
   return (
 
 
     <div className={classes.cartMain}>
       
       <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
-      <div className = {classes.srchBar}>
+
+      
+      <div className = {classes.srchBar} >
+      
+      {props.results.length === 0 ? '' :  <span onClick = {() => setClose('yes')} className = {classes.closeIcon}>X</span> }
         {props.results.map((res, i) => 
                   <article key = {i}>
                     <Link to = {`/${res.id}`} key = {i}>
