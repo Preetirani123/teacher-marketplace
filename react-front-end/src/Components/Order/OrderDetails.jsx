@@ -47,7 +47,7 @@ export default function OrderDetails(props) {
   const PDFLinks = orders.products.map((item, index) => {
     return (
       <>
-        <a href={`'${item.pdf_link}'`} download>
+        <a href={`${item.pdf_link}`} target="_blank" download>
           PDF Link #{index}
         </a>
         <p>{"\n"}</p>
