@@ -40,7 +40,7 @@ export default function Login(props) {
 
         
         <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
-        <div style = {{zIndex : 1000}}>
+        <div className = {classes.srchBar}>
         {props.results.map((res, i) => 
                   <article key = {i}>
                     <Link to = {`/${res.id}`} key = {i}>

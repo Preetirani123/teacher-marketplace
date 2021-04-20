@@ -8,7 +8,7 @@ export default function TopContent(props) {
   return (
     <>
       <Container maxWidth="md"  className="topcontent">
-      <div style = {{zIndex : 1000}}>
+      <div className = 'srchBar'>
       {props.results.map((res, i) => 
                 <article key = {i}>
                   <Link to = {`/${res.id}`} key = {i}>

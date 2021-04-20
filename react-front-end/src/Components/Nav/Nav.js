@@ -120,7 +120,7 @@ export default function Nav(props) {
 
               {em === '' ? 
               <div className = {classes.logOut1}>
-                <Link to = "/Chat" className={classes.logOut2}>Chat</Link>
+                {/* <Link to = "/Chat" className={classes.logOut2}>Chat</Link> */}
                 
                 <Link to = "/login" className={classes.logOut2}>Login</Link>
                 <Link to = "/register" className={classes.logOut2}>SignUp</Link>
@@ -152,6 +152,7 @@ export default function Nav(props) {
                   >
                     <Link to = "/orders" ><MenuItem onClick={handleClose}>My Orders</MenuItem></Link>
                     <Link to = "/products" ><MenuItem onClick={handleClose}>Product Dashboard</MenuItem></Link>
+                    <Link to = "/Chat"><MenuItem onClick={handleClose}>Chat</MenuItem></Link>
                     <MenuItem onClick={logout}>Logout</MenuItem>
                   </Menu>
                       <Link to = "/cart" className={classes.navLink}>

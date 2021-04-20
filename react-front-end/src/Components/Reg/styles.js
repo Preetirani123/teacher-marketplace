@@ -24,6 +24,17 @@ const useStyles = makeStyles((theme) => ({
   },
   input:{
 
+  },
+  srchBar: {
+    position: 'absolute',
+    background: '#B7ACAC',
+    width: '50%',
+    margin: 'auto',
+    left: '31%',
+    top: '52',
+    padding: '5',
+    borderRadius: '5',
+    zIndex: 10000
   }
 }));
 
