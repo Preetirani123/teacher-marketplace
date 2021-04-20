@@ -304,7 +304,9 @@ export default function Main(props) {
                 }
               </Route>
               <Route  path = "/Chat" >
-                <Chat count = {state.countItems} total = {state.total} />
+                <Chat results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} items = {state.cart} 
+                count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+                
               </Route>
               <Route path = "/:productID">
                 <ProductDetails results = {results} setResults = {setResults} setCart = {setCart} count={state.countItems} total = {state.total} />

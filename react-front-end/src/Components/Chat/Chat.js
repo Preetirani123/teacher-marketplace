@@ -26,13 +26,13 @@ const firestore = firebase.firestore();
 const analytics = firebase.analytics();
 
 
-function Chat() {
+function Chat(props) {
 
   const [user] = useAuthState(auth);
 
   return (
     <>
-     <Nav />
+     <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
      
     
     <div className="AppChat">
