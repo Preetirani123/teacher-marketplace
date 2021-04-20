@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import useStyles from './styles';
+import Nav from '../Nav/Nav';
 
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -29,6 +30,8 @@ export default function Orders(props) {
   }
 
   return (
+    <>
+    
     <div className={classes.root}>
       <Link to={`/order/${props.orderID}`}>
         <ListItem button className={props.className}>
@@ -41,5 +44,6 @@ export default function Orders(props) {
         </ListItem>
       </Link>
     </div>
+    </>
   );
 }

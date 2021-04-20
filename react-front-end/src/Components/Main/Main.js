@@ -237,8 +237,8 @@ export default function Main(props) {
         <Redirect to="/" /> 
       )
     } else {
-      return(<Checkout setEm = {setEm} setId = {setId} items = {state.cart} 
-        count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+      return(<Checkout results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} 
+        count = {state.countItems} total = {state.total} setEm = {setEm} u_id = {state.id} items = {state.cart} />
     )
     }
   }
@@ -252,21 +252,22 @@ export default function Main(props) {
             
             <Switch>
               <Route path = "/order/:orderID">
-                <OrderDetails setCart = {setCart} count={state.countItems} total = {state.total} />
+                <OrderDetails results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} items = {state.cart} 
+                count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id}  />
               </Route>
               <Route path = '/orders'>
                 {state.email === ''  ?
                   <Login  setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
                   msg = 'Please sign in first' /> 
                   :
-                  <OrderContainer setEm = {setEm} setId = {setId} items = {state.cart} 
-                  count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+                  <OrderContainer results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} 
+                  items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
                   }
               </Route>
               <Route path = "/products" >
                 {state.email === ''  ?
-                <Login results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} 
-                msg = 'Please sign in first' /> 
+                <Login results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} count = {state.countItems} 
+                total = {state.total} msg = 'Please sign in first' /> 
                 :
                 <Products results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} items = {state.cart} 
                 count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
@@ -274,46 +275,54 @@ export default function Main(props) {
               </Route>  
               <Route path = '/receipt'>
                 {state.email === '' ?
-                <Login results = {results} setResults = {setResults} setEm = {setEm} count = {state.countItems} total = {state.total} /> 
+                <Login results = {results} setResults = {setResults} setEm = {setEm} count = {state.countItems} 
+                total = {state.total} /> 
                 :
-                <Receipt items = {state.cart} setCart = {setState} count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
+                <Receipt setCart = {setCart} results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} 
+                items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} 
+                u_id = {state.id} />
                 }
               </Route>
               <Route path = "/checkout" >
                 {checkoutDecision}
               </Route>
               <Route path="/cart" >
-                <Cart results = {results} setResults = {setResults} items = {state.cart} setId = {setId} changeQty = {changeQty} 
-                count = {state.countItems} total = {state.total} setEm = {setEm}  u_id = {state.id} />
+                <Cart results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} items = {state.cart} 
+                count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} 
+                changeQty = {changeQty} 
+                />
               </Route>
               
               <Route path="/login" >
                 {state.email === '' ?
-                <Login results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} />  
+                <Login results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} items = {state.cart} 
+                count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />  
                 :
-                <ProductContainer results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} count = {state.countItems} 
-                total = {state.total} setEm = {setEm} u_id = {state.id} />
+                <ProductContainer results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} 
+                count = {state.countItems} total = {state.total} setEm = {setEm} u_id = {state.id} items = {state.cart} />
                 }
               </Route>
               <Route path = "/register" >
                 {state.email === '' ?
-                <Reg results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} count = {state.countItems} total = {state.total} />  
+                <Reg results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} items = {state.cart} 
+                count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />  
                 :
-                <ProductContainer results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} count = {state.countItems} 
-                total = {state.total} setEm = {setEm} u_id = {state.id} />
+                <ProductContainer results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} 
+                count = {state.countItems} total = {state.total} setEm = {setEm} u_id = {state.id} items = {state.cart} />
                 }
               </Route>
               <Route  path = "/Chat" >
-                <Chat results = {results} setResults = {setResults} setEm = {setEm} setId = {setId} items = {state.cart} 
-                count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} />
-                
+                <Chat results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} 
+                count = {state.countItems} total = {state.total} setEm = {setEm} u_id = {state.id} items = {state.cart} />
+
               </Route>
               <Route path = "/:productID">
-                <ProductDetails results = {results} setResults = {setResults} setCart = {setCart} count={state.countItems} total = {state.total} />
+                <ProductDetails results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} 
+                count = {state.countItems} total = {state.total} setEm = {setEm} u_id = {state.id} items = {state.cart} />
               </Route>
               <Route path="/" >
-                <ProductContainer results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} count = {state.countItems} 
-                total = {state.total} setEm = {setEm} u_id = {state.id} />
+                <ProductContainer results = {results} setResults = {setResults} setId = {setId} setCart = {setCart} 
+                count = {state.countItems} total = {state.total} setEm = {setEm} u_id = {state.id} items = {state.cart} />
               </Route>
 
             </Switch>

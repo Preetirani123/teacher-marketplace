@@ -29,7 +29,8 @@ export default function ProductDetails(props) {
     <div>
       <div>
       <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
-      <div style = {{zIndex : 1000}}>
+      <div className = {classes.srchBar}>
+        {props.results.length === 0 ? '' : <span className = {classes.closeIcon}>X</span> }
         {props.results.map((res, i) => 
                   <article key = {i}>
                     <Link to = {`/${res.id}`} key = {i}>
@@ -37,7 +38,7 @@ export default function ProductDetails(props) {
                     </Link>
                   </article>
         )}
-        </div>
+      </div>
       </div>
       <section>
       <Button 

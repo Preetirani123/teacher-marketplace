@@ -5,6 +5,7 @@ import useStyles from './styles';
 import {AddShoppingCart} from '@material-ui/icons'
 import {BrowserRouter as Router, Route, Link, Switch, useParams} from 'react-router-dom'
 import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
+import Nav from '../Nav/Nav';
 
 export default function Product(props) {
   function add() {
@@ -22,6 +23,8 @@ export default function Product(props) {
 
 
   return (
+    <>
+    {/* <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} /> */}
     <div>
       <Card className={classes.root}>
         <CardMedia
@@ -70,5 +73,6 @@ export default function Product(props) {
         </CardContent>
       </Card>
     </div>
+    </>
   );
 }

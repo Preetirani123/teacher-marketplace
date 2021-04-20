@@ -5,8 +5,11 @@ import Order from '../Order/Order'
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import './OrderContainer.scss';
+import { useHistory, Link } from "react-router-dom";
+import useStyles from '../Cart/styles';
 
 export default function OrderContainer(props) {
+  const classes = useStyles();
 
   const [orders, setOrders] = useState({
     ords: []
@@ -32,7 +35,16 @@ export default function OrderContainer(props) {
 
   return (
     <div className="orderContain">
-      <Nav count={props.count} setEm={props.setEm} setId={props.setId} />
+      <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+      <div className = {classes.srchBar}>
+        {props.results.map((res, i) => 
+                  <article key = {i}>
+                    <Link to = {`/${res.id}`} key = {i}>
+                      {res.name}
+                    </Link>
+                  </article>
+        )}
+        </div>
       <div className="orderContainInner">
       <h4>Below are your previous orders:</h4>
       <List component="nav" >

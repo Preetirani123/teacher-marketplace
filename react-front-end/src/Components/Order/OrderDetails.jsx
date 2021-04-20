@@ -4,6 +4,7 @@ import axios from 'axios'
 import useStyles from '../Checkout/styles';
 import { useParams } from "react-router-dom";
 import './OrderDetail.scss';
+import { useHistory, Redirect, Link } from "react-router-dom";
 
 import {
   Table,
@@ -75,7 +76,16 @@ export default function OrderDetails(props) {
 
   return (
     <div className="DetailOuter">
-      <Nav count={props.count} setEm={props.setEm} setId={props.setId} />
+      <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+      <div className = {classes.srchBar}>
+        {props.results.map((res, i) => 
+                  <article key = {i}>
+                    <Link to = {`/${res.id}`} key = {i}>
+                      {res.name}
+                    </Link>
+                  </article>
+        )}
+      </div>
       <div className="DetailInner">
       <h4>Order Number: {orderID}</h4>
       <Table

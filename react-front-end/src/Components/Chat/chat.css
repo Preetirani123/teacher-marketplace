@@ -6,10 +6,10 @@ body {
   flex-direction: row;
   justify-content: space-between;
   justify-content: space-between;
-background: #ff00008a;
-padding: 10px 20px;
+  background: #ff00008a;
+  padding: 10px 20px;
 }
-.AppChat h3{
+.AppChat h3 {
   margin-right: 44px;
 }
 .AppChat .sign-out {
@@ -24,132 +24,133 @@ padding: 10px 20px;
 }
 
 .AppChat {
-  
   max-width: 100%;
   margin: 0 auto;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
   border-radius: 8px;
   background: rgb(246, 246, 247);
-  }
-  
-  .AppChat main{
+}
+
+.AppChat main {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 12px;
   height: 400px;
   overflow-y: scroll;
-  }
+}
 
 .message.received {
   display: flex;
   flex-direction: row;
   width: 70%;
-        
+
   border-radius: 10px;
-  }
-        
-  .message.received img {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          align-items: center;
-        
-        }
-.message.received p { 
+}
+
+.message.received img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+}
+.message.received p {
   margin-left: 10px;
   font-size: 15px;
-  }      
-      
-.message.sent {
-display: flex;
-flex-direction: row-reverse;
- width: 100%;
- border-radius: 10px;
 }
-        
+
+.message.sent {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  border-radius: 10px;
+}
+
 .message.sent img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   align-items: center;
-
-}        
+}
 .message.sent p {
   margin-right: 10px;
   font-size: 15px;
-        }
-    
-        .AppChat form {
-          height: 6vh;
-          
-          background-color: #ffffff;
-          width: 100%;
-          max-width: 100%;
-          display: flex;
-          font-size: 1.5rem;
-        }
-           
-        .AppChat form button {
-      width: 20%;
-      background-color: #3f51b5;
-      color: #ffffff;
-      font-size: 25px;
-    }
-    
-    
-    .AppChat input {
-      line-height: 1.5;
-      width: 100%;
-      font-size: 1.5rem;
-      
-      color: #000000;
-      outline: none;
-      border: none;
-      padding: 0 10px;
-    }
+}
 
-    .sign-in {
-      padding: 16px 36px;
-    margin: 0px;
-    border-radius: 11px;
-    color: #000000;
-    font-size: 20px;
-    cursor: pointer;
-    border: 0px;
-    background: transparent;
-    text-align: center;
+.AppChat form {
+  height: 6vh;
+
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  font-size: 1.5rem;
+}
+
+.AppChat form button {
+  width: 20%;
+  background-color: #3f51b5;
+  color: #ffffff;
+  font-size: 25px;
+}
+
+.AppChat input {
+  line-height: 1.5;
+  width: 100%;
+  font-size: 1.5rem;
+
+  color: #000000;
+  outline: none;
+  border: none;
+  padding: 0 10px;
+}
+
+.sign-in {
+  padding: 16px 36px;
+  margin: 0px;
+  border-radius: 11px;
+  color: #000000;
+  font-size: 20px;
+  cursor: pointer;
+  border: 0px;
+  background: transparent;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}
+.sign-in :hover {
+  color: #3f51b5;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .AppChat {
+    margin: 120px 45px;
     width: 100%;
-      cursor: pointer;  
-    }
-    .sign-in :hover{
-      color: #3f51b5;
-    }
+  }
+}
 
-    
-
-    @media (min-width: 768px) and (max-width: 1024px){
-      .AppChat {
-        margin: 120px 45px;
-        width: 100%;
-      }
-      
-    }
-    
-    @media only screen and (max-width: 767px){
-      .AppChat{
-        margin: 90px auto;
-      }
-      .AppChat h3 {
-        margin-right: 16px;
-        font-size: 18px;
-      }
-      .AppChat .sign-out{
-        padding: 2px 17px;
-        font-size: 16px;
-
-      }
-    }
-
-    
+@media only screen and (max-width: 767px) {
+  .AppChat {
+    margin: 90px auto;
+  }
+  .AppChat h3 {
+    margin-right: 16px;
+    font-size: 18px;
+  }
+  .AppChat .sign-out {
+    padding: 2px 17px;
+    font-size: 16px;
+  }
+}
+.srchBar {
+  position: absolute;
+  background-color: #b7acac;
+  width: 50%;
+  margin: auto;
+  left: 31%;
+  top: 52;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 10000;
+}

@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './chat.css';
+import useStyles from "../Cart/styles";
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -7,6 +8,8 @@ import 'firebase/analytics';
 import Nav from '../Nav/Nav';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useHistory, Redirect, Link } from "react-router-dom";
+
 
 const {REACT_APP_APIKEY, REACT_APP_AUTHDOMAIN, REACT_APP_PROJECTID,
   REACT_APP_STORAGEBUCKET, REACT_APP_MESSAGINGSENDERID, REACT_APP_APPID, REACT_APP_MEASUREMENTID} = process.env
@@ -27,13 +30,23 @@ const analytics = firebase.analytics();
 
 
 function Chat(props) {
+  const classes = useStyles();
 
   const [user] = useAuthState(auth);
 
   return (
     <>
      <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
-     
+     <div className = {classes.srchBar}>
+     {props.results.length === 0 ? '' : <span className = {classes.closeIcon}>X</span> }
+        {props.results.map((res, i) => 
+                  <article key = {i}>
+                    <Link to = {`/${res.id}`} key = {i}>
+                      {res.name}
+                    </Link>
+                  </article>
+        )}
+      </div>
     
     <div className="AppChat">
       <header>

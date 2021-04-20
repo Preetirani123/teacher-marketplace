@@ -8,21 +8,22 @@
   box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1);
   padding: 20px;
 
-  h1, h2{
+  h1,
+  h2 {
     text-align: center;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .receiptoutter{
+  .receiptoutter {
     margin-top: 61px;
   }
-  .receiptinner{
+  .receiptinner {
     width: 100%;
-    h1{
+    h1 {
       font-size: 2.5em;
     }
-    h2{
+    h2 {
       font-size: 1.8em;
     }
   }

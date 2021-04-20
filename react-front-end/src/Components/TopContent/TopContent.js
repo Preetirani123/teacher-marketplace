@@ -8,19 +8,11 @@ export default function TopContent(props) {
   return (
     <>
       <Container maxWidth="md"  className="topcontent">
-      <div className = 'srchBar'>
-      {props.results.map((res, i) => 
-                <article key = {i}>
-                  <Link to = {`/${res.id}`} key = {i}>
-                    {res.name}
-                  </Link>
-                </article>
-      )}
-      </div>
+      
 
       <Typography variant="h4" align="center" color="textPrimary"  gutterBottom>
       <ul className="c-rainbow">
-      <li className="c-rainbow__layer c-rainbow__layer--blue">Teach To Their Own</li>
+        <li className="c-rainbow__layer c-rainbow__layer--blue">Teach To Their Own</li>
       </ul>
        
       </Typography>
