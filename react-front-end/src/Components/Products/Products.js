@@ -229,15 +229,20 @@ export default function Products(props) {
 
 
     <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
-        <div className = {classes.srchBar}>
-        {props.results.map((res, i) => 
-                  <article key = {i}>
-                    <Link to = {`/${res.id}`} key = {i}>
-                      {res.name}
-                    </Link>
-                  </article>
-        )}
-        </div>
+    {( props.results === undefined || props.results.length === 0) 
+      ?
+      ''
+      :
+      <div className = {classes.srchBar}>
+             {props.results.map((res, i) => {
+               return (<article key = {i}>
+               <Link to = {`/${res.id}`} key = {i}>
+                 {res.name}
+               </Link>
+             </article>)
+             })}
+      </div>
+      }
       <TableContainer component={Paper} className={classes.dashboardinner}>
 
       <Table className={classes.table} aria-label="simple table">

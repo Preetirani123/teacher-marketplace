@@ -33,18 +33,24 @@ export default function OrderContainer(props) {
     )
   });
 
+
   return (
     <div className="orderContain">
       <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+      {(props.results.length === 0 || props.results === undefined) 
+      ?
+      ''
+      :
       <div className = {classes.srchBar}>
-        {props.results.map((res, i) => 
-                  <article key = {i}>
-                    <Link to = {`/${res.id}`} key = {i}>
-                      {res.name}
-                    </Link>
-                  </article>
-        )}
-        </div>
+             {props.results.map((res, i) => {
+               return (<article key = {i}>
+               <Link to = {`/${res.id}`} key = {i}>
+                 {res.name}
+               </Link>
+             </article>)
+             })}
+      </div>
+      }
       <div className="orderContainInner">
       <h4>Below are your previous orders:</h4>
       <List component="nav" >

@@ -58,15 +58,20 @@ export default function Receipt(props) {
   return (
     <div className="receiptoutter">
       <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+      {( props.results === undefined || props.results.length === 0) 
+      ?
+      ''
+      :
       <div className = {classes.srchBar}>
-        {props.results.map((res, i) => 
-                  <article key = {i}>
-                    <Link to = {`/${res.id}`} key = {i}>
-                      {res.name}
-                    </Link>
-                  </article>
-        )}
+             {props.results.map((res, i) => {
+               return (<article key = {i}>
+               <Link to = {`/${res.id}`} key = {i}>
+                 {res.name}
+               </Link>
+             </article>)
+             })}
       </div>
+      }
       <div className="receiptinner">
       <h1>Thank you for your Order.</h1>
       <h2>Your Order Number is: {order} </h2>
