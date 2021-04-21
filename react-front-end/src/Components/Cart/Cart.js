@@ -34,7 +34,7 @@ export default function Cart(props) {
 
     <div className={classes.cartMain}>
       
-      <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+      <Nav val= {props.val} setVal={props.setVal} setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
 
       {( props.results === undefined || props.results.length === 0)
       ?

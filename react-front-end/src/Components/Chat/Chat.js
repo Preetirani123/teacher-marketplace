@@ -36,17 +36,21 @@ function Chat(props) {
 
   return (
     <>
-     <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
-     <div className = {classes.srchBar}>
-     {props.results.length === 0 ? '' : <span className = {classes.closeIcon}>X</span> }
-        {props.results.map((res, i) => 
-                  <article key = {i}>
-                    <Link to = {`/${res.id}`} key = {i}>
-                      {res.name}
-                    </Link>
-                  </article>
-        )}
+     <Nav val= {props.val} setVal={props.setVal} setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+     {( props.results === undefined || props.results.length === 0)
+      ?
+      ''
+      :
+      <div className = {classes.srchBar}>
+             {props.results.map((res, i) => {
+               return (<article key = {i}>
+               <Link to = {`/${res.id}`} key = {i}>
+                 {res.name}
+               </Link>
+             </article>)
+             })}
       </div>
+      }
     
     <div className="AppChat">
       <header>

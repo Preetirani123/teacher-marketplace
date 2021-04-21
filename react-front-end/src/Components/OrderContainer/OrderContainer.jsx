@@ -36,8 +36,8 @@ export default function OrderContainer(props) {
 
   return (
     <div className="orderContain">
-      <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
-      {(props.results.length === 0 || props.results === undefined) 
+      <Nav val= {props.val} setVal={props.setVal} setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+      {( props.results === undefined || props.results.length === 0)
       ?
       ''
       :

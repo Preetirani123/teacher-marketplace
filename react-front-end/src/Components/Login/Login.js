@@ -40,7 +40,7 @@ export default function Login(props) {
   return (
     <div >
         
-        <Nav setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
+        <Nav val= {props.val} setVal={props.setVal} setResults = {props.setResults} count = {props.count} setEm = {props.setEm} setId = {props.setId} />
         
         {( props.results === undefined || props.results.length === 0) 
         ?

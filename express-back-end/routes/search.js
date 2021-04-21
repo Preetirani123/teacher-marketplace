@@ -51,50 +51,26 @@ module.exports = (db, client) => {
 
   router.get("/:data",(req, res) =>  {
    
-
-    // const { body } = await client.search({
-    //   index: 'game-of-thrones',
-    //   // type: '_doc', // uncomment this line if you are using Elasticsearch ≤ 6
-    //   body: {
-    //     query: {
-    //       match: { quote: req.params.data }
-    //     }
-    //   }
-    // })
-    // res.send(body.hits.hits)
-
-
     client.search({
-
       index: 'products',
-  
       body: {
             query: {
-                fuzzy: {
-                    name: {
-                      value: req.params.data,
-                      fuzziness: 1
-                    }
+                wildcard: {
+                  name: req.params.data + '*'
                 }
             }
         }
     }).then(function(resp) {
       console.log("successful query");
-      
       res.send(resp.body.hits.hits.map(hit => {
-        
-       
        let tuple = hit._source
        tuple['id'] = hit._id
        return tuple;
-      
       }))
     }, function(err) {
       console.trace(err.message);
       res.send(err.message)
     });
-
-    
   });
 
   router.post('/create/:id', (req, res) => {
@@ -102,6 +78,8 @@ module.exports = (db, client) => {
     const n = req.body.name
     const d = req.body.desc
     const id = req.params.id
+    console.log(n, d, id)
+    console.log("xxxxxxx")
     async function run () {
       
           await client.index({
