@@ -15,7 +15,7 @@ export default function Nav(props) {
   const history = useHistory();
   const [em, setEma] = useState('');
 
-  const [val, setVal] = useState('')
+  
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -47,14 +47,21 @@ export default function Nav(props) {
   }, [])
 
   function search (e) {
-    setVal(e.target.value)
-    axios.get(`/search/${val}`)
-    .then((resp) => {
-      console.log(resp)
-      console.log("&&&&&&&&&&&&&&&&&&&&&&")
-      props.setResults([...resp.data])
-    })
-    .catch((e) => {console.log(e)})
+
+
+    
+      
+         props.setVal(e.target.value)
+        
+          axios.get(`/search/${props.val}`)
+          .then((resp) => {
+            console.log(resp)
+            console.log("&&&&&&&&&&&&&&&&&&&&&&")
+            props.setResults([...resp.data])
+          })
+          .catch((e) => {console.log(e)})
+      
+    
   }
   
   function logout(e) {
@@ -100,7 +107,7 @@ export default function Nav(props) {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-              value = {val}
+              value = {props.val}
               onChange = {search}
             />
             {/* {results.map((res, i) => 
@@ -120,7 +127,6 @@ export default function Nav(props) {
 
               {em === '' ? 
               <div className = {classes.logOut1}>
-                {/* <Link to = "/Chat" className={classes.logOut2}>Chat</Link> */}
                 
                 <Link to = "/login" className={classes.logOut2}>Login</Link>
                 <Link to = "/register" className={classes.logOut2}>SignUp</Link>
