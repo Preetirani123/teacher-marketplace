@@ -290,6 +290,27 @@ const getProductsByFilters = function (conds, db) {
 
 }
 
+const addSearch = function(u_id, em, sch, db) {
+  let query = `INSERT INTO search (user_id, email, searchterms) VALUES ($1, $2, $3) RETURNING *`;
+  const values = [u_id, em, sch];
+  return db.query(query,values)
+    .then(res => res.rows[0])
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
+
+const getSearch = function (u_id, db) {
+  let query = `SELECT searchterms FROM search WHERE user_id = $1`;
+  const values = [u_id];
+  return db.query(query,values)
+    .then(res => res.rows)
+    .catch(err => {
+      console.error('query error', err.stack);
+    });
+}
+
 
 
 module.exports = {
@@ -315,6 +336,8 @@ module.exports = {
   getAllOrdersByUserID,
   getOrderDetailsByID,
   getLastOrderID,
-  getProductsByFilters
+  getProductsByFilters,
+  addSearch,
+  getSearch
 
 };

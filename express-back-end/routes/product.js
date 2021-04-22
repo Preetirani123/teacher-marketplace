@@ -1,27 +1,103 @@
+const { SimpleDB } = require("aws-sdk");
 const express = require("express");
 const router = express.Router();
-const { getProducts, getProductsByFilters, insertProduct, updateProduct, deleteProduct, getProduct, indexOps } = require('./helperFunctions');
-
+const { getSearch, addSearch, getProducts, getProductsByFilters, insertProduct, updateProduct, deleteProduct, getProduct, indexOps } = require('./helperFunctions');
+const stringSimilarity = require("string-similarity");
 
 module.exports = (db, client) => {
   
+
+  async function sim (id, res, products) {
+     console.log(id)
+
+     getSearch(id, db)
+     .then((resp) => {
+      
+      console.log(resp)
+      let sTerms = resp.map(e => e.searchterms).join(' ')
+      console.log(sTerms)
+      let prods = []
+      for (let p of products) {
+        let score = stringSimilarity.compareTwoStrings(sTerms, p.description)
+        p['score'] = score
+      }
+      products.sort((a, b) => {
+        return b.score - a.score;
+      })
+      
+      console.log(products[0])
+
+
+
+
+
+
+
+
+
+      res.send(products);
+    })
+  }
+
   //get all products
   router.get("/", (req, res) => {
     getProducts(db)
-      .then(products => res.send(products))
+      .then(products => {
+        
+        if(req.session && req.session.user_id) {
+           console.log(req.session.user_id)
+           sim(req.session.user_id, res, products).catch(console.log)
+           return;
+        }
+        res.send(products)
+      })
       .catch(e => {
         res.send(e);
       });
   });
 
+
+
+
+  async function run_as (id, em, sch) {
+    addSearch(id, em, sch, db)
+    .then((resp) => {
+      console.log(resp)
+      //res.send(resp);
+    })
+  }
+
   //Get a specific product
   router.get("/:productID", (req, res) => {
       const productID = req.params.productID;
       getProduct(productID, db)
-        .then(products => res.send(products))
+        .then(products => {
+          
+    
+          if ((req.session && req.session.user_id)) {
+            console.log(req.session.user_id)
+            console.log(req.session.email)
+            console.log(products[0].description)
+            run_as(req.session.user_id, req.session.email, products[0].description).catch(console.log)
+           
+          }
+          res.send(products)
+        
+        })
         .catch(e => {
           res.send(e);
         });
+  });
+
+  router.get('/search/:u_id', (req, res) => {
+    getSearch(req.params.u_id, db)
+    .then(terms => {
+      console.log(terms)
+      res.send(terms)
+    })
+    .catch(e => {
+      res.send(e);
+    });
   });
 
   
