@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { getProducts, insertProduct, updateProduct, deleteProduct, getProduct, indexOps } = require('./helperFunctions');
+const { getProducts, getProductsByFilters, insertProduct, updateProduct, deleteProduct, getProduct, indexOps } = require('./helperFunctions');
 
 
 module.exports = (db, client) => {
@@ -28,20 +28,7 @@ module.exports = (db, client) => {
 
   //creates a new product
   router.post("/", (req,res) => {
-    // const userID = req.session.user_id; /// < ------ Uncomment this and delete next line when code is running.
-
-
-    // client.indices.delete({
-    //   index: '_all'
-    // }, function(err, res) {
-  
-    //   if (err) {
-    //       console.error(err.message);
-    //   } else {
-    //       console.log('Indexes have been deleted!');
-    //   }
-    // });
-
+    
     const userID = req.body.user_id;
     const name = req.body.name;
     const description = req.body.text_description;
@@ -73,6 +60,19 @@ module.exports = (db, client) => {
 
       
   })
+
+
+  // router.post('/filter', (req, res) => {
+     
+  //   const conds = req.body
+  //   console.log(conds)
+  //   getProductsByFilters(db, conds)
+  //     // .then(products => res.send(products))
+  //     // .catch(e => {
+  //     //   res.send(e);
+  //     // });
+
+  // })
      
 
   // Update the product
@@ -127,10 +127,6 @@ module.exports = (db, client) => {
         res.send(e);
       });
   });
-
-
-
-
 
   return router;
 };
