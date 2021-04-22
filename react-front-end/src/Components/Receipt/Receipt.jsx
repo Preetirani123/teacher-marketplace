@@ -79,7 +79,15 @@ export default function Receipt(props) {
     })
     .then(() => {
       axios.delete('/cart') //working
-    })
+      props.setState((prevState) => {
+        return {
+          ...prevState,
+          cart : [],
+          total : 0,
+          countItems : 0
+        }
+      });
+    });
 
     // // transferCart();
     // if (tempCart.length !== 0) {
