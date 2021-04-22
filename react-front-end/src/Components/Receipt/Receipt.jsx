@@ -10,50 +10,144 @@ import './Receipt.scss';
 export default function Receipt(props) {
   const classes = useStyles();
 
-  const [tempCart, setTempCart] = useState([]);
   const [order, setOrder]= useState();
+  const [total, setTotal] = useState();
+  const [orderDetails, setOrderDetails] = useState(
+    {
+      product: [],
+      price: [],
+      quantity: []
+    }
+  );
+  const [products, setProducts]= useState(
+    {
+      name: [],
+      pdf: []
+    }
+  );
 
   useEffect(() => {
-    axios.get(`/users/${props.u_id}/lastOrder`).then((resp) => {
+    console.log(props.u_id);
+    axios.get(`/users/${props.u_id}/lastOrder`)
+    .then((resp) => {
+      console.log(resp.data.id);
       setOrder(resp.data.id);
-    });
+      return resp.data.id
+    })
+    .then((order) => {
+      axios.get(`/orders/${order}`)
+      .then((res)=> {
+        setTotal((prevState) => {
+          return res.data[0].amount
+        });
+      })
+      return order;
+    })
+    .then((order) => {
+      console.log('order', order);
+      let details = axios.get(`/orderdetails/order/${order}`)
+      .then((res) => {
+        res.data.forEach(detail => {
+          setOrderDetails((prevState) => {
+            return {
+              product: [...prevState.product, detail.prod_id],
+              price: [...prevState.price, detail.price],
+              quantity: [...prevState.quantity, detail.quantity]
+            }
+          }) 
+        })  
+        return res.data;
+      })
+      return details;
+      //here
+    })
+    .then((details) => {
+      details.forEach((item) => {
+        axios.get(`/product/${item.prod_id}`)
+        .then((res) => {
+          console.log('res in product', res.data)
+          res.data.forEach(product => {
+            setProducts((prevState) => {
+              return {
+                name: [...prevState.name, product.name],
+                pdf: [...prevState.pdf, product.pdf_link]
+              }
+            })
+          })
+        })
+      })
+    })
+    .then(() => {
+      axios.delete('/cart') //working
+    })
 
-    transferCart();
-    if (tempCart.length !== 0) {
-      ////clear Cart
-      props.setCart((prevState) => ({
-        ...prevState,
-        cart: [],
-        total: 0,
-        countItems: 0,
-      }));
-      axios.delete('/cart')
-    }
-    
-    // return () => {
-    //   setTempCart([]);
-    // };
-  },[tempCart]);  
+    // // transferCart();
+    // if (tempCart.length !== 0) {
+    //   ////clear Cart
+    //   // props.setCart((prevState) => 
+    //   //   {
+    //   //     return {
+    //   //   ...prevState,
+    //   //   cart: [],
+    //   //   total: 0,
+    //   //   countItems: 0,
+    //   //   }
+    //   // });
 
-  function transferCart(){
-    setTempCart(props.items);
+    //   props.setState((prevState) => 
+    //     {
+    //       return {
+    //     ...prevState,
+    //     cart: [],
+    //     total: 0,
+    //     countItems: 0,
+    //     }
+    //   });
+
+  },[]);  
+
+  // setState((prev) =>
+  // { 
+  //   return {
+  //     ...prev,
+  //     cart: items,
+  //     countItems: cnt
+  //   }
+  // });
+
+
+
+  // function transferCart(){
+
+  //   a
+  //   //setTempCart(props.state.items);
+  // }
+
+  // const PDFLinks = products.pdf.map((item, index) => {
+  //   return (
+  //     <>
+  //       <a href={`${item}`} target="_blank" download>
+  //         PDF Link #{index}
+  //       </a>
+  //       <p>{"\n"}</p>
+  //     </>
+  //   );
+  // });
+
+  // const total = tempCart.reduce((total, prod) => {
+  //   return total + Number(prod.price);
+  // }, 0)
+
+const receiptTable = (i) => {
+  return(
+    <TableRow key={products.name[i]}>
+    <TableCell align="left">{products.name[i]}</TableCell>
+    <TableCell align="center">{orderDetails.quantity[i]}</TableCell>
+    <TableCell align="right">${orderDetails.price[i]}</TableCell>
+    </TableRow>)
   }
 
-  const PDFLinks = tempCart.map((item, index) => {
-    return (
-      <>
-        <a href={`${item.pdf_link}`} target="_blank" download>
-          PDF Link #{index}
-        </a>
-        <p>{"\n"}</p>
-      </>
-    );
-  });
-
-  const total = tempCart.reduce((total, prod) => {
-    return total + Number(prod.price);
-  }, 0)
-
+  console.log('products', products);
 
   return (
     <div className="receiptoutter">
@@ -88,17 +182,21 @@ export default function Receipt(props) {
               <TableCell align="right">Price</TableCell>
             </TableRow>
           </TableHead>
-          {tempCart.length === 0 ? (
+          {orderDetails.product.length === 0 ? (
             <p>Cart is empty - Go to the main page and buy some things</p>
           ) : (
             <TableBody key={2}>
-              {tempCart.map((row) => (
+              {orderDetails.product.map((item, index) => {
+                return receiptTable(index);
+              })}
+
+              {/* {orderDetails.product.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell align="left">{row.name}</TableCell>
                   <TableCell align="center">{row.qty}</TableCell>
                   <TableCell align="right">${row.price}</TableCell>
                 </TableRow>
-              ))}
+              ))} */}
               <TableRow>
                 <TableCell></TableCell>
                 <TableCell></TableCell>
@@ -109,7 +207,16 @@ export default function Receipt(props) {
         </Table>
         <div className='PDF Links'>
           <h3>Download your files here:</h3>
-            {PDFLinks}
+          {products.pdf.map((item, index) => {
+            return (
+              <>
+                <a href={`${item}`} target="_blank" download>
+                  PDF Link #{index}
+                </a>
+                <p>{"\n"}</p>
+              </>
+            )}
+          )}
         </div>
       </div>
     </div>
