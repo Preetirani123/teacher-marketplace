@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS province CASCADE;
 DROP TABLE IF EXISTS subject CASCADE;
 DROP TABLE IF EXISTS level CASCADE;
 DROP TABLE IF EXISTS category CASCADE;
+DROP TABLE IF EXISTS search CASCADE;
+
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -13,6 +15,7 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL
 );
+
 create TABLE orders (
   id SERIAL PRIMARY KEY,
   cust_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -57,6 +60,13 @@ create TABLE order_details (
   quantity INTEGER
 );
 
+CREATE TABLE search (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  email VARCHAR(255) NOT NULL,
+  searchTerms VARCHAR NOT NULL
+);
+
 ALTER TABLE users OWNER TO dev;
 ALTER TABLE orders OWNER TO dev;
 ALTER TABLE category OWNER TO dev;
@@ -65,4 +75,7 @@ ALTER TABLE province OWNER TO dev;
 ALTER TABLE subject OWNER TO dev;
 ALTER TABLE product OWNER TO dev;
 ALTER TABLE order_details OWNER TO dev;
+ALTER TABLE search OWNER TO dev;
+
+
 

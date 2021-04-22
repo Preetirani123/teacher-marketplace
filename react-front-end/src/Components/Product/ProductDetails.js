@@ -20,6 +20,9 @@ export default function ProductDetails(props) {
   const {productID} = useParams();
 
   useEffect(() => {
+
+    
+
     axios.get(`/product/${productID}`).then((res) => {
       setProduct(res.data[0]);
     });

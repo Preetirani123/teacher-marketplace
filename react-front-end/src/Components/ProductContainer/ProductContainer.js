@@ -27,16 +27,22 @@ export default function ProductContainer(props) {
 
   const history = useHistory();
   useEffect(() => {
+
+    
+    
+
     Promise.all([axios.get("/product")]).then((all) => {
       console.log(all)
       console.log("%%%%%%%%%%%%%%%%%%%%%%%")
+
+
       let stuff = all[0].data;
       // if (Number(ordP) === 1) {
       //   stuff = stuff.filter((s) => Number(s.price) < 50)
       // }
       setState((prev) => ({
         ...prev,
-        prod: stuff.reverse()
+        prod: stuff
       }));
     });
 
