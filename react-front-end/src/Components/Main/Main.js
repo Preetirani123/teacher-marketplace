@@ -144,10 +144,9 @@ export default function Main(props) {
         items.push(newer)
         upd_cart(items)
     }
-
-    
-    
   }
+
+
 
   const changeQty = (v, id) => {
     console.log(v, id)
@@ -280,8 +279,8 @@ export default function Main(props) {
                 <Login msg = 'Please sign in first' val = {val} setVal={setVal} results = {val === '' ? [] : results} setResults = {setResults} setEm = {setEm} setId = {setId} items = {state.cart} 
                 count = {state.countItems} total = {state.total} u_email = {state.email} u_id = {state.id} /> 
                 :
-                <Receipt setCart = {setCart} val = {val} setVal={setVal} results = {val === '' ? [] : results} setResults = {setResults} setEm = {setEm} setId = {setId} 
-                items = {state.cart} count = {state.countItems} total = {state.total} u_email = {state.email} 
+                <Receipt state = {state} setState = {setState}  val = {val} setVal={setVal} results = {val === '' ? [] : results} setResults = {setResults} setEm = {setEm} setId = {setId} 
+                u_email = {state.email} 
                 u_id = {state.id} />
                 }
               </Route>
