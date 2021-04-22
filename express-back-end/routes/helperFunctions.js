@@ -270,24 +270,6 @@ const indexOps = function(db) {
     .then(res => res.rows)// returns an array of objects of objs (JSON FORMAT)
     .catch((err, res) => res.send(err));
 }
-      // async function run (res) {
-      //   for (let p of res.rows) {
-      //     await client.index({
-      //     index: 'products',
-      //     body: {
-      //       name: p.name,
-      //       description: p.description
-      //     }
-      //     })
-      //   }
-      //   await client.indices.refresh({ index: 'products' })
-      // }
-      //res.send(resp.rows)
-      
-      
-    
-    
-
 
 const getLastOrderID = function (customer_ID, db) {
   let query = `SELECT id FROM orders WHERE cust_id=$1 ORDER BY id DESC LIMIT 1`;
@@ -298,6 +280,15 @@ const getLastOrderID = function (customer_ID, db) {
       console.error("query error", err.stack);
     });
 };
+
+const getProductsByFilters = function (conds, db) {
+  let query = `SELECT * FROM product`;
+  let pR = `WHERE price ${Number(conds.pRange) === 1 ? 'BETWEEN 0 AND 50' : Number(conds.pRange) === 2 ?
+  'BETWEEN 51 AND 100' : Number(conds.pRange) === 3 ? 'BETWEEN 101 AND 150' : '> 151'};`
+  query += pR
+  console.log(query)
+
+}
 
 
 
@@ -323,6 +314,7 @@ module.exports = {
   indexOps,
   getAllOrdersByUserID,
   getOrderDetailsByID,
-  getLastOrderID
+  getLastOrderID,
+  getProductsByFilters
 
 };

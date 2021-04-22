@@ -99,7 +99,7 @@ export default function Checkout(props) {
       :
       <div className = {classes.srchBar}>
              {props.results.map((res, i) => {
-               return (<article key = {i}>
+               return (<article style = {{'fontSize': '25px'}} key = {i}>
                <Link to = {`/${res.id}`} key = {i}>
                  {res.name}
                </Link>

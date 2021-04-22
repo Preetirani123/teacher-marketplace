@@ -73,7 +73,8 @@ const useStyles = makeStyles((theme) => ({
   },
   srchBar: {
     position: 'fixed',
-    background: '#B7ACAC',
+    background: 'yellow',
+    color: 'blue',
     width: '29%',
     margin: 'auto',
     left: '31%',

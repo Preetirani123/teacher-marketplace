@@ -9,7 +9,7 @@ export default function TopContent(props) {
     <>
       <Container maxWidth="md"  className="topcontent">
       
-
+      
       <Typography variant="h4" align="center" color="textPrimary"  gutterBottom>
       <ul className="c-rainbow">
         <li className="c-rainbow__layer c-rainbow__layer--blue">Teach To Their Own</li>
