@@ -17,7 +17,7 @@
     "cookie-session": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
-    "file-type": "^16.3.0",
+    "file-type": "^16.5.4",
     "fs": "0.0.1-security",
     "method-override": "^3.0.0",
     "multiparty": "^4.2.2",
